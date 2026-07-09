@@ -35,6 +35,17 @@
     .feature, .feature.reverse { flex-direction: column; }
     .img-window { min-height: 240px; }
   }
+
+  /* Apple-style reveal on scroll */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 </style>
 </head>
 <body>
@@ -152,6 +163,19 @@
   window.addEventListener('scroll', function () { requestAnimationFrame(parallax); });
   window.addEventListener('resize', parallax);
   parallax();
+
+  // Apple-style fade-in when elements enter the screen
+  const targets = document.querySelectorAll('.feature .text, .feature .img-window, section h2, section p, .team-member');
+  targets.forEach(function (el) { el.classList.add('reveal'); });
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  targets.forEach(function (el) { observer.observe(el); });
 </script>
 
 </body>
