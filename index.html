@@ -8,7 +8,7 @@
   body { font-family: Georgia, serif; margin: 0; color: #222; line-height: 1.6; }
   header {
     background-image: linear-gradient(rgba(29,53,87,0.75), rgba(29,53,87,0.75)), url('hero.jpg');
-    background-size: cover; background-position: center; background-attachment: fixed;
+    background-size: cover; background-position: center;
     color: white; text-align: center; padding: 110px 20px;
   }
   header h1 { margin: 0; font-size: 2.8em; }
@@ -22,18 +22,18 @@
 
   .feature { display: flex; align-items: stretch; max-width: 1100px; margin: 50px auto; }
   .feature.reverse { flex-direction: row-reverse; }
-  .feature .img-window {
-    flex: 1.4; min-height: 400px;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;   /* the lens / parallax effect */
+  .img-window { flex: 1.4; min-height: 400px; position: relative; overflow: hidden; }
+  .img-inner {
+    position: absolute; left: 0; right: 0;
+    top: -20%; height: 140%;              /* image is taller than its window */
+    background-size: cover; background-position: center;
+    will-change: transform;
   }
   .feature .text { flex: 1; padding: 30px; display: flex; flex-direction: column; justify-content: center; }
   .feature .text h3 { color: #1d3557; margin-top: 0; font-size: 1.5em; }
   @media (max-width: 700px) {
     .feature, .feature.reverse { flex-direction: column; }
-    .feature .img-window, header { background-attachment: scroll; }
-    .feature .img-window { min-height: 240px; }
+    .img-window { min-height: 240px; }
   }
 </style>
 </head>
@@ -55,7 +55,7 @@
 <div id="stories">
 
   <div class="feature">
-    <div class="img-window" style="background-image:url('draft.jpg');"></div>
+    <div class="img-window"><div class="img-inner" style="background-image:url('draft.jpg');"></div></div>
     <div class="text">
       <h3>Tanking and the Draft</h3>
       <p>Do WNBA teams lose on purpose to win later? We follow franchises that
@@ -65,7 +65,7 @@
   </div>
 
   <div class="feature reverse">
-    <div class="img-window" style="background-image:url('arena.jpg');"></div>
+    <div class="img-window"><div class="img-inner" style="background-image:url('arena.jpg');"></div></div>
     <div class="text">
       <h3>Attendance and the City</h3>
       <p>Why do some arenas fill up while others stay quiet? We compare attendance
@@ -74,7 +74,7 @@
   </div>
 
   <div class="feature">
-    <div class="img-window" style="background-image:url('college.jpg');"></div>
+    <div class="img-window"><div class="img-inner" style="background-image:url('college.jpg');"></div></div>
     <div class="text">
       <h3>From College to the Pros</h3>
       <p>March Madness stars don't always become WNBA stars. We trace how NCAA
@@ -83,7 +83,7 @@
   </div>
 
   <div class="feature reverse">
-    <div class="img-window" style="background-image:url('awards.jpg');"></div>
+    <div class="img-window"><div class="img-inner" style="background-image:url('awards.jpg');"></div></div>
     <div class="text">
       <h3>Awards vs. Reality</h3>
       <p>Do MVP votes and expert predictions match what actually happens on the
@@ -132,8 +132,27 @@
 <footer>
   Data Point Guards · DH 101 · UCLA · 2026<br>
   Photos from Wikimedia Commons, used under Creative Commons licenses.
-  [Author credits to be added]
 </footer>
+
+<script>
+  // Parallax: the image slides up slightly while its window scrolls
+  const windows = document.querySelectorAll('.img-window');
+  function parallax() {
+    const vh = window.innerHeight;
+    windows.forEach(function (w) {
+      const inner = w.querySelector('.img-inner');
+      const r = w.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > vh) return;      // not on screen
+      // -1 when window enters at bottom, +1 when it leaves at top
+      const progress = (r.top + r.height / 2 - vh / 2) / ((vh + r.height) / 2);
+      const max = (inner.offsetHeight - r.height) / 2; // room to move
+      inner.style.transform = 'translateY(' + (progress * max * 0.9) + 'px)';
+    });
+  }
+  window.addEventListener('scroll', function () { requestAnimationFrame(parallax); });
+  window.addEventListener('resize', parallax);
+  parallax();
+</script>
 
 </body>
 </html>
