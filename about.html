@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Data Point Guards</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Libre+Franklin:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="progress"></div>
+
+<div class="masthead">
+  <div class="brand"><a href="index.html">Data Point Guards</a></div>
+  <div class="tagline">Beyond the Box Score &middot; DH 101, UCLA</div>
+</div>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="draft.html">The Draft</a>
+  <a href="attendance.html">Attendance</a>
+  <a href="college.html">College to Pros</a>
+  <a href="awards.html">Awards</a>
+  <a href="data-critique.html">Data Critique</a>
+  <a href="about.html" class="here">About</a>
+  <a href="sources.html">Sources</a>
+</nav>
+
+<div class="page-head">
+  <div class="kicker">The Team</div>
+  <h1>About This Project</h1>
+</div>
+
+<div class="story">
+  <p>This website was created for Digital Humanities 101 at UCLA. Our project explores
+  the history of women&rsquo;s professional basketball through data from
+  <a href="https://www.acrossthetimeline.com/">Across the Timeline</a>, a comprehensive
+  archive of WNBA statistics covering player transactions, attendance, drafts, awards,
+  and expert surveys from the league&rsquo;s founding in 1997 to the present.</p>
+  <p>Rather than treating these numbers as neutral facts, we approach them with a
+  humanistic lens: following a player&rsquo;s journey &mdash; from college, through the
+  draft, to professional recognition &mdash; and asking at each step what the data reveals,
+  and what it hides.</p>
+
+  <h2>Our Team</h2>
+  <div class="team">
+    <div><strong>Nguyen Ngo</strong> <span>&middot; Project Manager &mdash; keeps the schedule, milestones, and communication on track.</span></div>
+    <div><strong>Yuan Gao</strong> <span>&middot; Web Designer &mdash; designed and built this website.</span></div>
+    <div><strong>Mariana Rosas</strong> <span>&middot; Content Developer &mdash; authors the site&rsquo;s narrative and section text.</span></div>
+    <div><strong>Ryu Ohnogi</strong> <span>&middot; Data Visualization Specialist &mdash; creates the project&rsquo;s charts and visual analysis.</span></div>
+    <div><strong>Sang Han</strong> <span>&middot; Data Specialist &mdash; cleans and standardizes the dataset.</span></div>
+    <div><strong>Makenzie White</strong> <span>&middot; Editor &mdash; ensures consistency, readability, and accessibility.</span></div>
+  </div>
+
+  <p style="margin-top:30px;" class="note">Each member can add a short personal bio here
+  &mdash; background, interests, and skills. This page is a good space to communicate your
+  knowledge to potential employers and graduate programs.</p>
+</div>
+
+<div class="pager">
+  <a href="data-critique.html"><span>&larr; Previous</span>Data Critique</a>
+  <a href="sources.html"><span>Continue &rarr;</span>Sources</a>
+</div>
+
+<footer>
+  Data Point Guards &middot; Digital Humanities 101 &middot; UCLA &middot; 2026<br>
+  Data from <a href="https://www.acrossthetimeline.com/">Across the Timeline</a> &middot;
+  Photo credits on the <a href="sources.html">Sources</a> page.
+</footer>
+
+<script>
+  window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    document.getElementById('progress').style.width =
+      (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+  });
+</script>
+
+</body>
+</html>

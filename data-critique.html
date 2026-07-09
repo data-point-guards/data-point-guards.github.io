@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Critique — Data Point Guards</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Libre+Franklin:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="progress"></div>
+
+<div class="masthead">
+  <div class="brand"><a href="index.html">Data Point Guards</a></div>
+  <div class="tagline">Beyond the Box Score &middot; DH 101, UCLA</div>
+</div>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="draft.html">The Draft</a>
+  <a href="attendance.html">Attendance</a>
+  <a href="college.html">College to Pros</a>
+  <a href="awards.html">Awards</a>
+  <a href="data-critique.html" class="here">Data Critique</a>
+  <a href="about.html">About</a>
+  <a href="sources.html">Sources</a>
+</nav>
+
+<div class="page-head">
+  <div class="kicker">Critical Analysis</div>
+  <h1>Reading the Dataset Against the Grain</h1>
+  <p class="dek">Before trusting any dataset, ask who made it, what it counts, and what
+  it leaves out. Our team examined Across the Timeline from six angles.</p>
+</div>
+
+<div class="story">
+
+  <h2>What information is included in the dataset?</h2>
+  <p>The &ldquo;Across the Timeline&rdquo; website contains multiple datasets related to
+  women&rsquo;s basketball, with the main focus being on the women&rsquo;s professional
+  league, the WNBA. The data includes player transactions (such as trades and free agency
+  signings), attendance records, box scores, schedules, standings, draft results, awards,
+  All-Star selections, and top player rankings. The datasets are organized in manner that
+  is easy to navigate, allowing users to search across categories such as players, teams,
+  seasons, leagues, and historical records which may be joined after further analysis.
+  There is also a section with General Manager surveys, which includes information about
+  how front offices evaluate other players and teams. The data covers the history of the
+  WNBA going back to 1997, when the league began its first season. There is also data
+  that goes beyond the WNBA that includes women&rsquo;s college basketball such as AP
+  rankings and tournament results. Overall, the website contains a wide collection of
+  women&rsquo;s basketball data that includes both game-related statistics and historical
+  league records.</p>
+  <p class="note">&mdash; Nguyen Ngo</p>
+
+  <h2>What can the dataset reveal or illuminate?</h2>
+  <p>[Ryu&rsquo;s section &mdash; coming soon]</p>
+
+  <h2>What can the dataset not reveal?</h2>
+  <p>[Sang&rsquo;s section &mdash; coming soon]</p>
+
+  <h2>How was the data generated, and what are the original sources?</h2>
+  <p>[Makenzie&rsquo;s section &mdash; coming soon]</p>
+
+  <h2>Who created and funded the dataset, and what information is left out?</h2>
+  <p>[Mariana&rsquo;s section &mdash; coming soon]</p>
+
+  <h2>Ideological effects of how the dataset is organized and divided</h2>
+  <p>The way the dataset is organized and divided has several ideological effects. First,
+  organizing player information into categories such as transactions, drafts, and
+  rankings treats players as assets to be traded, measured, and evaluated, which reflects
+  the business viewpoint of team front offices more than the perspectives of the players
+  themselves. Second, dividing the data into sections like GM Surveys and Top Players
+  gives authority to executives and experts in deciding whose opinions matter and which
+  players deserve recognition. Third, because the dataset presents history through
+  statistics, records, and rankings, it encourages users to understand the sport mainly
+  through competition, achievement, and comparison. Finally, separating the WNBA, college
+  basketball, and newer leagues such as Unrivaled and Athletes Unlimited into distinct
+  sections creates a hierarchy that positions the professional league as the standard of
+  the sport. Overall, the organization shapes users to see women&rsquo;s basketball as
+  something quantifiable and managed.</p>
+  <p class="note">&mdash; Yuan Gao</p>
+
+</div>
+
+<div class="pager">
+  <a href="awards.html"><span>&larr; Previous</span>Awards</a>
+  <a href="about.html"><span>Continue &rarr;</span>About</a>
+</div>
+
+<footer>
+  Data Point Guards &middot; Digital Humanities 101 &middot; UCLA &middot; 2026<br>
+  Data from <a href="https://www.acrossthetimeline.com/">Across the Timeline</a> &middot;
+  Photo credits on the <a href="sources.html">Sources</a> page.
+</footer>
+
+<script>
+  window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    document.getElementById('progress').style.width =
+      (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+  });
+</script>
+
+</body>
+</html>

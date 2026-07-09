@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>College to Pros — Data Point Guards</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Libre+Franklin:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<div class="masthead">
+  <div class="brand"><a href="index.html">Data Point Guards</a></div>
+  <div class="tagline">Beyond the Box Score &middot; DH 101, UCLA</div>
+</div>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="draft.html">The Draft</a>
+  <a href="attendance.html">Attendance</a>
+  <a href="college.html" class="here">College to Pros</a>
+  <a href="awards.html">Awards</a>
+  <a href="data-critique.html">Data Critique</a>
+  <a href="about.html">About</a>
+  <a href="sources.html">Sources</a>
+</nav>
+
+<div class="page-head">
+  <div class="kicker">Question 03</div>
+  <h1>Does March Madness stardom survive the jump?</h1>
+  <p class="dek">Every spring, the NCAA tournament crowns new stars. Every summer, the
+  WNBA tests them. The two datasets meet at the draft &mdash; and don't always agree.</p>
+</div>
+
+<figure>
+  <img src="clark-iowa.jpg" alt="Caitlin Clark playing for Iowa in February 2024">
+  <figcaption>Caitlin Clark at Iowa, February 2024.
+    <span class="credit">Wikimedia Commons</span></figcaption>
+</figure>
+
+<div class="story">
+  <p>By the time she left Iowa, Caitlin Clark had scored more points than anyone in the
+  history of major college basketball &mdash; men's or women's. The record she broke had
+  stood since 1970.</p>
+</div>
+
+<div class="chart-block">
+  <div class="chart-title">The all-time college scoring list</div>
+  <div class="chart-sub">NCAA Division I career points &middot; Source: NCAA records (preliminary)</div>
+  <div class="chart-box"><canvas id="scoringChart"></canvas></div>
+</div>
+
+<div class="story">
+  <p>But college greatness is a promise, not a guarantee. The history of the draft is
+  full of tournament heroes who faded in the professional game, and of overlooked
+  role players who became champions. Clark delivered on the promise immediately;
+  many before her did not.</p>
+
+  <h2>What we will investigate</h2>
+  <p>Our dataset records each drafted player's college and the NCAA tournament runs of
+  those schools (Sweet 16 and beyond), alongside complete WNBA careers: games, stats,
+  transactions, and how long each player lasted in the league. We will link them to ask:
+  do players from deep tournament runs have longer, better professional careers? Are
+  college champions overdrafted on fame? And which colleges quietly produce the most
+  reliable professionals?</p>
+
+  <p class="note">Individual college statistics are not part of our core dataset, so this
+  chapter works at the level of schools and tournament results, supplemented by NCAA
+  records where needed. Chart data is preliminary and will be verified.</p>
+</div>
+
+<div class="pager">
+  <a href="attendance.html"><span>&larr; Previous</span>Attendance</a>
+  <a href="awards.html"><span>Next question &rarr;</span>Awards</a>
+</div>
+
+<footer>
+  Data Point Guards &middot; Digital Humanities 101 &middot; UCLA &middot; 2026<br>
+  Data from <a href="https://www.acrossthetimeline.com/">Across the Timeline</a> &middot;
+  Photo credits on the <a href="sources.html">Sources</a> page.
+</footer>
+
+<script>
+  window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    document.getElementById('progress').style.width =
+      (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+  });
+
+  new Chart(document.getElementById('scoringChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Caitlin Clark (Iowa, 2024)', 'Pete Maravich (LSU, 1970)', 'Lynette Woodard (Kansas, 1981)', 'Kelsey Plum (Washington, 2017)'],
+      datasets: [{
+        data: [3951, 3667, 3649, 3527],
+        backgroundColor: ['#e76f51', '#4a6fa5', '#4a6fa5', '#4a6fa5']
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { x: { beginAtZero: true, title: { display: true, text: 'Career points' } } }
+    }
+  });
+</script>
+
+</body>
+</html>

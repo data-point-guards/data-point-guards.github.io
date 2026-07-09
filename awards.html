@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Awards — Data Point Guards</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Libre+Franklin:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<div class="masthead">
+  <div class="brand"><a href="index.html">Data Point Guards</a></div>
+  <div class="tagline">Beyond the Box Score &middot; DH 101, UCLA</div>
+</div>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="draft.html">The Draft</a>
+  <a href="attendance.html">Attendance</a>
+  <a href="college.html">College to Pros</a>
+  <a href="awards.html" class="here">Awards</a>
+  <a href="data-critique.html">Data Critique</a>
+  <a href="about.html">About</a>
+  <a href="sources.html">Sources</a>
+</nav>
+
+<div class="page-head">
+  <div class="kicker">Question 04</div>
+  <h1>Do the awards go to the best players?</h1>
+  <p class="dek">MVP ballots, Rookie of the Year votes, GM surveys: awards are the
+  league's official memory of who mattered. We test that memory against the
+  performance data itself.</p>
+</div>
+
+<figure>
+  <img src="awards.jpg" alt="A'ja Wilson defending during a WNBA game">
+  <figcaption>A'ja Wilson, the league's measuring stick for greatness.
+    <span class="credit">Lorie Shaull, Wikimedia Commons</span></figcaption>
+</figure>
+
+<div class="story">
+  <p>Sometimes the voters agree completely. In 2024, Caitlin Clark's Rookie of the Year
+  award was nearly unanimous &mdash; recognition and performance pointing the same way.</p>
+</div>
+
+<div class="chart-block">
+  <div class="chart-title">2024 Rookie of the Year: near-unanimous</div>
+  <div class="chart-sub">First-place votes &middot; Source: league voting results (preliminary)</div>
+  <div class="chart-box"><canvas id="royChart"></canvas></div>
+</div>
+
+<div class="story">
+  <p>And sometimes they don't. One year later, the MVP race produced a result that looks
+  decisive at the top &mdash; until you see how fast recognition collapses below it.</p>
+</div>
+
+<div class="chart-block">
+  <div class="chart-title">2025 WNBA MVP voting</div>
+  <div class="chart-sub">Total voting points by player &middot; Source: Across the Timeline (award votes)</div>
+  <div class="chart-box"><canvas id="mvpChart"></canvas></div>
+</div>
+
+<div class="story">
+  <p>A'ja Wilson finished 123 points ahead of Napheesa Collier &mdash; but was the
+  statistical gap between their seasons as large as the voting gap? From third place
+  down, votes fall off a cliff: strong seasons receive almost no official recognition
+  at all. The league's memory, it turns out, has sharp edges.</p>
+
+  <h2>What we will investigate</h2>
+  <p>Using complete award votes, GM survey answers, and season statistics, we will
+  measure the gap between recognition and performance across league history: whether
+  vote margins match statistical margins, whether voters favor winning teams and past
+  winners, and how often the GMs' preseason predictions actually came true.</p>
+
+  <p class="note">The 2025 MVP vote data comes directly from our dataset; the 2024 ROY
+  vote is preliminary and will be verified. Analysis and final visualizations by our
+  team are in progress.</p>
+</div>
+
+<div class="pager">
+  <a href="college.html"><span>&larr; Previous</span>College to Pros</a>
+  <a href="data-critique.html"><span>Continue &rarr;</span>Data Critique</a>
+</div>
+
+<footer>
+  Data Point Guards &middot; Digital Humanities 101 &middot; UCLA &middot; 2026<br>
+  Data from <a href="https://www.acrossthetimeline.com/">Across the Timeline</a> &middot;
+  Photo credits on the <a href="sources.html">Sources</a> page.
+</footer>
+
+<script>
+  window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    document.getElementById('progress').style.width =
+      (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+  });
+
+  new Chart(document.getElementById('royChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Caitlin Clark', 'Angel Reese'],
+      datasets: [{
+        data: [66, 1],
+        backgroundColor: ['#e76f51', '#4a6fa5']
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { x: { beginAtZero: true, title: { display: true, text: 'First-place votes' } } }
+    }
+  });
+
+  new Chart(document.getElementById('mvpChart'), {
+    type: 'bar',
+    data: {
+      labels: ["A'ja Wilson", 'Napheesa Collier', 'Alyssa Thomas', 'Allisha Gray', 'Kelsey Mitchell'],
+      datasets: [{
+        data: [657, 534, 391, 180, 93],
+        backgroundColor: ['#e76f51', '#f4a261', '#4a6fa5', '#4a6fa5', '#4a6fa5']
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { x: { beginAtZero: true, title: { display: true, text: 'Voting points' } } }
+    }
+  });
+</script>
+
+</body>
+</html>

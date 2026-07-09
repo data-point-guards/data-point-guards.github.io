@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attendance — Data Point Guards</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Libre+Franklin:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<div class="masthead">
+  <div class="brand"><a href="index.html">Data Point Guards</a></div>
+  <div class="tagline">Beyond the Box Score &middot; DH 101, UCLA</div>
+</div>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="draft.html">The Draft</a>
+  <a href="attendance.html" class="here">Attendance</a>
+  <a href="college.html">College to Pros</a>
+  <a href="awards.html">Awards</a>
+  <a href="data-critique.html">Data Critique</a>
+  <a href="about.html">About</a>
+  <a href="sources.html">Sources</a>
+</nav>
+
+<div class="page-head">
+  <div class="kicker">Question 02</div>
+  <h1>Why do some arenas fill while others stay quiet?</h1>
+  <p class="dek">Attendance is the league's most visible measurement &mdash; a nightly
+  count of who shows up. It reaches back to 1997, and it is anything but even.</p>
+</div>
+
+<figure>
+  <img src="arena.jpg" alt="Crowd at Game 1 of the 2024 WNBA Finals">
+  <figcaption>Game 1 of the 2024 WNBA Finals.
+    <span class="credit">Wikimedia Commons</span></figcaption>
+</figure>
+
+<div class="story">
+  <p>For most of its history, the WNBA's average crowd drifted slowly downward from its
+  early peak &mdash; through relocations, folded franchises, and a pandemic. Then came 2024,
+  and the sharpest attendance surge in a generation.</p>
+</div>
+
+<div class="chart-block">
+  <div class="chart-title">A quarter century of crowds</div>
+  <div class="chart-sub">WNBA average attendance per game, selected seasons &middot; Source: league reports / Across the Timeline (preliminary)</div>
+  <div class="chart-box"><canvas id="leagueChart"></canvas></div>
+</div>
+
+<div class="story">
+  <p>What moved the curve? Part of the answer has a name. When Caitlin Clark joined the
+  Indiana Fever, the team's home attendance did not grow &mdash; it multiplied.</p>
+</div>
+
+<div class="stat-pull reveal">
+  <div class="big">4&times;</div>
+  <div class="label">Indiana Fever average home attendance, 2023 to 2024</div>
+</div>
+
+<div class="chart-block">
+  <div class="chart-title">The Clark effect in Indianapolis</div>
+  <div class="chart-sub">Indiana Fever average home attendance &middot; Source: league reports (preliminary)</div>
+  <div class="chart-box"><canvas id="feverChart"></canvas></div>
+</div>
+
+<div class="story">
+  <h2>What we will investigate</h2>
+  <p>One player moving one team's curve is remarkable; our question is bigger. Using
+  team-by-team attendance since 1997, we will compare franchises in small markets with
+  those in large metropolitan areas, and ask how geography, competing sports teams, and
+  star arrivals shape who shows up &mdash; and which cities never got a fair chance to show
+  up at all.</p>
+
+  <p class="note">Chart data is preliminary and will be verified against our cleaned
+  dataset. Analysis and final visualizations by our team are in progress.</p>
+</div>
+
+<div class="pager">
+  <a href="draft.html"><span>&larr; Previous</span>The Draft</a>
+  <a href="college.html"><span>Next question &rarr;</span>College to Pros</a>
+</div>
+
+<footer>
+  Data Point Guards &middot; Digital Humanities 101 &middot; UCLA &middot; 2026<br>
+  Data from <a href="https://www.acrossthetimeline.com/">Across the Timeline</a> &middot;
+  Photo credits on the <a href="sources.html">Sources</a> page.
+</footer>
+
+<script>
+  window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    document.getElementById('progress').style.width =
+      (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+  });
+
+  new Chart(document.getElementById('leagueChart'), {
+    type: 'line',
+    data: {
+      labels: ['1998', '2000', '2002', '2004', '2006', '2008', '2010', '2012', '2014', '2016', '2018', '2022', '2023', '2024'],
+      datasets: [{
+        label: 'League average attendance',
+        data: [10869, 9074, 9228, 8613, 7490, 7948, 7834, 7457, 7578, 7655, 6769, 5679, 6615, 9807],
+        borderColor: '#1d3557',
+        backgroundColor: 'rgba(29,53,87,0.08)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 3
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true, title: { display: true, text: 'Fans per game' } } }
+    }
+  });
+
+  new Chart(document.getElementById('feverChart'), {
+    type: 'bar',
+    data: {
+      labels: ['2022', '2023', '2024 (Clark arrives)'],
+      datasets: [{
+        data: [1776, 4067, 17036],
+        backgroundColor: ['#4a6fa5', '#4a6fa5', '#e76f51']
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true, title: { display: true, text: 'Fans per game' } } }
+    }
+  });
+
+  var reveals = document.querySelectorAll('.reveal');
+  var revealObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.2 });
+  reveals.forEach(function (el) { revealObs.observe(el); });
+</script>
+
+</body>
+</html>

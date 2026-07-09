@@ -5,206 +5,108 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Data Point Guards — Beyond the Box Score</title>
 <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Libre+Franklin:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-<style>
-  * { box-sizing: border-box; }
-  body { font-family: Georgia, serif; margin: 0; color: #121212; background: #fff; line-height: 1.7; }
-
-  /* Reading progress bar */
-  #progress {
-    position: fixed; top: 0; left: 0; height: 4px; width: 0;
-    background: #e76f51; z-index: 100;
-  }
-
-  /* Hero */
-  .hero {
-    height: 100vh; position: relative; display: flex; align-items: center; justify-content: center;
-    background-image: linear-gradient(rgba(10,15,30,0.55), rgba(10,15,30,0.75)), url('hero.jpg');
-    background-size: cover; background-position: center;
-    color: #fff; text-align: center;
-  }
-  .hero .inner { max-width: 900px; padding: 0 24px; }
-  .hero .kicker {
-    font-family: 'Libre Franklin', sans-serif; font-weight: 700; font-size: 0.85em;
-    letter-spacing: 0.25em; text-transform: uppercase; color: #f4a261; margin-bottom: 18px;
-  }
-  .hero h1 { font-family: 'Lora', serif; font-size: 3.4em; line-height: 1.1; margin: 0 0 20px; }
-  .hero .dek { font-size: 1.25em; color: #e8e8e8; max-width: 640px; margin: 0 auto; }
-  .hero .scroll-cue {
-    position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-    font-family: 'Libre Franklin', sans-serif; font-size: 0.75em; letter-spacing: 0.2em;
-    text-transform: uppercase; color: #ccc; animation: bob 2s infinite;
-  }
-  @keyframes bob { 0%,100% { transform: translate(-50%,0);} 50% { transform: translate(-50%,8px);} }
-
-  nav {
-    font-family: 'Libre Franklin', sans-serif; font-size: 0.8em;
-    text-align: center; padding: 12px; border-bottom: 1px solid #e2e2e2;
-    position: sticky; top: 0; background: rgba(255,255,255,0.97); z-index: 50;
-  }
-  nav a { color: #121212; margin: 0 14px; text-decoration: none; font-weight: 600; }
-  nav a:hover { color: #e76f51; }
-
-  /* Reading column */
-  .story { max-width: 800px; margin: 0 auto; padding: 0 24px; font-size: 1.12em; }
-  .story h2 { font-family: 'Lora', serif; font-size: 1.6em; margin: 60px 0 14px; }
-  .story p { margin: 0 0 24px; }
-  .spacer { height: 70px; }
-
-  /* ===== Scrolly scenes ===== */
-  .scrolly { position: relative; }
-  .sticky-stage {
-    position: sticky; top: 0; height: 100vh; overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .steps { position: relative; z-index: 5; margin-top: -100vh; }
-  .step { min-height: 100vh; display: flex; align-items: center; padding: 0 24px; }
-  .step .card {
-    background: rgba(255,255,255,0.96); border-left: 4px solid #e76f51;
-    max-width: 380px; padding: 26px 30px; margin-left: 7%;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.18); border-radius: 2px;
-  }
-  .step .card .num {
-    font-family: 'Libre Franklin', sans-serif; font-weight: 900; font-size: 0.75em;
-    letter-spacing: 0.2em; color: #e76f51; text-transform: uppercase;
-  }
-  .step .card h3 { font-family: 'Lora', serif; font-size: 1.35em; margin: 8px 0 10px; line-height: 1.3; }
-  .step .card p { font-size: 0.98em; margin: 0; }
-
-  /* Scene 1: crossfading photos */
-  .photo-layer {
-    position: absolute; inset: 0; background-size: cover; background-position: center;
-    opacity: 0; transition: opacity 1.1s ease;
-  }
-  .photo-layer.active { opacity: 1; }
-  .photo-layer::after { content: ''; position: absolute; inset: 0; background: rgba(10,15,30,0.35); }
-  .scene-caption {
-    position: absolute; bottom: 16px; right: 20px; z-index: 6;
-    font-family: 'Libre Franklin', sans-serif; font-size: 0.7em; color: rgba(255,255,255,0.85);
-    background: rgba(0,0,0,0.35); padding: 4px 10px; border-radius: 2px;
-    transition: opacity 0.6s;
-  }
-
-  /* Scene 2: bar chart */
-  .chart-stage { background: #0d1b2a; }
-  .chart-wrap { width: min(760px, 88vw); color: #fff; }
-  .chart-title { font-family: 'Lora', serif; font-size: 1.5em; margin-bottom: 4px; }
-  .chart-sub { font-family: 'Libre Franklin', sans-serif; font-size: 0.8em; color: #9fb3c8; margin-bottom: 30px; }
-  .bar-row { display: flex; align-items: center; margin: 14px 0; opacity: 0.25; transition: opacity 0.6s; }
-  .bar-row.shown { opacity: 1; }
-  .bar-label {
-    font-family: 'Libre Franklin', sans-serif; font-size: 0.85em; width: 165px; flex-shrink: 0;
-    text-align: right; padding-right: 14px; color: #e0e6ed;
-  }
-  .bar-track { flex: 1; }
-  .bar {
-    height: 30px; width: 0; background: #4a6fa5; border-radius: 2px;
-    transition: width 1.2s cubic-bezier(.2,.8,.2,1), background 0.6s;
-    display: flex; align-items: center;
-  }
-  .bar.mvp { background: #e76f51; }
-  .bar .val {
-    font-family: 'Libre Franklin', sans-serif; font-weight: 700; font-size: 0.8em;
-    color: #fff; padding-left: 10px; opacity: 0; transition: opacity 0.6s 0.8s;
-  }
-  .bar-row.shown .val { opacity: 1; }
-  .chart-note {
-    font-family: 'Libre Franklin', sans-serif; font-size: 0.75em; color: #9fb3c8; margin-top: 26px;
-    min-height: 3em; transition: opacity 0.5s;
-  }
-
-  /* Team + footer */
-  .team { font-family: 'Libre Franklin', sans-serif; font-size: 0.95em; }
-  .team div { padding: 10px 0; border-bottom: 1px solid #e2e2e2; }
-  .team span { color: #727272; }
-  footer {
-    font-family: 'Libre Franklin', sans-serif; font-size: 0.72em; color: #727272;
-    text-align: center; padding: 40px 20px; line-height: 1.8; border-top: 1px solid #121212; margin-top: 80px;
-  }
-
-  @media (max-width: 640px) {
-    .hero h1 { font-size: 2.1em; }
-    .step .card { margin: 0 auto; }
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div id="progress"></div>
 
-<div class="hero">
+<div class="hero" style="background-image: linear-gradient(rgba(10,15,30,0.55), rgba(10,15,30,0.78)), url('clark-hero.jpg');">
   <div class="inner">
-    <div class="kicker">A Digital Humanities Project · UCLA</div>
+    <div class="kicker">A Digital Humanities Project &middot; UCLA</div>
     <h1>Beyond the Box Score</h1>
-    <p class="dek">Nearly three decades of WNBA data tell a story about women's basketball —
-    about who gets counted, who gets recognized, and whose story gets told. Scroll to explore.</p>
+    <p class="dek">One player's journey from a college gym in Iowa to the center of
+    American sports &mdash; and what three decades of WNBA data say about who gets counted,
+    who gets seen, and who gets remembered. Scroll to begin.</p>
   </div>
-  <div class="scroll-cue">▼ Scroll</div>
+  <div class="scroll-cue">&#9660; Scroll</div>
+</div>
+
+<div class="masthead">
+  <div class="brand"><a href="index.html">Data Point Guards</a></div>
+  <div class="tagline">Beyond the Box Score &middot; DH 101, UCLA</div>
 </div>
 
 <nav>
-  <a href="#intro">The Story</a>
-  <a href="#questions">Research Questions</a>
-  <a href="#evidence">The Evidence</a>
-  <a href="#critique">Data Critique</a>
-  <a href="#about">About</a>
+  <a href="index.html" class="here">Home</a>
+  <a href="draft.html">The Draft</a>
+  <a href="attendance.html">Attendance</a>
+  <a href="college.html">College to Pros</a>
+  <a href="awards.html">Awards</a>
+  <a href="data-critique.html">Data Critique</a>
+  <a href="about.html">About</a>
+  <a href="sources.html">Sources</a>
 </nav>
 
 <div class="spacer"></div>
 
-<div class="story" id="intro">
-  <p>This project explores the history of women's professional basketball through
-  <a href="https://www.acrossthetimeline.com/">Across the Timeline</a>, an archive of WNBA
-  statistics reaching back to the league's first season in 1997 — player transactions,
-  attendance, drafts, awards, and annual surveys of team executives.</p>
-  <p>Numbers feel neutral. They are not. Behind every data point is a decision, and behind
-  every decision is power. We asked four questions of this archive. Keep scrolling — each
-  one appears over the world it describes.</p>
+<div class="story">
+  <p>In the spring of 2024, a point guard from West Des Moines, Iowa became the most
+  famous basketball player in America &mdash; before playing a single professional game.
+  Caitlin Clark's journey from college phenomenon to WNBA franchise player is a story
+  everyone knows. But it is also something else: a trail of data.</p>
+  <p>Every chapter of her journey &mdash; and of every player's journey since 1997 &mdash; was
+  recorded in the archives of <a href="https://www.acrossthetimeline.com/">Across the
+  Timeline</a>: draft boards, box scores, attendance counts, award ballots, executive
+  surveys. We follow one journey to ask about them all. Keep scrolling.</p>
 </div>
 
 <div class="spacer"></div>
 
-<!-- ===== SCENE 1: four questions over crossfading photos ===== -->
-<div class="scrolly" id="questions">
+<!-- ===== Scrolly: Clark's journey ===== -->
+<div class="scrolly">
   <div class="sticky-stage">
-    <div class="photo-layer" data-img="draft.jpg" style="background-image:url('draft.jpg');"></div>
-    <div class="photo-layer" data-img="arena.jpg" style="background-image:url('arena.jpg');"></div>
-    <div class="photo-layer" data-img="college.jpg" style="background-image:url('college.jpg');"></div>
-    <div class="photo-layer" data-img="awards.jpg" style="background-image:url('awards.jpg');"></div>
+    <div class="photo-layer" style="background-image:url('clark-iowa.jpg');"></div>
+    <div class="photo-layer" style="background-image:url('clark-bigten.jpg');"></div>
+    <div class="photo-layer" style="background-image:url('draft.jpg');"></div>
+    <div class="photo-layer" style="background-image:url('arena.jpg');"></div>
+    <div class="photo-layer" style="background-image:url('awards.jpg');"></div>
     <div class="scene-caption" id="sceneCaption">Photo: Wikimedia Commons</div>
   </div>
   <div class="steps" data-scene="photos">
     <div class="step" data-index="0">
       <div class="card">
-        <div class="num">Question 01</div>
-        <h3>Do teams lose on purpose to win later?</h3>
-        <p>Tanking: accepting losing seasons to secure high draft picks. We follow the
-        franchises that made this gamble — and what it cost them on the court and at the
-        box office.</p>
+        <div class="num">Chapter 1 &middot; College</div>
+        <h3>A scoring record that stood for 54 years</h3>
+        <p>At Iowa, Clark scored 3,951 career points &mdash; more than any Division I player,
+        man or woman, in history. Her games set television records before she ever
+        turned professional.</p>
       </div>
     </div>
     <div class="step" data-index="1">
       <div class="card">
-        <div class="num">Question 02</div>
-        <h3>Why do some arenas fill while others stay quiet?</h3>
-        <p>Attendance records stretch back to 1997, and they are not evenly distributed.
-        We compare small cities with big metropolitan markets to ask how geography shapes
-        who shows up.</p>
+        <div class="num">Chapter 2 &middot; The Stage</div>
+        <h3>March Madness made her a star</h3>
+        <p>Two straight national championship games turned a regional standout into a
+        national story. But does tournament fame survive the jump to the pros? History
+        says: not always.</p>
       </div>
     </div>
     <div class="step" data-index="2">
       <div class="card">
-        <div class="num">Question 03</div>
-        <h3>Does March Madness stardom survive the jump?</h3>
-        <p>College stars arrive in the WNBA with headlines and expectations. We trace
-        which reputations hold up in the pros — and which quietly fade.</p>
+        <div class="num">Chapter 3 &middot; The Draft</div>
+        <h3>April 15, 2024: the No. 1 pick</h3>
+        <p>The Indiana Fever selected Clark first overall &mdash; a pick earned by three of
+        the worst seasons in franchise history. Losing, it turns out, can be a
+        strategy.</p>
       </div>
     </div>
     <div class="step" data-index="3">
       <div class="card">
-        <div class="num">Question 04</div>
-        <h3>Do the awards go to the best players?</h3>
-        <p>MVP votes, All-WNBA teams, GM surveys: the league's official memory of who
-        mattered. We test that memory against the performance data itself.</p>
+        <div class="num">Chapter 4 &middot; The Crowds</div>
+        <h3>Attendance quadrupled overnight</h3>
+        <p>The Fever drew about 4,000 fans per game in 2023. In 2024, with Clark, more
+        than 17,000 &mdash; the highest in the league. One player moved the entire
+        attendance curve.</p>
+      </div>
+    </div>
+    <div class="step" data-index="4">
+      <div class="card">
+        <div class="num">Chapter 5 &middot; Recognition</div>
+        <h3>How will the league remember her?</h3>
+        <p>Rookie of the Year, All-WNBA, MVP ballots: awards are the league's official
+        memory. We test that memory against the performance data itself &mdash; for Clark,
+        and for everyone.</p>
       </div>
     </div>
   </div>
@@ -212,102 +114,80 @@
 
 <div class="spacer"></div>
 
-<div class="story" id="evidence">
-  <h2>A first look at the evidence</h2>
-  <p>Take our fourth question. In 2025, the MVP award produced a result that looks
-  decisive — until you look closer. Scroll through the actual vote count.</p>
+<div class="story">
+  <h2>One journey, four questions</h2>
+  <p>Clark's story is the doorway, not the destination. Behind each chapter of her
+  journey is a question we ask of the full dataset &mdash; hundreds of players, every draft
+  since 1997, every recorded crowd, every award ballot. Choose a chapter.</p>
 </div>
 
-<!-- ===== SCENE 2: MVP vote bar chart ===== -->
-<div class="scrolly">
-  <div class="sticky-stage chart-stage">
-    <div class="chart-wrap">
-      <div class="chart-title">2025 WNBA MVP Voting</div>
-      <div class="chart-sub">Total voting points by player · Source: Across the Timeline</div>
-      <div class="bar-row" data-row="0"><div class="bar-label">A'ja Wilson</div>
-        <div class="bar-track"><div class="bar mvp" data-w="100"><span class="val">657</span></div></div></div>
-      <div class="bar-row" data-row="1"><div class="bar-label">Napheesa Collier</div>
-        <div class="bar-track"><div class="bar" data-w="81.3"><span class="val">534</span></div></div></div>
-      <div class="bar-row" data-row="2"><div class="bar-label">Alyssa Thomas</div>
-        <div class="bar-track"><div class="bar" data-w="59.5"><span class="val">391</span></div></div></div>
-      <div class="bar-row" data-row="3"><div class="bar-label">Allisha Gray</div>
-        <div class="bar-track"><div class="bar" data-w="27.4"><span class="val">180</span></div></div></div>
-      <div class="bar-row" data-row="4"><div class="bar-label">Kelsey Mitchell</div>
-        <div class="bar-track"><div class="bar" data-w="14.2"><span class="val">93</span></div></div></div>
-      <div class="chart-note" id="chartNote"></div>
+<div class="chapters">
+  <a class="chapter-card reveal" href="draft.html">
+    <div class="thumb" style="background-image:url('fever-2019.jpg');"></div>
+    <div class="body">
+      <div class="num">Question 01</div>
+      <h3>Do teams lose on purpose to win later?</h3>
+      <p>Tanking, the draft lottery, and what the gamble costs.</p>
     </div>
-  </div>
-  <div class="steps" data-scene="chart">
-    <div class="step" data-index="0">
-      <div class="card">
-        <div class="num">The winner</div>
-        <h3>657 points for A'ja Wilson</h3>
-        <p>Wilson took 51 of 72 first-place votes — on paper, a landslide.</p>
-      </div>
+  </a>
+  <a class="chapter-card reveal" href="attendance.html">
+    <div class="thumb" style="background-image:url('arena.jpg');"></div>
+    <div class="body">
+      <div class="num">Question 02</div>
+      <h3>Why do some arenas fill while others stay quiet?</h3>
+      <p>Attendance, geography, and the Clark effect.</p>
     </div>
-    <div class="step" data-index="1">
-      <div class="card">
-        <div class="num">The runner-up</div>
-        <h3>Collier was only 123 points behind</h3>
-        <p>Napheesa Collier collected 42 second-place votes. How large was the statistical
-        gap between the two seasons — and does it match this vote margin?</p>
-      </div>
+  </a>
+  <a class="chapter-card reveal" href="college.html">
+    <div class="thumb" style="background-image:url('college.jpg');"></div>
+    <div class="body">
+      <div class="num">Question 03</div>
+      <h3>Does March Madness stardom survive the jump?</h3>
+      <p>From NCAA tournaments to professional careers.</p>
     </div>
-    <div class="step" data-index="2">
-      <div class="card">
-        <div class="num">The field</div>
-        <h3>Recognition drops fast</h3>
-        <p>From third place down, votes collapse. Great seasons can disappear from the
-        league's official memory almost entirely. That gap — between performance and
-        recognition — is what our project measures.</p>
-      </div>
+  </a>
+  <a class="chapter-card reveal" href="awards.html">
+    <div class="thumb" style="background-image:url('awards.jpg');"></div>
+    <div class="body">
+      <div class="num">Question 04</div>
+      <h3>Do the awards go to the best players?</h3>
+      <p>MVP ballots, GM surveys, and the league's official memory.</p>
     </div>
-  </div>
+  </a>
 </div>
 
 <div class="spacer"></div>
 
-<div class="story" id="critique">
-  <h2>Data Critique</h2>
-  <p>Coming soon: our team's critical analysis of the dataset — what it contains, how it
-  came to be, and what it leaves out.</p>
-
-  <h2>Our Data</h2>
-  <p>Coming soon: our cleaned dataset and visualizations.</p>
-
-  <h2 id="about">About</h2>
-  <p>We are the Data Point Guards, a six-member team in Digital Humanities 101 at UCLA.</p>
-  <div class="team">
-    <div><strong>Nguyen Ngo</strong> <span>· Project Manager</span></div>
-    <div><strong>Yuan Gao</strong> <span>· Web Designer</span></div>
-    <div><strong>Mariana Rosas</strong> <span>· Content Developer</span></div>
-    <div><strong>Ryu Ohnogi</strong> <span>· Data Visualization Specialist</span></div>
-    <div><strong>Sang Han</strong> <span>· Data Specialist</span></div>
-    <div><strong>Makenzie White</strong> <span>· Editor</span></div>
-  </div>
+<div class="story">
+  <h2>Why this matters</h2>
+  <p>Numbers feel neutral. They are not. Deciding what to count &mdash; and what not to
+  count &mdash; is a human choice with consequences, as our
+  <a href="data-critique.html">data critique</a> explores. A league's data is its memory,
+  and memory is power: it decides which journeys get retold and which quietly disappear.
+  This project reads the WNBA's memory closely, and asks what it reveals &mdash; and hides.</p>
 </div>
 
 <footer>
-  Data Point Guards · Digital Humanities 101 · UCLA · 2026<br>
+  Data Point Guards &middot; Digital Humanities 101 &middot; UCLA &middot; 2026<br>
   Data from <a href="https://www.acrossthetimeline.com/">Across the Timeline</a>.
-  Photographs from Wikimedia Commons, used under Creative Commons licenses.
+  Photographs from Wikimedia Commons, used under Creative Commons licenses &mdash;
+  see <a href="sources.html">Sources</a>.
 </footer>
 
 <script>
-  // Reading progress bar
   window.addEventListener('scroll', function () {
-    const h = document.documentElement;
-    const pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
-    document.getElementById('progress').style.width = pct + '%';
+    var h = document.documentElement;
+    document.getElementById('progress').style.width =
+      (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
   });
 
-  // Scene 1: crossfade photos as steps pass
-  const photoLayers = document.querySelectorAll('.photo-layer');
-  const captions = [
-    'The 2024 WNBA Draft · Wikimedia Commons',
-    '2024 WNBA Finals, Game 1 · Wikimedia Commons',
-    '2014 NCAA Final Four, Nashville · Wikimedia Commons',
-    "A'ja Wilson · Lorie Shaull, Wikimedia Commons"
+  var photoLayers = document.querySelectorAll('.photo-layer');
+  var captions = [
+    'Caitlin Clark at Iowa, February 2024 - Wikimedia Commons',
+    'Big Ten tournament - Wikimedia Commons',
+    'The 2024 WNBA Draft - Wikimedia Commons',
+    '2024 WNBA Finals, Game 1 - Wikimedia Commons',
+    "A'ja Wilson - Lorie Shaull, Wikimedia Commons"
   ];
   function setPhoto(i) {
     photoLayers.forEach(function (l, k) { l.classList.toggle('active', k === i); });
@@ -315,34 +195,21 @@
   }
   setPhoto(0);
 
-  // Scene 2: build the chart as steps pass
-  const rows = document.querySelectorAll('.bar-row');
-  const notes = [
-    'Wilson: 51 first-place votes out of 72 ballots.',
-    'Margin between 1st and 2nd: 123 points. Wilson 657 — Collier 534.',
-    'Five players received meaningful votes; dozens of seasons received none.'
-  ];
-  function setChart(stepIdx) {
-    rows.forEach(function (row, k) {
-      const show = (stepIdx === 0 && k === 0) || (stepIdx === 1 && k <= 1) || (stepIdx >= 2);
-      row.classList.toggle('shown', show);
-      const bar = row.querySelector('.bar');
-      bar.style.width = show ? (bar.dataset.w + '%') : '0';
-    });
-    document.getElementById('chartNote').textContent = notes[stepIdx] || '';
-  }
-
-  // Generic step observer for both scenes
-  const stepObserver = new IntersectionObserver(function (entries) {
+  var stepObserver = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (!entry.isIntersecting) return;
-      const scene = entry.target.closest('.steps').dataset.scene;
-      const i = parseInt(entry.target.dataset.index, 10);
-      if (scene === 'photos') setPhoto(i);
-      if (scene === 'chart') setChart(i);
+      setPhoto(parseInt(entry.target.dataset.index, 10));
     });
   }, { threshold: 0.6 });
   document.querySelectorAll('.step').forEach(function (s) { stepObserver.observe(s); });
+
+  var reveals = document.querySelectorAll('.reveal');
+  var revealObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(function (el) { revealObs.observe(el); });
 </script>
 
 </body>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Draft — Data Point Guards</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Libre+Franklin:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<div class="masthead">
+  <div class="brand"><a href="index.html">Data Point Guards</a></div>
+  <div class="tagline">Beyond the Box Score &middot; DH 101, UCLA</div>
+</div>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="draft.html" class="here">The Draft</a>
+  <a href="attendance.html">Attendance</a>
+  <a href="college.html">College to Pros</a>
+  <a href="awards.html">Awards</a>
+  <a href="data-critique.html">Data Critique</a>
+  <a href="about.html">About</a>
+  <a href="sources.html">Sources</a>
+</nav>
+
+<div class="page-head">
+  <div class="kicker">Question 01</div>
+  <h1>Do teams lose on purpose to win later?</h1>
+  <p class="dek">The strategy is called tanking: accept losing seasons, collect high
+  draft picks, and bet the franchise's future on them. The Indiana Fever ran the
+  experiment &mdash; and got Caitlin Clark.</p>
+</div>
+
+<figure>
+  <img src="fever-2019.jpg" alt="Indiana Fever player Natalie Achonwa in 2019">
+  <figcaption>The Indiana Fever in 2019, at the start of a long rebuild.
+    <span class="credit">Wikimedia Commons</span></figcaption>
+</figure>
+
+<div class="story">
+  <p>From 2020 to 2022, the Indiana Fever won fewer games than any team in the league.
+  Whether by design or misfortune, those losses became lottery odds, and the lottery
+  odds became the No. 1 overall pick &mdash; twice in a row: Aliyah Boston in 2023, then
+  Caitlin Clark in 2024. Within one season, the Fever went from the league's basement
+  to its biggest story.</p>
+</div>
+
+<div class="chart-block">
+  <div class="chart-title">The valley before the peak</div>
+  <div class="chart-sub">Indiana Fever wins per season &middot; Source: Across the Timeline (schedules and standings)</div>
+  <div class="chart-box"><canvas id="winsChart"></canvas></div>
+</div>
+
+<div class="story">
+  <p>The chart shows the shape of a rebuild: three seasons at the bottom, then the
+  bounce. But one team's success story is not proof that the strategy works. For every
+  Fever, the archive holds franchises that lost for years and never converted the picks
+  into wins &mdash; and that is exactly what our full analysis will measure.</p>
+
+  <h2>What we will investigate</h2>
+  <p>Using draft data, standings, and transaction records since 1997, we will follow
+  every team that finished at the bottom of the league: how long they stayed there, what
+  they did with their picks, and whether the losing ever paid off &mdash; competitively or
+  financially. The professor rightly warned that &ldquo;tanking&rdquo; is hard to define
+  objectively, so we treat it carefully: we measure outcomes of losing seasons rather
+  than accusing any team of losing on purpose.</p>
+
+  <p class="note">Chart data is preliminary and will be verified against our cleaned
+  dataset. Analysis and final visualizations by our team are in progress.</p>
+</div>
+
+<div class="pager">
+  <a href="index.html"><span>&larr; Back</span>Home</a>
+  <a href="attendance.html"><span>Next question &rarr;</span>Attendance</a>
+</div>
+
+<footer>
+  Data Point Guards &middot; Digital Humanities 101 &middot; UCLA &middot; 2026<br>
+  Data from <a href="https://www.acrossthetimeline.com/">Across the Timeline</a> &middot;
+  Photo credits on the <a href="sources.html">Sources</a> page.
+</footer>
+
+<script>
+  window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    document.getElementById('progress').style.width =
+      (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+  });
+
+  new Chart(document.getElementById('winsChart'), {
+    type: 'bar',
+    data: {
+      labels: ['2019', '2020', '2021', '2022', '2023', '2024'],
+      datasets: [{
+        label: 'Wins',
+        data: [13, 6, 6, 5, 13, 20],
+        backgroundColor: ['#4a6fa5', '#4a6fa5', '#4a6fa5', '#4a6fa5', '#f4a261', '#e76f51']
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { afterLabel: function (ctx) {
+          if (ctx.label === '2023') return 'Drafted Aliyah Boston No. 1 overall';
+          if (ctx.label === '2024') return 'Drafted Caitlin Clark No. 1 overall';
+          return '';
+        } } }
+      },
+      scales: {
+        y: { beginAtZero: true, title: { display: true, text: 'Wins' } }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

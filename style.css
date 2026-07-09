@@ -1,0 +1,102 @@
+/* Data Point Guards — shared styles */
+* { box-sizing: border-box; }
+body { font-family: Georgia, serif; margin: 0; color: #121212; background: #fff; line-height: 1.7; }
+
+/* Reading progress bar */
+#progress { position: fixed; top: 0; left: 0; height: 4px; width: 0; background: #e76f51; z-index: 100; }
+
+/* Masthead + nav */
+.masthead { text-align: center; padding: 14px 20px 10px; border-bottom: 1px solid #121212; }
+.masthead .brand { font-family: 'Lora', serif; font-weight: 700; font-size: 1.5em; }
+.masthead .brand a { color: #121212; text-decoration: none; }
+.masthead .tagline { font-family: 'Libre Franklin', sans-serif; font-size: 0.7em; color: #666; text-transform: uppercase; letter-spacing: 0.12em; margin-top: 2px; }
+nav { font-family: 'Libre Franklin', sans-serif; font-size: 0.78em; text-align: center; padding: 11px 6px; border-bottom: 1px solid #e2e2e2; position: sticky; top: 0; background: rgba(255,255,255,0.97); z-index: 50; }
+nav a { color: #121212; margin: 0 10px; text-decoration: none; font-weight: 600; white-space: nowrap; }
+nav a:hover, nav a.here { color: #e76f51; }
+
+/* Hero (full screen, homepage) */
+.hero { height: 100vh; position: relative; display: flex; align-items: center; justify-content: center; background-size: cover; background-position: center; color: #fff; text-align: center; }
+.hero .inner { max-width: 900px; padding: 0 24px; }
+.hero .kicker { font-family: 'Libre Franklin', sans-serif; font-weight: 700; font-size: 0.85em; letter-spacing: 0.25em; text-transform: uppercase; color: #f4a261; margin-bottom: 18px; }
+.hero h1 { font-family: 'Lora', serif; font-size: 3.3em; line-height: 1.1; margin: 0 0 20px; }
+.hero .dek { font-size: 1.22em; color: #e8e8e8; max-width: 640px; margin: 0 auto; }
+.hero .scroll-cue { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); font-family: 'Libre Franklin', sans-serif; font-size: 0.75em; letter-spacing: 0.2em; text-transform: uppercase; color: #ccc; animation: bob 2s infinite; }
+@keyframes bob { 0%,100% { transform: translate(-50%,0);} 50% { transform: translate(-50%,8px);} }
+
+/* Page header (subpages) */
+.page-head { max-width: 800px; margin: 55px auto 10px; padding: 0 24px; text-align: center; }
+.page-head .kicker { font-family: 'Libre Franklin', sans-serif; font-weight: 700; font-size: 0.78em; letter-spacing: 0.22em; text-transform: uppercase; color: #e76f51; margin-bottom: 12px; }
+.page-head h1 { font-family: 'Lora', serif; font-weight: 700; font-size: 2.3em; line-height: 1.15; margin: 0 0 14px; }
+.page-head .dek { font-size: 1.1em; color: #555; max-width: 640px; margin: 0 auto 10px; }
+
+/* Reading column */
+.story { max-width: 800px; margin: 0 auto; padding: 0 24px; font-size: 1.1em; }
+.story h2 { font-family: 'Lora', serif; font-size: 1.5em; margin: 55px 0 12px; }
+.story p { margin: 0 0 24px; }
+.story .note { font-family: 'Libre Franklin', sans-serif; font-size: 0.78em; color: #727272; border-left: 3px solid #e2e2e2; padding-left: 14px; }
+.spacer { height: 60px; }
+
+/* Figures */
+figure { margin: 40px auto; max-width: 800px; padding: 0 24px; }
+figure img { width: 100%; display: block; }
+figcaption { font-family: 'Libre Franklin', sans-serif; font-size: 0.74em; color: #727272; margin-top: 8px; line-height: 1.5; }
+figcaption .credit { color: #999; }
+
+/* Charts */
+.chart-block { max-width: 800px; margin: 40px auto; padding: 0 24px; }
+.chart-block .chart-title { font-family: 'Lora', serif; font-size: 1.25em; margin-bottom: 2px; }
+.chart-block .chart-sub { font-family: 'Libre Franklin', sans-serif; font-size: 0.78em; color: #727272; margin-bottom: 16px; }
+.chart-box { position: relative; width: 100%; height: 380px; }
+@media (max-width: 640px) { .chart-box { height: 300px; } }
+
+/* Scrolly scenes */
+.scrolly { position: relative; }
+.sticky-stage { position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.steps { position: relative; z-index: 5; margin-top: -100vh; }
+.step { min-height: 100vh; display: flex; align-items: center; padding: 0 24px; }
+.step .card { background: rgba(255,255,255,0.96); border-left: 4px solid #e76f51; max-width: 380px; padding: 26px 30px; margin-left: 7%; box-shadow: 0 8px 30px rgba(0,0,0,0.18); border-radius: 2px; }
+.step .card .num { font-family: 'Libre Franklin', sans-serif; font-weight: 900; font-size: 0.75em; letter-spacing: 0.2em; color: #e76f51; text-transform: uppercase; }
+.step .card h3 { font-family: 'Lora', serif; font-size: 1.32em; margin: 8px 0 10px; line-height: 1.3; }
+.step .card p { font-size: 0.97em; margin: 0; }
+.photo-layer { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.1s ease; }
+.photo-layer.active { opacity: 1; }
+.photo-layer::after { content: ''; position: absolute; inset: 0; background: rgba(10,15,30,0.35); }
+.scene-caption { position: absolute; bottom: 16px; right: 20px; z-index: 6; font-family: 'Libre Franklin', sans-serif; font-size: 0.7em; color: rgba(255,255,255,0.85); background: rgba(0,0,0,0.35); padding: 4px 10px; border-radius: 2px; }
+
+/* Chapter cards grid */
+.chapters { max-width: 1000px; margin: 30px auto 0; padding: 0 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; }
+.chapter-card { display: block; text-decoration: none; color: #121212; border: 1px solid #e2e2e2; border-radius: 3px; overflow: hidden; transition: box-shadow 0.3s, transform 0.3s; background: #fff; }
+.chapter-card:hover { box-shadow: 0 10px 28px rgba(0,0,0,0.14); transform: translateY(-3px); }
+.chapter-card .thumb { height: 140px; background-size: cover; background-position: center; }
+.chapter-card .body { padding: 16px 18px 20px; }
+.chapter-card .num { font-family: 'Libre Franklin', sans-serif; font-weight: 900; font-size: 0.7em; letter-spacing: 0.2em; color: #e76f51; text-transform: uppercase; }
+.chapter-card h3 { font-family: 'Lora', serif; font-size: 1.08em; margin: 6px 0 6px; line-height: 1.35; }
+.chapter-card p { font-family: 'Libre Franklin', sans-serif; font-size: 0.8em; color: #555; margin: 0; }
+
+/* Big stat pull */
+.stat-pull { max-width: 800px; margin: 50px auto; padding: 0 24px; text-align: center; }
+.stat-pull .big { font-family: 'Libre Franklin', sans-serif; font-weight: 900; font-size: 4em; color: #e76f51; line-height: 1; }
+.stat-pull .label { font-family: 'Libre Franklin', sans-serif; font-size: 0.85em; color: #555; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 8px; }
+
+/* Prev/next chapter links */
+.pager { max-width: 800px; margin: 70px auto 0; padding: 20px 24px 0; border-top: 1px solid #121212; display: flex; justify-content: space-between; font-family: 'Libre Franklin', sans-serif; font-size: 0.85em; }
+.pager a { color: #121212; text-decoration: none; font-weight: 700; }
+.pager a:hover { color: #e76f51; }
+.pager span { display: block; font-weight: 400; color: #727272; font-size: 0.85em; }
+
+/* Team + footer */
+.team { font-family: 'Libre Franklin', sans-serif; font-size: 0.95em; }
+.team div { padding: 10px 0; border-bottom: 1px solid #e2e2e2; }
+.team span { color: #727272; }
+footer { font-family: 'Libre Franklin', sans-serif; font-size: 0.72em; color: #727272; text-align: center; padding: 40px 20px; line-height: 1.8; border-top: 1px solid #121212; margin-top: 80px; }
+
+/* Reveal */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+@media (max-width: 640px) {
+  .hero h1 { font-size: 2.1em; }
+  .page-head h1 { font-size: 1.7em; }
+  .step .card { margin: 0 auto; }
+  .stat-pull .big { font-size: 2.8em; }
+}
