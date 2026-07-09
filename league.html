@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The League — Data Point Guards</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Libre+Franklin:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<div class="masthead">
+  <div class="brand"><a href="index.html">Data Point Guards</a></div>
+  <div class="tagline">Beyond the Box Score &middot; DH 101, UCLA</div>
+</div>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="draft.html">The Draft</a>
+  <a href="attendance.html">Attendance</a>
+  <a href="college.html">College to Pros</a>
+  <a href="awards.html">Awards</a>
+  <a href="league.html" class="here">The League</a>
+  <a href="data-critique.html">Data Critique</a>
+  <a href="about.html">About</a>
+  <a href="sources.html">Sources</a>
+</nav>
+
+<div class="page-head">
+  <div class="kicker">Question 05</div>
+  <h1>How has the league grown &mdash; and for whom?</h1>
+  <p class="dek">A player's journey is only possible where a league exists to receive
+  it. The WNBA has expanded, contracted, and expanded again &mdash; and every change
+  redrew the map of opportunity for women in sports.</p>
+  <div class="attribution">Research question by Mariana Rosas</div>
+</div>
+
+<figure>
+  <img src="clark-bigten.jpg" alt="Caitlin Clark at the Big Ten tournament">
+  <figcaption>A new generation arrives: the Big Ten tournament.
+    <span class="credit">Wikimedia Commons</span></figcaption>
+</figure>
+
+<div class="story">
+  <p>In 1997, eight teams played the WNBA's first season. The league nearly doubled by
+  2000, then shrank through a decade of folded and relocated franchises &mdash; the Houston
+  Comets won four straight championships and still disappeared. For fifteen years the
+  league held at twelve teams. Now it is growing again: Golden State in 2025, Toronto
+  and Portland in 2026.</p>
+</div>
+
+<div class="chart-block">
+  <div class="chart-title">Three decades of expansion and contraction</div>
+  <div class="chart-sub">Number of WNBA teams by season &middot; Source: Across the Timeline (preliminary)</div>
+  <div class="chart-box"><canvas id="teamsChart"></canvas></div>
+</div>
+
+<div class="story">
+  <p>Each team is roughly twelve roster spots: when the league contracts, careers end
+  overnight; when it expands, doors open. But opportunity is not only about roster
+  spots &mdash; it is about whether a player can afford to stay. For most of league
+  history, salaries were low enough that stars spent every offseason playing overseas.
+  The 2020 collective bargaining agreement began to change that.</p>
+</div>
+
+<div class="chart-block">
+  <div class="chart-title">What the best-paid player could earn</div>
+  <div class="chart-sub">WNBA maximum salary, selected seasons &middot; Source: league CBA reports (preliminary, secondary source)</div>
+  <div class="chart-box"><canvas id="salaryChart"></canvas></div>
+</div>
+
+<div class="story">
+  <h2>What we will investigate</h2>
+  <p>Following Mariana's question, we will trace how the league's growth changed
+  opportunities for women in sports over time: how many players got to have WNBA careers
+  in each era, what happened to the players of folded franchises (visible in the
+  transaction records), and how economic conditions &mdash; salaries, roster limits, the
+  overseas offseason economy &mdash; shaped players' decisions. We will also examine her
+  question about positions: whether some positions are drafted higher, paid better, and
+  recognized more than others, and what that hierarchy means for who becomes a star.</p>
+
+  <p class="note">Salary information is not included in our core dataset &mdash; a gap our
+  data critique discusses &mdash; so that part of the analysis relies on secondary sources.
+  Chart data is preliminary and will be verified.</p>
+</div>
+
+<div class="pager">
+  <a href="awards.html"><span>&larr; Previous</span>Awards</a>
+  <a href="data-critique.html"><span>Continue &rarr;</span>Data Critique</a>
+</div>
+
+<footer>
+  Data Point Guards &middot; Digital Humanities 101 &middot; UCLA &middot; 2026<br>
+  Data from <a href="https://www.acrossthetimeline.com/">Across the Timeline</a> &middot;
+  Photo credits on the <a href="sources.html">Sources</a> page.
+</footer>
+
+<script>
+  window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    document.getElementById('progress').style.width =
+      (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+  });
+
+  new Chart(document.getElementById('teamsChart'), {
+    type: 'line',
+    data: {
+      labels: ['1997', '1998', '1999', '2000', '2003', '2006', '2009', '2010', '2015', '2020', '2024', '2025', '2026'],
+      datasets: [{
+        label: 'Teams',
+        data: [8, 10, 12, 16, 14, 14, 13, 12, 12, 12, 12, 13, 15],
+        borderColor: '#1d3557',
+        backgroundColor: 'rgba(29,53,87,0.08)',
+        fill: true,
+        stepped: true,
+        pointRadius: 3
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { afterLabel: function (ctx) {
+          if (ctx.label === '2000') return 'Peak of early expansion';
+          if (ctx.label === '2010') return 'After contractions (incl. Houston Comets, 2008)';
+          if (ctx.label === '2026') return 'Toronto Tempo and Portland Fire join';
+          return '';
+        } } }
+      },
+      scales: { y: { beginAtZero: true, title: { display: true, text: 'Teams' }, ticks: { stepSize: 2 } } }
+    }
+  });
+
+  new Chart(document.getElementById('salaryChart'), {
+    type: 'bar',
+    data: {
+      labels: ['2019 (before CBA)', '2020 (new CBA)', '2025'],
+      datasets: [{
+        data: [117500, 215000, 249244],
+        backgroundColor: ['#4a6fa5', '#f4a261', '#e76f51']
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true, title: { display: true, text: 'Maximum salary (USD)' },
+        ticks: { callback: function (v) { return '$' + (v / 1000) + 'k'; } } } }
+    }
+  });
+</script>
+
+</body>
+</html>

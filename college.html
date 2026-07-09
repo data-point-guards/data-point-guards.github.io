@@ -23,6 +23,7 @@
   <a href="attendance.html">Attendance</a>
   <a href="college.html" class="here">College to Pros</a>
   <a href="awards.html">Awards</a>
+  <a href="league.html">The League</a>
   <a href="data-critique.html">Data Critique</a>
   <a href="about.html">About</a>
   <a href="sources.html">Sources</a>
@@ -33,6 +34,7 @@
   <h1>Does March Madness stardom survive the jump?</h1>
   <p class="dek">Every spring, the NCAA tournament crowns new stars. Every summer, the
   WNBA tests them. The two datasets meet at the draft &mdash; and don't always agree.</p>
+  <div class="attribution">Research questions by Nguyen Ngo &amp; Makenzie White</div>
 </div>
 
 <figure>
@@ -59,13 +61,28 @@
   role players who became champions. Clark delivered on the promise immediately;
   many before her did not.</p>
 
+  <p>And even for those who make it, the question becomes how long they can last. The
+  professional game is faster, more physical, and less forgiving than college &mdash;
+  most WNBA careers are measured in a handful of seasons, not decades. Yet some No. 1
+  picks played on for fifteen years or more.</p>
+</div>
+
+<div class="chart-block">
+  <div class="chart-title">How long does a No. 1 pick last?</div>
+  <div class="chart-sub">WNBA seasons played by selected first overall picks &middot; Source: Across the Timeline (preliminary)</div>
+  <div class="chart-box"><canvas id="longevityChart"></canvas></div>
+</div>
+
+<div class="story">
   <h2>What we will investigate</h2>
-  <p>Our dataset records each drafted player's college and the NCAA tournament runs of
-  those schools (Sweet 16 and beyond), alongside complete WNBA careers: games, stats,
-  transactions, and how long each player lasted in the league. We will link them to ask:
-  do players from deep tournament runs have longer, better professional careers? Are
-  college champions overdrafted on fame? And which colleges quietly produce the most
-  reliable professionals?</p>
+  <p>Following Nguyen's question, we will link each drafted player's college and her
+  school's NCAA tournament runs (Sweet 16 and beyond) to complete WNBA careers: do
+  players from deep tournament runs have longer, better professional careers? Are
+  college champions overdrafted on fame? How are college role players valued, and what
+  determines how long they stay in the league? And following Makenzie's question about
+  career longevity, we will measure how the college-to-pro transition shapes career
+  length itself &mdash; which draft classes, positions, and college backgrounds produce
+  durable careers, and which see players exit the league within a season or two.</p>
 
   <p class="note">Individual college statistics are not part of our core dataset, so this
   chapter works at the level of schools and tournament results, supplemented by NCAA
@@ -105,6 +122,31 @@
       maintainAspectRatio: false,
       plugins: { legend: { display: false } },
       scales: { x: { beginAtZero: true, title: { display: true, text: 'Career points' } } }
+    }
+  });
+
+  new Chart(document.getElementById('longevityChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Tina Thompson (1997)', 'Sue Bird (2002)', 'Candace Parker (2008)', 'Maya Moore (2011)', 'Brittney Griner (2013)', 'Breanna Stewart (2016)'],
+      datasets: [{
+        data: [17, 19, 16, 8, 11, 9],
+        backgroundColor: ['#4a6fa5', '#e76f51', '#4a6fa5', '#f4a261', '#4a6fa5', '#4a6fa5']
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { afterLabel: function (ctx) {
+          if (ctx.label.indexOf('Maya Moore') === 0) return 'Stepped away at her peak, age 29';
+          if (ctx.label.indexOf('Sue Bird') === 0) return 'Longest career of any No. 1 pick';
+          return '';
+        } } }
+      },
+      scales: { x: { beginAtZero: true, title: { display: true, text: 'WNBA seasons played' } } }
     }
   });
 </script>
