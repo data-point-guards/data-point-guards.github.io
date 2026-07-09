@@ -3,178 +3,214 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Data Point Guards — WNBA Data Project</title>
+<title>Data Point Guards — Beyond the Box Score</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Libre+Franklin:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-  body { font-family: Georgia, serif; margin: 0; color: #222; line-height: 1.6; }
-  header {
-    background-image: linear-gradient(rgba(29,53,87,0.75), rgba(29,53,87,0.75)), url('hero.jpg');
-    background-size: cover; background-position: center;
-    color: white; text-align: center; padding: 110px 20px;
-  }
-  header h1 { margin: 0; font-size: 2.8em; }
-  header p { color: #f4a261; font-size: 1.3em; }
-  nav { background: #457b9d; text-align: center; padding: 12px; position: sticky; top: 0; z-index: 10; }
-  nav a { color: white; margin: 0 18px; text-decoration: none; font-weight: bold; }
-  section { max-width: 800px; margin: 40px auto; padding: 0 20px; }
-  h2 { color: #1d3557; border-bottom: 3px solid #f4a261; padding-bottom: 6px; }
-  .team-member { margin-bottom: 12px; }
-  footer { background: #1d3557; color: white; text-align: center; padding: 20px; margin-top: 60px; font-size: 0.9em; }
+  body { font-family: Georgia, 'Times New Roman', serif; margin: 0; color: #121212; background: #fff; line-height: 1.7; }
 
-  .feature { display: flex; align-items: stretch; max-width: 1100px; margin: 50px auto; }
-  .feature.reverse { flex-direction: row-reverse; }
-  .img-window { flex: 1.4; min-height: 400px; position: relative; overflow: hidden; }
-  .img-inner {
-    position: absolute; left: 0; right: 0;
-    top: -20%; height: 140%;              /* image is taller than its window */
-    background-size: cover; background-position: center;
-    will-change: transform;
+  /* Masthead */
+  .masthead {
+    text-align: center; padding: 14px 20px 10px;
+    border-bottom: 1px solid #121212;
   }
-  .feature .text { flex: 1; padding: 30px; display: flex; flex-direction: column; justify-content: center; }
-  .feature .text h3 { color: #1d3557; margin-top: 0; font-size: 1.5em; }
-  @media (max-width: 700px) {
-    .feature, .feature.reverse { flex-direction: column; }
-    .img-window { min-height: 240px; }
+  .masthead .brand {
+    font-family: 'Lora', serif; font-weight: 700; font-size: 1.6em; letter-spacing: 0.02em;
+  }
+  .masthead .tagline {
+    font-family: 'Libre Franklin', sans-serif; font-size: 0.72em; color: #666;
+    text-transform: uppercase; letter-spacing: 0.12em; margin-top: 2px;
+  }
+  nav {
+    font-family: 'Libre Franklin', sans-serif; font-size: 0.8em;
+    text-align: center; padding: 10px; border-bottom: 1px solid #e2e2e2;
+    position: sticky; top: 0; background: #fff; z-index: 10;
+  }
+  nav a { color: #121212; margin: 0 14px; text-decoration: none; font-weight: 600; }
+  nav a:hover { text-decoration: underline; }
+
+  /* Article header */
+  .article-head { max-width: 720px; margin: 55px auto 30px; padding: 0 20px; text-align: center; }
+  .article-head h1 {
+    font-family: 'Lora', serif; font-weight: 700; font-size: 2.6em; line-height: 1.15; margin: 0 0 18px;
+  }
+  .article-head .dek { font-size: 1.15em; color: #555; margin: 0 auto 22px; max-width: 600px; }
+  .byline { font-family: 'Libre Franklin', sans-serif; font-size: 0.8em; color: #121212; font-weight: 600; }
+  .dateline { font-family: 'Libre Franklin', sans-serif; font-size: 0.78em; color: #727272; margin-top: 4px; }
+
+  /* Images and captions */
+  figure { margin: 40px 0; }
+  figure.fullbleed { margin: 40px auto; max-width: 1100px; padding: 0 20px; }
+  figure img { width: 100%; display: block; }
+  figcaption {
+    font-family: 'Libre Franklin', sans-serif; font-size: 0.75em; color: #727272;
+    margin-top: 8px; line-height: 1.5;
+  }
+  figcaption .credit { color: #999; }
+
+  /* Reading column */
+  .story { max-width: 600px; margin: 0 auto; padding: 0 20px; font-size: 1.12em; }
+  .story h2 {
+    font-family: 'Lora', serif; font-weight: 600; font-size: 1.45em; line-height: 1.3;
+    margin: 55px 0 12px; text-align: left;
+  }
+  .story p { margin: 0 0 24px; }
+
+  .rule { border: none; border-top: 1px solid #e2e2e2; max-width: 600px; margin: 55px auto; }
+  .rule-heavy { border: none; border-top: 1px solid #121212; max-width: 1100px; margin: 70px auto 0; }
+
+  /* Team list */
+  .team { font-family: 'Libre Franklin', sans-serif; font-size: 0.95em; }
+  .team div { padding: 10px 0; border-bottom: 1px solid #e2e2e2; }
+  .team strong { font-weight: 700; }
+  .team span { color: #727272; }
+
+  footer {
+    font-family: 'Libre Franklin', sans-serif; font-size: 0.72em; color: #727272;
+    text-align: center; padding: 30px 20px 40px; line-height: 1.8;
   }
 
-  /* Apple-style reveal on scroll */
-  .reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.9s ease, transform 0.9s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
+  /* Subtle fade, NYT-calm */
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 600px) {
+    .article-head h1 { font-size: 1.9em; }
   }
 </style>
 </head>
 <body>
 
-<header>
-  <h1>Data Point Guards</h1>
-  <p>Exploring the history of women's basketball through data</p>
-</header>
-
-<nav>
-  <a href="#stories">Stories</a>
-  <a href="#about">About</a>
-  <a href="#data">Our Data</a>
-  <a href="#critique">Data Critique</a>
-  <a href="#questions">Research Questions</a>
-</nav>
-
-<div id="stories">
-
-  <div class="feature">
-    <div class="img-window"><div class="img-inner" style="background-image:url('draft.jpg');"></div></div>
-    <div class="text">
-      <h3>Tanking and the Draft</h3>
-      <p>Do WNBA teams lose on purpose to win later? We follow franchises that
-      chased high draft picks and ask what it cost them — on the court and at
-      the box office.</p>
-    </div>
-  </div>
-
-  <div class="feature reverse">
-    <div class="img-window"><div class="img-inner" style="background-image:url('arena.jpg');"></div></div>
-    <div class="text">
-      <h3>Attendance and the City</h3>
-      <p>Why do some arenas fill up while others stay quiet? We compare attendance
-      between small cities and big metropolitan areas across nearly three decades.</p>
-    </div>
-  </div>
-
-  <div class="feature">
-    <div class="img-window"><div class="img-inner" style="background-image:url('college.jpg');"></div></div>
-    <div class="text">
-      <h3>From College to the Pros</h3>
-      <p>March Madness stars don't always become WNBA stars. We trace how NCAA
-      tournament success translates — or doesn't — into professional careers.</p>
-    </div>
-  </div>
-
-  <div class="feature reverse">
-    <div class="img-window"><div class="img-inner" style="background-image:url('awards.jpg');"></div></div>
-    <div class="text">
-      <h3>Awards vs. Reality</h3>
-      <p>Do MVP votes and expert predictions match what actually happens on the
-      court? We test award votes and GM surveys against real performance data.</p>
-    </div>
-  </div>
-
+<div class="masthead">
+  <div class="brand">Data Point Guards</div>
+  <div class="tagline">A Digital Humanities Project · UCLA</div>
 </div>
 
-<section id="about">
-  <h2>About This Project</h2>
-  <p>This website was created for Digital Humanities 101 at UCLA. Our project explores
-  the history of women's professional basketball through data from
-  <a href="https://www.acrossthetimeline.com/">Across the Timeline</a>, a comprehensive
-  archive of WNBA statistics covering player transactions, attendance, drafts, awards,
-  and expert surveys from the league's founding in 1997 to the present.</p>
+<nav>
+  <a href="#intro">The Story</a>
+  <a href="#questions">Research Questions</a>
+  <a href="#critique">Data Critique</a>
+  <a href="#data">Our Data</a>
+  <a href="#about">About</a>
+</nav>
+
+<div class="article-head">
+  <h1>Beyond the Box Score: What WNBA Data Reveals — and Hides</h1>
+  <p class="dek">Nearly three decades of attendance records, draft results, award votes,
+  and expert surveys tell a story about women's basketball. We asked what the numbers
+  can prove, and what they leave out.</p>
+  <div class="byline">By the Data Point Guards</div>
+  <div class="dateline">Digital Humanities 101, UCLA · Summer 2026</div>
+</div>
+
+<figure class="fullbleed">
+  <img src="hero.jpg" alt="Women's college basketball game at the NCAA tournament">
+  <figcaption>The NCAA tournament, where many WNBA careers begin.
+    <span class="credit">Wikimedia Commons</span></figcaption>
+</figure>
+
+<div class="story" id="intro">
+  <p>This project explores the history of women's professional basketball through
+  <a href="https://www.acrossthetimeline.com/">Across the Timeline</a>, an archive of
+  WNBA statistics reaching back to the league's first season in 1997 — player
+  transactions, attendance, drafts, awards, and annual surveys of team executives.</p>
   <p>Rather than treating these numbers as neutral facts, we approach them with a
-  humanistic lens: asking how team strategies like tanking affect a franchise's future,
-  how city size shapes attendance, how college success translates into professional
-  careers, and how well awards and expert opinions reflect players' actual performance.</p>
+  humanistic lens. Behind every data point is a decision: who gets counted, who gets
+  drafted, who gets recognized, and whose story gets told.</p>
 
-  <h2>Our Team</h2>
-  <div class="team-member"><strong>Nguyen Ngo</strong> — Project Manager</div>
-  <div class="team-member"><strong>Yuan Gao</strong> — Web Designer</div>
-  <div class="team-member"><strong>Mariana Rosas</strong> — Content Developer</div>
-  <div class="team-member"><strong>Ryu Ohnogi</strong> — Data Visualization Specialist</div>
-  <div class="team-member"><strong>Sang Han</strong> — Data Specialist</div>
-  <div class="team-member"><strong>Makenzie White</strong> — Editor</div>
-</section>
+  <h2 id="questions">Do teams lose on purpose to win later?</h2>
+</div>
 
-<section id="data">
-  <h2>Our Data</h2>
-  <p>Coming soon: our cleaned dataset and visualizations.</p>
-</section>
+<figure class="fullbleed reveal">
+  <img src="draft.jpg" alt="Caitlin Clark at the 2024 WNBA Draft">
+  <figcaption>The 2024 WNBA Draft. <span class="credit">Wikimedia Commons</span></figcaption>
+</figure>
 
-<section id="critique">
+<div class="story">
+  <p>Our first question follows the strategy known as tanking: franchises that accept
+  losing seasons to secure high draft picks. Using draft and performance records, we ask
+  what this gamble costs a team — on the court and at the box office.</p>
+
+  <h2>Why do some arenas fill while others stay quiet?</h2>
+</div>
+
+<figure class="fullbleed reveal">
+  <img src="arena.jpg" alt="Crowd at Game 1 of the 2024 WNBA Finals">
+  <figcaption>Game 1 of the 2024 WNBA Finals in Brooklyn.
+    <span class="credit">Wikimedia Commons</span></figcaption>
+</figure>
+
+<div class="story">
+  <p>Attendance numbers stretch back to 1997, and they are not evenly distributed. We
+  compare teams in smaller cities with those in large metropolitan areas, asking how
+  geography — and competition from other sports — shapes who shows up.</p>
+
+  <h2>Does March Madness stardom survive the jump to the pros?</h2>
+</div>
+
+<figure class="fullbleed reveal">
+  <img src="college.jpg" alt="2014 NCAA women's basketball Final Four in Nashville">
+  <figcaption>The 2014 Final Four in Nashville.
+    <span class="credit">Wikimedia Commons</span></figcaption>
+</figure>
+
+<div class="story">
+  <p>College stars arrive in the WNBA with headlines and expectations. By linking NCAA
+  tournament success to professional careers, we trace which reputations hold up — and
+  which quietly fade.</p>
+
+  <h2>Do the awards go to the best players?</h2>
+</div>
+
+<figure class="fullbleed reveal">
+  <img src="awards.jpg" alt="A'ja Wilson defending during a WNBA game">
+  <figcaption>A'ja Wilson, a perennial MVP candidate.
+    <span class="credit">Lorie Shaull, Wikimedia Commons</span></figcaption>
+</figure>
+
+<div class="story">
+  <p>Finally, we test recognition against reality: MVP vote margins against statistical
+  gaps, and General Managers' preseason predictions against how seasons actually ended.
+  When experts and evidence disagree, the voting data shows us where — and invites us to
+  ask why.</p>
+</div>
+
+<hr class="rule">
+
+<div class="story" id="critique">
   <h2>Data Critique</h2>
-  <p>Coming soon: our team's critical analysis of the dataset.</p>
-</section>
+  <p>Coming soon: our team's critical analysis of the dataset — what it contains, how it
+  came to be, and what it leaves out.</p>
 
-<section id="questions">
-  <h2>Research Questions</h2>
-  <p>Coming soon: our team's research questions.</p>
-</section>
+  <h2 id="data">Our Data</h2>
+  <p>Coming soon: our cleaned dataset and visualizations.</p>
+
+  <h2 id="about">About</h2>
+  <p>We are the Data Point Guards, a six-member team in Digital Humanities 101 at UCLA.</p>
+  <div class="team">
+    <div><strong>Nguyen Ngo</strong> <span>· Project Manager</span></div>
+    <div><strong>Yuan Gao</strong> <span>· Web Designer</span></div>
+    <div><strong>Mariana Rosas</strong> <span>· Content Developer</span></div>
+    <div><strong>Ryu Ohnogi</strong> <span>· Data Visualization Specialist</span></div>
+    <div><strong>Sang Han</strong> <span>· Data Specialist</span></div>
+    <div><strong>Makenzie White</strong> <span>· Editor</span></div>
+  </div>
+</div>
+
+<hr class="rule-heavy">
 
 <footer>
-  Data Point Guards · DH 101 · UCLA · 2026<br>
-  Photos from Wikimedia Commons, used under Creative Commons licenses.
+  Data Point Guards · Digital Humanities 101 · UCLA · 2026<br>
+  Data from <a href="https://www.acrossthetimeline.com/">Across the Timeline</a>.
+  Photographs from Wikimedia Commons, used under Creative Commons licenses.
 </footer>
 
 <script>
-  // Parallax: the image slides up slightly while its window scrolls
-  const windows = document.querySelectorAll('.img-window');
-  function parallax() {
-    const vh = window.innerHeight;
-    windows.forEach(function (w) {
-      const inner = w.querySelector('.img-inner');
-      const r = w.getBoundingClientRect();
-      if (r.bottom < 0 || r.top > vh) return;      // not on screen
-      // -1 when window enters at bottom, +1 when it leaves at top
-      const progress = (r.top + r.height / 2 - vh / 2) / ((vh + r.height) / 2);
-      const max = (inner.offsetHeight - r.height) / 2; // room to move
-      inner.style.transform = 'translateY(' + (progress * max * 0.9) + 'px)';
-    });
-  }
-  window.addEventListener('scroll', function () { requestAnimationFrame(parallax); });
-  window.addEventListener('resize', parallax);
-  parallax();
-
-  // Apple-style fade-in when elements enter the screen
-  const targets = document.querySelectorAll('.feature .text, .feature .img-window, section h2, section p, .team-member');
-  targets.forEach(function (el) { el.classList.add('reveal'); });
+  const targets = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.1 });
   targets.forEach(function (el) { observer.observe(el); });
 </script>
 
