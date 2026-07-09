@@ -6,15 +6,35 @@
 <title>Data Point Guards — WNBA Data Project</title>
 <style>
   body { font-family: Georgia, serif; margin: 0; color: #222; line-height: 1.6; }
-  header { background: #1d3557; color: white; text-align: center; padding: 60px 20px; }
-  header h1 { margin: 0; font-size: 2.5em; }
-  header p { color: #f4a261; font-size: 1.2em; }
-  nav { background: #457b9d; text-align: center; padding: 12px; }
+  header {
+    background-image: linear-gradient(rgba(29,53,87,0.75), rgba(29,53,87,0.75)), url('hero.jpg');
+    background-size: cover; background-position: center; background-attachment: fixed;
+    color: white; text-align: center; padding: 110px 20px;
+  }
+  header h1 { margin: 0; font-size: 2.8em; }
+  header p { color: #f4a261; font-size: 1.3em; }
+  nav { background: #457b9d; text-align: center; padding: 12px; position: sticky; top: 0; z-index: 10; }
   nav a { color: white; margin: 0 18px; text-decoration: none; font-weight: bold; }
   section { max-width: 800px; margin: 40px auto; padding: 0 20px; }
   h2 { color: #1d3557; border-bottom: 3px solid #f4a261; padding-bottom: 6px; }
   .team-member { margin-bottom: 12px; }
-  footer { background: #1d3557; color: white; text-align: center; padding: 20px; margin-top: 60px; }
+  footer { background: #1d3557; color: white; text-align: center; padding: 20px; margin-top: 60px; font-size: 0.9em; }
+
+  .feature { display: flex; align-items: stretch; max-width: 1100px; margin: 50px auto; }
+  .feature.reverse { flex-direction: row-reverse; }
+  .feature .img-window {
+    flex: 1.4; min-height: 400px;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;   /* the lens / parallax effect */
+  }
+  .feature .text { flex: 1; padding: 30px; display: flex; flex-direction: column; justify-content: center; }
+  .feature .text h3 { color: #1d3557; margin-top: 0; font-size: 1.5em; }
+  @media (max-width: 700px) {
+    .feature, .feature.reverse { flex-direction: column; }
+    .feature .img-window, header { background-attachment: scroll; }
+    .feature .img-window { min-height: 240px; }
+  }
 </style>
 </head>
 <body>
@@ -25,11 +45,53 @@
 </header>
 
 <nav>
+  <a href="#stories">Stories</a>
   <a href="#about">About</a>
   <a href="#data">Our Data</a>
   <a href="#critique">Data Critique</a>
   <a href="#questions">Research Questions</a>
 </nav>
+
+<div id="stories">
+
+  <div class="feature">
+    <div class="img-window" style="background-image:url('draft.jpg');"></div>
+    <div class="text">
+      <h3>Tanking and the Draft</h3>
+      <p>Do WNBA teams lose on purpose to win later? We follow franchises that
+      chased high draft picks and ask what it cost them — on the court and at
+      the box office.</p>
+    </div>
+  </div>
+
+  <div class="feature reverse">
+    <div class="img-window" style="background-image:url('arena.jpg');"></div>
+    <div class="text">
+      <h3>Attendance and the City</h3>
+      <p>Why do some arenas fill up while others stay quiet? We compare attendance
+      between small cities and big metropolitan areas across nearly three decades.</p>
+    </div>
+  </div>
+
+  <div class="feature">
+    <div class="img-window" style="background-image:url('college.jpg');"></div>
+    <div class="text">
+      <h3>From College to the Pros</h3>
+      <p>March Madness stars don't always become WNBA stars. We trace how NCAA
+      tournament success translates — or doesn't — into professional careers.</p>
+    </div>
+  </div>
+
+  <div class="feature reverse">
+    <div class="img-window" style="background-image:url('awards.jpg');"></div>
+    <div class="text">
+      <h3>Awards vs. Reality</h3>
+      <p>Do MVP votes and expert predictions match what actually happens on the
+      court? We test award votes and GM surveys against real performance data.</p>
+    </div>
+  </div>
+
+</div>
 
 <section id="about">
   <h2>About This Project</h2>
@@ -68,7 +130,9 @@
 </section>
 
 <footer>
-  Data Point Guards · DH 101 · UCLA · 2026
+  Data Point Guards · DH 101 · UCLA · 2026<br>
+  Photos from Wikimedia Commons, used under Creative Commons licenses.
+  [Author credits to be added]
 </footer>
 
 </body>
