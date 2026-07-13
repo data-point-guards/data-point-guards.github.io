@@ -85,9 +85,24 @@
 
 <div class="story">
   <p>A'ja Wilson finished 123 points ahead of Napheesa Collier &mdash; but was the
-  statistical gap between their seasons as large as the voting gap? From third place
-  down, votes fall off a cliff: strong seasons receive almost no official recognition
-  at all. The league's memory, it turns out, has sharp edges.</p>
+  statistical gap between their seasons as large as the voting gap? To find out, we
+  placed every player who scored at least 400 points in 2025 on one chart: her season
+  scoring against her MVP votes. Hover over any dot to see who she is.</p>
+</div>
+
+<div class="chart-block">
+  <div class="chart-title">Scoring vs. recognition, 2025: two different worlds</div>
+  <div class="chart-sub">Season total points vs. MVP voting points, all 42 players with 400+ points &middot; Orange = received votes, gray = none &middot; Source: Across the Timeline</div>
+  <div class="chart-box" style="height: 460px;"><canvas id="scatterChart"></canvas></div>
+</div>
+
+<div class="story">
+  <p>The chart splits into two worlds. Along the bottom runs a gray line of high
+  scorers the ballot forgot: Kelsey Plum scored 839 points and received zero votes;
+  Kelsey Mitchell, the league's second-leading scorer with 890, received one-seventh
+  of the winner's total. Above them, a small orange group rises. Recognition, it
+  turns out, is not a measurement &mdash; it is a judgment, and the league's memory
+  has sharp edges.</p>
 
   <h2>What we will investigate</h2>
   <p>Using complete award votes, GM survey answers, and season statistics, we will
@@ -134,6 +149,82 @@
       plugins: { legend: { display: false } },
       scales: { x: { beginAtZero: true, title: { display: true, text: 'First-place votes' } } }
     }
+  });
+
+  var scatterData = [
+    { p: "A'ja Wilson", x: 937, y: 657 }, { p: 'Kelsey Mitchell', x: 890, y: 93 },
+    { p: 'Kelsey Plum', x: 839, y: 0 }, { p: 'Dearica Hamby', x: 811, y: 1 },
+    { p: 'Nneka Ogwumike', x: 803, y: 5 }, { p: 'Allisha Gray', x: 773, y: 180 },
+    { p: 'Napheesa Collier', x: 755, y: 534 }, { p: 'Jackie Young', x: 727, y: 2 },
+    { p: 'Tina Charles', x: 700, y: 0 }, { p: 'Sabrina Ionescu', x: 693, y: 0 },
+    { p: 'Paige Bueckers', x: 692, y: 0 }, { p: 'Skylar Diggins', x: 667, y: 0 },
+    { p: 'Aliyah Boston', x: 660, y: 5 }, { p: 'Sonia Citron', x: 657, y: 0 },
+    { p: 'Satou Sabally', x: 636, y: 0 }, { p: 'Alyssa Thomas', x: 599, y: 391 },
+    { p: 'Courtney Williams', x: 599, y: 0 }, { p: 'Kiki Iriafen', x: 584, y: 0 },
+    { p: 'Rhyne Howard', x: 577, y: 1 }, { p: 'Breanna Stewart', x: 566, y: 1 },
+    { p: 'Brionna Jones', x: 564, y: 0 }, { p: 'Azurá Stevens', x: 561, y: 0 },
+    { p: 'Rickea Jackson', x: 558, y: 1 }, { p: 'Kayla McBride', x: 554, y: 0 },
+    { p: 'Brittney Sykes', x: 550, y: 0 }, { p: 'Kamilla Cardoso', x: 543, y: 0 },
+    { p: 'Veronica Burton', x: 525, y: 1 }, { p: 'Gabby Williams', x: 510, y: 0 },
+    { p: 'Marina Mabrey', x: 504, y: 0 }, { p: 'Natasha Howard', x: 500, y: 0 },
+    { p: 'Chelsea Gray', x: 493, y: 0 }, { p: 'Jewell Loyd', x: 491, y: 0 },
+    { p: 'Shakira Austin', x: 481, y: 0 }, { p: 'Erica Wheeler', x: 455, y: 0 },
+    { p: 'Arike Ogunbowale', x: 450, y: 0 }, { p: 'Ariel Atkins', x: 447, y: 0 },
+    { p: 'Angel Reese', x: 440, y: 0 }, { p: 'Kahleah Copper', x: 438, y: 0 },
+    { p: 'Jonquel Jones', x: 423, y: 0 }, { p: 'Natasha Cloud', x: 414, y: 0 },
+    { p: 'Janelle Salaün', x: 407, y: 0 }, { p: 'Alanna Smith', x: 404, y: 0 }
+  ];
+  var voted = scatterData.filter(function (d) { return d.y > 0; });
+  var noVotes = scatterData.filter(function (d) { return d.y === 0; });
+  var labelSet = ["A'ja Wilson", 'Napheesa Collier', 'Alyssa Thomas', 'Allisha Gray', 'Kelsey Mitchell', 'Kelsey Plum'];
+
+  var outlierLabels = {
+    id: 'outlierLabels',
+    afterDatasetsDraw: function (chart) {
+      var ctx = chart.ctx;
+      ctx.save();
+      ctx.font = "12px 'Libre Franklin', sans-serif";
+      ctx.fillStyle = '#444';
+      chart.data.datasets.forEach(function (ds, di) {
+        var meta = chart.getDatasetMeta(di);
+        ds.data.forEach(function (d, i) {
+          if (labelSet.indexOf(d.p) === -1) return;
+          var pt = meta.data[i];
+          var below = (d.p === 'Kelsey Plum' || d.p === 'Kelsey Mitchell');
+          ctx.textAlign = 'right';
+          ctx.fillText(d.p, pt.x - 8, below ? pt.y + 16 : pt.y + 4);
+        });
+      });
+      ctx.restore();
+    }
+  };
+
+  new Chart(document.getElementById('scatterChart'), {
+    type: 'scatter',
+    data: {
+      datasets: [
+        { label: 'Received MVP votes', data: voted, backgroundColor: '#e76f51', pointRadius: 6, pointHoverRadius: 8 },
+        { label: 'No votes', data: noVotes, backgroundColor: '#b8bfc7', pointRadius: 5, pointHoverRadius: 8 }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'top' },
+        tooltip: { callbacks: {
+          label: function (ctx) {
+            var d = ctx.raw;
+            return d.p + ': ' + d.x + ' season points, ' + d.y + ' MVP vote points';
+          }
+        } }
+      },
+      scales: {
+        x: { min: 380, max: 970, title: { display: true, text: 'Season total points (2025)' } },
+        y: { beginAtZero: true, title: { display: true, text: 'MVP voting points' } }
+      }
+    },
+    plugins: [outlierLabels]
   });
 
   new Chart(document.getElementById('mvpChart'), {
