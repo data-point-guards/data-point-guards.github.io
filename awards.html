@@ -190,9 +190,11 @@
         ds.data.forEach(function (d, i) {
           if (labelSet.indexOf(d.p) === -1) return;
           var pt = meta.data[i];
-          var below = (d.p === 'Kelsey Plum' || d.p === 'Kelsey Mitchell');
+          var dy = 4;
+          if (d.p === 'Kelsey Mitchell') dy = 16;
+          if (d.p === 'Kelsey Plum') dy = -10;
           ctx.textAlign = 'right';
-          ctx.fillText(d.p, pt.x - 8, below ? pt.y + 16 : pt.y + 4);
+          ctx.fillText(d.p, pt.x - 8, pt.y + dy);
         });
       });
       ctx.restore();
