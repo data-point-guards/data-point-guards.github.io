@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greatness — Data Point Guards</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Libre+Franklin:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<div class="masthead">
+  <div class="brand"><a href="index.html">Data Point Guards</a></div>
+  <div class="tagline">Beyond the Box Score &middot; DH 101, UCLA</div>
+</div>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="draft.html">The Draft</a>
+  <a href="attendance.html">Attendance</a>
+  <a href="college.html">College to Pros</a>
+  <a href="awards.html">Awards</a>
+  <a href="league.html">The League</a>
+  <a href="greatness.html" class="here">Greatness</a>
+  <a href="data-critique.html">Data Critique</a>
+  <a href="about.html">About</a>
+  <a href="sources.html">Sources</a>
+</nav>
+
+<div class="page-head">
+  <div class="kicker">Team Research Question 10</div>
+  <h1>Who gets to be called great?</h1>
+  <p class="dek">Every chapter of this site relies on rankings, awards, and team
+  statistics. Our final question turns the lens on the data itself: what definition of
+  &ldquo;greatness&rdquo; is built into the numbers we have been using?</p>
+</div>
+
+<figure>
+  <img src="clark-iowa.jpg" alt="Caitlin Clark playing for Iowa">
+  <figcaption>Greatness in the making &mdash; but who decides, and by what measure?
+    <span class="credit">Wikimedia Commons</span></figcaption>
+</figure>
+
+<div class="story">
+  <p class="rq">Our research question: &ldquo;How does the dataset&rsquo;s focus on
+  rankings, awards, and team statistics influence the way we define
+  &lsquo;greatness&rsquo; in women&rsquo;s basketball?&rdquo; &mdash; is there a
+  correlation between how many points are scored in a season and receiving awards, or
+  is it about team synchronicity and defense?</p>
+
+  <p>A dataset is not a mirror; it is a lens. Across the Timeline records what can be
+  counted &mdash; points, wins, votes, rankings &mdash; and whatever the numbers
+  capture becomes the raw material of reputation. So before trusting the archive's
+  verdicts, we asked it a simple question: when the league names its five
+  &ldquo;greatest&rdquo; players of 2025, is it naming its five best scorers?</p>
+</div>
+
+<div class="chart-block">
+  <div class="chart-title">The 2025 MVP top five &mdash; and where they ranked in scoring</div>
+  <div class="chart-sub">League scoring rank (among 42 players with 400+ points) for each of the top five MVP vote finishers &middot; Source: Across the Timeline</div>
+  <div class="chart-box"><canvas id="rankChart"></canvas></div>
+</div>
+
+<div class="story">
+  <p>The answer is no &mdash; and the mismatch is the finding. The MVP and the
+  runner-up spot did not go to the two leading scorers: Napheesa Collier finished
+  second in the voting while ranking seventh in scoring, and Alyssa Thomas finished
+  third while ranking sixteenth. Meanwhile the league's second-leading scorer, Kelsey
+  Mitchell, placed only fifth in the vote. Voters clearly reward something the scoring
+  column does not measure: Thomas is the league's premier playmaker, Collier led the
+  team with the league's best record, and both anchor their teams' defense. Points
+  alone do not make greatness &mdash; team success and synchronicity seem to matter as
+  much or more.</p>
+
+  <p>But here is the humanistic turn: the dataset itself cannot fully show that. It
+  has no column for leadership, for defensive gravity, for the screens that free a
+  shooter, or for the trust between teammates. When we &mdash; or the voters &mdash;
+  call someone great, we are partly measuring and partly believing. A dataset built on
+  rankings and box scores quietly teaches its users that greatness is whatever the
+  box score can hold.</p>
+
+  <h2>What we will investigate</h2>
+  <p>Using award votes, season statistics, and standings together, we will measure how
+  much of award recognition is explained by scoring, how much by team record, and how
+  much by defensive and playmaking statistics &mdash; across the league's full history,
+  not just one season. Where the numbers stop explaining, we will turn to our
+  <a href="data-critique.html">data critique</a>: the gaps in this dataset are not
+  accidents, and what it cannot count shapes what the sport remembers.</p>
+
+  <p class="note">Scoring ranks are computed from the same verified 2025 dataset used
+  on the Awards page. Analysis and final visualizations by our team are in progress.</p>
+</div>
+
+<div class="pager">
+  <a href="league.html"><span>&larr; Previous</span>The League</a>
+  <a href="data-critique.html"><span>Continue &rarr;</span>Data Critique</a>
+</div>
+
+<footer>
+  Data Point Guards &middot; Digital Humanities 101 &middot; UCLA &middot; 2026<br>
+  Data from <a href="https://www.acrossthetimeline.com/">Across the Timeline</a> &middot;
+  Photo credits on the <a href="sources.html">Sources</a> page.
+</footer>
+
+<script>
+  window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    document.getElementById('progress').style.width =
+      (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+  });
+
+  new Chart(document.getElementById('rankChart'), {
+    type: 'bar',
+    data: {
+      labels: ["1st in MVP vote: A'ja Wilson", '2nd: Napheesa Collier', '3rd: Alyssa Thomas', '4th: Allisha Gray', '5th: Kelsey Mitchell'],
+      datasets: [{
+        label: 'League scoring rank',
+        data: [1, 7, 16, 6, 2],
+        backgroundColor: ['#e76f51', '#f4a261', '#f4a261', '#f4a261', '#4a6fa5']
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: function (ctx) {
+          return 'Scoring rank: #' + ctx.raw + ' of 42';
+        } } }
+      },
+      scales: {
+        x: { beginAtZero: true, reverse: false, title: { display: true, text: 'Scoring rank in the league (1 = top scorer)' }, ticks: { stepSize: 2 } }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
