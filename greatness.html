@@ -39,8 +39,8 @@
 </div>
 
 <figure>
-  <img src="clark-iowa.jpg" alt="Caitlin Clark playing for Iowa">
-  <figcaption>Greatness in the making &mdash; but who decides, and by what measure?
+  <img src="fig-great.jpg" alt="A basketball rim with the arena scoreboard glowing behind it">
+  <figcaption>The numbers above the game &mdash; but who decides what they mean?
     <span class="credit">Wikimedia Commons</span></figcaption>
 </figure>
 
@@ -75,12 +75,29 @@
   alone do not make greatness &mdash; team success and synchronicity seem to matter as
   much or more.</p>
 
-  <p>But here is the humanistic turn: the dataset itself cannot fully show that. It
-  has no column for leadership, for defensive gravity, for the screens that free a
-  shooter, or for the trust between teammates. When we &mdash; or the voters &mdash;
-  call someone great, we are partly measuring and partly believing. A dataset built on
-  rankings and box scores quietly teaches its users that greatness is whatever the
-  box score can hold.</p>
+  <p>There is a second pattern worth seeing: how few players the word
+  &ldquo;great&rdquo; is allowed to touch at all. In 2025, roughly 156 players held
+  WNBA roster spots. Thirteen received even a single MVP vote.</p>
+</div>
+
+<div class="chart-block">
+  <div class="chart-title">How many players does "greatness" reach?</div>
+  <div class="chart-sub">Of roughly 156 WNBA roster spots in 2025, players receiving at least one MVP vote &middot; Source: Across the Timeline award votes (preliminary)</div>
+  <div class="chart-box" style="height: 300px;"><canvas id="reachChart"></canvas></div>
+</div>
+
+<div class="story">
+  <p>Under one player in twelve. Everyone else &mdash; the defenders, the screeners,
+  the bench units that win championships in April &mdash; exists in the dataset only
+  as rows that received nothing. The archive doesn't say they weren't great; it simply
+  has no ballot line where their kind of greatness could be recorded.</p>
+
+  <p>And here is the humanistic turn: the dataset itself cannot fully show what it
+  leaves out. It has no column for leadership, for defensive gravity, for the screens
+  that free a shooter, or for the trust between teammates. When we &mdash; or the
+  voters &mdash; call someone great, we are partly measuring and partly believing. A
+  dataset built on rankings and box scores quietly teaches its users that greatness is
+  whatever the box score can hold.</p>
 
   <h2>What we will investigate</h2>
   <p>Using award votes, season statistics, and standings together, we will measure how
@@ -135,6 +152,22 @@
       scales: {
         x: { beginAtZero: true, reverse: false, title: { display: true, text: 'Scoring rank in the league (1 = top scorer)' }, ticks: { stepSize: 2 } }
       }
+    }
+  });
+
+  new Chart(document.getElementById('reachChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Received at least one MVP vote (13)', 'Received none (~143)'],
+      datasets: [{
+        data: [13, 143],
+        backgroundColor: ['#e76f51', '#d5dae0']
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { position: 'right' } }
     }
   });
 </script>

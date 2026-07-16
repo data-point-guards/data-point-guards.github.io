@@ -39,9 +39,9 @@
 </div>
 
 <figure>
-  <img src="fever-2019.jpg" alt="Indiana Fever player Natalie Achonwa in 2019">
-  <figcaption>The Indiana Fever in 2019, at the start of a long rebuild.
-    <span class="credit">Wikimedia Commons</span></figcaption>
+  <img src="fig-draft.jpg" alt="Fans gathered at a WNBA draft night watch party">
+  <figcaption>Draft night, 2024: a franchise's future decided in one evening.
+    <span class="credit">John Mac, Wikimedia Commons</span></figcaption>
 </figure>
 
 <div class="story">
@@ -65,10 +65,46 @@
 
 <div class="story">
   <p>The chart shows the shape of a rebuild: three seasons at the bottom, then the
-  bounce after two No. 1 picks. But one team's success story is not proof that top
-  picks always pay off. For every Fever, the archive holds franchises that landed high
-  picks and never converted them into wins or crowds &mdash; and that is exactly what
-  our full analysis will measure.</p>
+  bounce after two No. 1 picks. But wins are only half of our question. The other half
+  is the box office &mdash; and there, the same three seasons tell an even more
+  dramatic story.</p>
+</div>
+
+<div class="chart-block">
+  <div class="chart-title">The box-office payoff: attendance around the No. 1 picks</div>
+  <div class="chart-sub">Indiana Fever average home attendance, the season before and the two seasons of No. 1 picks &middot; Source: league reports (preliminary)</div>
+  <div class="chart-box"><canvas id="attendChart"></canvas></div>
+</div>
+
+<div class="story">
+  <p>In 2022, before either pick, the Fever drew fewer than two thousand fans per game.
+  The first No. 1 pick roughly doubled the crowd; the second multiplied it four times
+  over, to the best attendance in the league. For a franchise's finances, this is the
+  real prize of a top pick: not just a better team, but a reason for a city to show
+  up. Our full analysis will test whether this pattern repeats across all top-three
+  picks in league history &mdash; or whether the Fever's case is a spectacular
+  exception.</p>
+
+  <p>There is also a warning hidden in the history of the draft. A top pick is a
+  lottery ticket, not a guarantee: across the league's history, most No. 1 overall
+  selections never became MVP-level players, and some played only a handful of
+  seasons. The pick creates the possibility of transformation &mdash; the player has
+  to deliver it, and stay healthy through it.</p>
+</div>
+
+<div class="chart-block">
+  <div class="chart-title">The odds behind the hype</div>
+  <div class="chart-sub">Of the 29 players drafted No. 1 overall (1997&ndash;2025), how many went on to win MVP &middot; Source: Across the Timeline drafts and awards (preliminary)</div>
+  <div class="chart-box" style="height: 300px;"><canvas id="oddsChart"></canvas></div>
+</div>
+
+<div class="story">
+  <p>Eight of twenty-nine &mdash; a little more than one in four. Being drafted first
+  is the strongest single predictor of stardom the league has, and even it fails most
+  of the time. Meanwhile, MVP trophies have also gone to second picks, late
+  first-rounders, and players the draft barely noticed. The draft is the league's
+  loudest promise about who will matter; the rest of a career is a test of that
+  promise.</p>
 
   <h2>What we will investigate</h2>
   <p>Using draft data, standings, and attendance records since 1997, we will follow
@@ -80,6 +116,15 @@
   change a franchise. One honest limitation: broadcast viewership is not part of our
   core dataset, so that part of the question relies on secondary sources &mdash; a gap
   our <a href="data-critique.html">data critique</a> discusses.</p>
+
+  <h2>Why it matters</h2>
+  <p>The draft is where the league most openly treats players as assets: ranked,
+  selected, traded, and priced by expectation. Asking what a pick &ldquo;buys&rdquo; a
+  franchise makes that logic visible &mdash; and asking whether the purchase pays off
+  in crowds and wins lets the data answer a question usually settled by hype. When a
+  city's support for women's basketball can quadruple because of a single draft night,
+  the draft is not just a sports event; it is an engine that decides which cities get
+  to fall in love with this league.</p>
 
   <p class="note">Chart data is preliminary and will be verified against our cleaned
   dataset. Analysis and final visualizations by our team are in progress.</p>
@@ -127,6 +172,39 @@
       scales: {
         y: { beginAtZero: true, title: { display: true, text: 'Wins' } }
       }
+    }
+  });
+
+  new Chart(document.getElementById('attendChart'), {
+    type: 'bar',
+    data: {
+      labels: ['2022 (before)', '2023 (1st No. 1 pick)', '2024 (2nd No. 1 pick)'],
+      datasets: [{
+        data: [1776, 4067, 17036],
+        backgroundColor: ['#4a6fa5', '#f4a261', '#e76f51']
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true, title: { display: true, text: 'Fans per game' } } }
+    }
+  });
+
+  new Chart(document.getElementById('oddsChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Won MVP at least once (8)', 'Never won MVP (21)'],
+      datasets: [{
+        data: [8, 21],
+        backgroundColor: ['#e76f51', '#d5dae0']
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { position: 'right' } }
     }
   });
 </script>
