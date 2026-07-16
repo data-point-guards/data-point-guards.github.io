@@ -33,9 +33,9 @@
 <div class="page-head">
   <div class="kicker">Team Research Question 4</div>
   <h1>Do the awards go to the best players?</h1>
-  <p class="dek">MVP ballots, Rookie of the Year votes, GM surveys: awards are the
-  league's official memory of who mattered. We test that memory against the
-  performance data itself.</p>
+  <p class="dek">Every October, seventy-two ballots decide how a season will be
+  remembered. We put the league's official memory on trial &mdash; against the
+  performance record itself.</p>
 </div>
 
 <figure>
@@ -48,51 +48,63 @@
 <div class="story">
   <p class="rq">Our research question: &ldquo;How well do awards and expert opinions in
   the WNBA reflect players&rsquo; actual performance on the court, and what might explain
-  the gaps between recognition and reality?&rdquo; &mdash; including how accurate the GM
-  survey predictions have been, and what biases they reveal of people in
-  &ldquo;power.&rdquo;</p>
-  <p>Sometimes the voters agree completely. In 2024, Caitlin Clark's Rookie of the Year
-  award was nearly unanimous &mdash; recognition and performance pointing the same way.</p>
+  the gaps between recognition and reality?&rdquo;</p>
+
+  <p>A basketball season produces two kinds of records. One is written by the games
+  themselves &mdash; points, rebounds, wins &mdash; and accumulates in box scores that no
+  one disputes. The other is written by people: sportswriters filling out award ballots,
+  executives answering preseason surveys, voters deciding in a single October week which
+  names a season will be remembered by. Our question lives in the space between the two
+  records. When they agree, recognition looks like measurement. When they disagree,
+  something else is being measured &mdash; and this page is our attempt to catch that
+  something in the act.</p>
+
+  <p>Sometimes the two records align perfectly. In 2024, the Rookie of the Year vote was
+  as close to unanimity as voting allows &mdash; sixty-six of sixty-seven first-place
+  votes for one player. Held beside what follows, it is the exception that makes the
+  rule visible.</p>
 </div>
 
 <div class="chart-block">
-  <div class="chart-title">2024 Rookie of the Year: near-unanimous</div>
+  <div class="chart-title">2024 Rookie of the Year: the easy case</div>
   <div class="chart-sub">First-place votes &middot; Source: league voting results (preliminary)</div>
   <div class="chart-box"><canvas id="royChart"></canvas></div>
 </div>
 
 <div class="story">
-  <p>And sometimes they don't. One year later, the MVP race produced a result that looks
-  decisive at the top &mdash; until you see how fast recognition collapses below it.</p>
+  <h2>Who receives the votes &mdash; and who barely does</h2>
+  <p class="rq">Sub-question: &ldquo;To what extent do WNBA award votes reflect
+  players&rsquo; actual season performance, and what patterns can we find in which
+  players receive more votes?&rdquo;</p>
+
+  <p>Begin with the full ballot of the 2025 MVP race &mdash; not the headline, but every
+  player who received a single vote.</p>
 </div>
 
 <div class="chart-block">
-  <div class="chart-title">2025 WNBA MVP voting: all thirteen players who received votes</div>
-  <div class="chart-sub">Total voting points by player &middot; Source: Across the Timeline (award votes) &middot; From our individual data visualization assessment</div>
+  <div class="chart-title">The 2025 MVP vote, complete: thirteen names, one cliff</div>
+  <div class="chart-sub">Total voting points, all thirteen players who received votes &middot; Source: Across the Timeline (award votes) &middot; From our individual data visualization assessment</div>
   <div class="chart-box" style="height: 440px;"><canvas id="mvpChart"></canvas></div>
 </div>
 
 <div class="story">
-  <p>The bar chart shows the total voting points for all thirteen players who received
-  votes in the 2025 WNBA MVP race. A'ja Wilson won the award with 657 points, and she
-  got 51 of the 72 first-place votes. Napheesa Collier finished second with 534 points.
-  When we look at the chart, the race at the top was actually closer than people think:
-  the gap between Wilson and Collier is only 123 points, which is small compared to the
-  gap between the top two and everyone else. Alyssa Thomas finished with 391 points, but
-  after her, the bars drop very fast &mdash; Allisha Gray only received 180 points and
-  Kelsey Mitchell only 93, even though both of them had strong seasons. In the whole
-  league, only thirteen players received votes, and below the top five, nobody received
-  more than 5 points. This means even getting your name on this ballot is already rare,
-  but the recognition inside the ballot still goes almost completely to the top one or
-  two stars. This matters because award votes become the league's official memory of who
-  was important in a season. This chart shows the pattern of who receives votes; whether
-  these votes really match players' actual performance is the second part of our
-  research question, and the scatter plot below examines it directly.</p>
+  <p>A'ja Wilson won with 657 points, carrying 51 of the 72 first-place votes; Napheesa
+  Collier finished second with 534. Read closely, the top of the race was tighter than
+  the result suggests &mdash; the 123 points separating Wilson from Collier are fewer
+  than the 143 separating Collier from Alyssa Thomas in third. It is below the top three
+  that the ballot falls off a cliff. Allisha Gray received 180 points and Kelsey
+  Mitchell 93, though both anchored playoff teams; beyond the top five, no player in the
+  league received more than 5 points, and five players received exactly one fifth-place
+  vote apiece. In a league of roughly 156 roster spots, thirteen names appeared on the
+  ballot at all. Recognition, the chart says, is not distributed &mdash; it is
+  concentrated, pooled around one or two agreed-upon stars while everyone else splits
+  the residue. Whether that concentration mirrors performance is the question the rest
+  of this page pursues.</p>
 </div>
 
 <div class="data-table">
-  <div class="chart-title">2025 MVP ballot, in full</div>
-  <div class="table-sub">Votes by place &middot; Source: Across the Timeline (award votes)</div>
+  <div class="chart-title">The ballot, vote by vote</div>
+  <div class="table-sub">2025 MVP votes by place &middot; Source: Across the Timeline (award votes)</div>
   <table>
     <thead>
       <tr><th>Player</th><th>Team</th><th class="r">1st</th><th class="r">2nd</th><th class="r">3rd</th><th class="r">4th</th><th class="r">5th</th><th class="r">Points</th></tr>
@@ -108,10 +120,16 @@
 </div>
 
 <div class="story">
-  <p>A'ja Wilson finished 123 points ahead of Napheesa Collier &mdash; but was the
-  statistical gap between their seasons as large as the voting gap? To find out, we
-  placed every player who scored at least 400 points in 2025 on one chart: her season
-  scoring against her MVP votes. Hover over any dot to see who she is.</p>
+  <h2>Recognition against reality</h2>
+  <p class="rq">Sub-question: &ldquo;How do the differences between MVP and other WNBA
+  award winners compare with their seasonal metrics, and what can this tell us about how
+  voters make decisions?&rdquo;</p>
+
+  <p>The sharpest test we can run puts every substantial 2025 season on a single canvas:
+  each of the 42 players who scored at least 400 points, placed by what she produced
+  (horizontally) and what the voters gave her (vertically). If recognition simply
+  followed production, the dots would climb together in a rough line. Hover over any dot
+  to see who she is.</p>
 </div>
 
 <div class="chart-block">
@@ -121,79 +139,95 @@
 </div>
 
 <div class="story">
-  <p>If recognition simply followed scoring, the dots would go up together like a line.
-  But instead, the chart splits into two worlds. Along the bottom, there is a long gray
-  row of high scorers who received almost nothing: Kelsey Plum scored 839 points and
-  received zero votes, and Kelsey Mitchell, the second-leading scorer in the league with
-  890 points, only received 93 voting points &mdash; about one-seventh of the winner's
-  total. Above them, a small orange group rises quickly: A'ja Wilson (937 points, 657
-  votes), Napheesa Collier (755, 534), and Alyssa Thomas (599, 391). One interesting
-  point is that Thomas received four times more votes than Mitchell even though she
-  scored almost 300 fewer points. This shows that voters care about more than
-  scoring &mdash; but the chart also shows the cost: if a player scores a lot on a
-  losing or less popular team, she becomes almost invisible in the league's official
-  memory. One limitation is that total points partly depend on how many games a player
-  played, so our final analysis will repeat this comparison with more metrics. Still,
-  the pattern is clear: MVP voting is not a measurement of production, but a judgment
-  about story.</p>
+  <p>The dots do not climb together. Instead the chart splits into two worlds. Along the
+  bottom runs a long gray row of production without recognition: Kelsey Plum scored 839
+  points &mdash; the fourth-highest total in the league &mdash; and received zero votes.
+  Dearica Hamby scored 811 and received exactly one. Kelsey Mitchell, second in the
+  league in scoring at 890, collected one-seventh of the winner's total. Above them, a
+  small orange constellation rises: Wilson (937 points, 657 votes), Collier (755, 534),
+  Thomas (599, 391). Thomas is the figure to sit with &mdash; she received four times
+  Mitchell's votes while scoring nearly 300 fewer points, which tells us the voters
+  reward things the scoring column cannot see: playmaking, defense, a team's success.
+  That is a defensible way to vote. But the chart also prices it: score brilliantly for
+  a losing or unfashionable team, and you become nearly invisible in the league's
+  official memory.</p>
 
-  <h2>The other experts: what the GMs predict</h2>
-  <p>Award voters are not the only experts whose judgment our question tests. Every
-  season, the league surveys its General Managers &mdash; the people who draft, trade,
-  and pay players &mdash; and publishes their predictions. Their 2026 preseason picks
-  are now on the record, which gives our project a natural experiment: at the end of
-  the season, we can measure exactly how right the people in power were.</p>
+  <p>None of this is unique to the WNBA, which is precisely why it is worth measuring.
+  In the study that founded this line of inquiry, the sports economist David Berri
+  built a model linking each NBA player's statistics to the wins she actually produces,
+  then compared the model's verdicts with the ones voters and executives reach &mdash;
+  and found the two regularly part ways. Perceived value, Berri concluded, is not
+  measured value. Our scatter plot carries his question into a league where no one had
+  systematically asked it. One honest caveat travels with it: total points partly
+  reflect games played and role, so our full analysis will rerun this comparison with
+  additional metrics &mdash; efficiency, rebounds, assists &mdash; before drawing final
+  conclusions.</p>
+
+  <h2>The people in power</h2>
+  <p class="rq">Sub-question: &ldquo;How accurate have the WNBA GM survey predictions
+  been compared to the actual season results across league history? What biases do they
+  reveal of people in &lsquo;power&rsquo;?&rdquo;</p>
+
+  <p>Sportswriters vote on awards, but a second panel of experts shapes careers more
+  directly: the General Managers who draft, trade, and pay every player in the league.
+  Each preseason, the league surveys them and publishes the results &mdash; which means
+  their judgment, unlike most expert opinion, is on the record and gradeable. Their 2026
+  predictions are already filed.</p>
 </div>
 
 <div class="chart-block">
-  <div class="chart-title">"Who will win the 2026 MVP?" &mdash; the GMs' answers, on the record</div>
+  <div class="chart-title">&ldquo;Who will win the 2026 MVP?&rdquo; &mdash; the executives, on the record</div>
   <div class="chart-sub">Share of General Managers picking each player, 2026 preseason survey &middot; Source: Across the Timeline (GM surveys)</div>
   <div class="chart-box" style="height: 300px;"><canvas id="gmChart"></canvas></div>
 </div>
 
 <div class="story">
-  <p>Sixty percent of the league's executives picked the same player &mdash; the same
-  concentration of expectation we saw in the award votes. Whether their confidence
-  turns out to be foresight or bias is precisely what our research question asks, and
-  the season's end will answer it in numbers.</p>
+  <p>Sixty percent of the league's executives converged on a single name &mdash; the
+  same concentration of expectation the award ballots showed. Convergence is not
+  foresight, and the scholarship gives reasons for doubt: studying NBA front offices,
+  Tobias Berger and Frank Daumann demonstrated that the professionals who evaluate
+  basketball players for a living anchor on first impressions &mdash; draft position,
+  early reputation &mdash; and cling to them after the evidence has moved on. Expert
+  confidence, their work shows, is not the same thing as expert accuracy. Across three
+  decades of archived surveys, we can measure exactly how often the WNBA's most powerful
+  evaluators were right, whom they repeatedly overrated, and whom they never saw
+  coming.</p>
+
+  <h2>What explains the gaps</h2>
+  <p>Counting the gaps between recognition and reality is the measurable half of our
+  question; explaining them is the humanistic half. Voting is a cultural act performed
+  by people embedded in a media economy, and that economy has never treated all players
+  equally. In her study of the WNBA's founding years, Sarah Banet-Weiser showed that
+  race and gender have structured which basketball players get valued &mdash; and in
+  what terms &mdash; since the league's first season, with marketing and media coverage
+  elevating certain kinds of stars while rendering others peripheral. The gaps in our
+  charts, in other words, have cultural roots older than any single ballot. When we ask
+  why Kelsey Plum's 839 points earned zero votes while a comparable season elsewhere
+  earned hundreds, the answer will not be found in the box score alone &mdash; which is
+  exactly why this project pairs statistical analysis with critical reading.</p>
 
   <h2>What we will investigate</h2>
-  <p>Using complete award votes, GM survey answers, and season statistics, we will
-  measure the gap between recognition and performance across league history: whether
-  vote margins match statistical margins, whether voters favor winning teams and past
-  winners, and how often the GMs' preseason predictions actually came true. The GM
-  surveys deserve special attention because they are the opinions of the people with
-  actual power over careers &mdash; the executives who draft, trade, and pay players.
-  If their predictions repeatedly miss, or repeatedly favor the same famous names,
-  the bias is not just a trivia error: it is the worldview of the league's
-  decision-makers, written down annually and testable against what actually
-  happened.</p>
-
-  <h2>What the scholarship says</h2>
-  <p>Our question stands on an established scholarly foundation. In sports economics,
-  David Berri's foundational study asked whether the player judged &ldquo;most
-  valuable&rdquo; is actually the one whose play produces the most wins &mdash; and
-  found that perception and measured production regularly disagree; our scatter plot
-  applies his question to the WNBA. On the expert side, Tobias Berger and Frank
-  Daumann showed that even professional basketball front offices evaluate players with
-  systematic anchoring bias, which is exactly why the GM survey predictions above
-  deserve testing rather than trust. And Sarah Banet-Weiser's study of the WNBA's
-  founding years showed how race and gender shape which basketball players get valued
-  and how &mdash; the cultural forces that vote counts alone cannot show. Full
-  citations are on our <a href="sources.html">Sources</a> page.</p>
+  <p>With complete award votes, GM survey answers, and season statistics joined
+  together, we will measure the recognition gap across the league's full history:
+  whether vote margins track statistical margins, whether voters favor winning teams
+  and past winners, how often the GMs' preseason predictions came true, and which
+  players &mdash; and kinds of players &mdash; the official memory has repeatedly
+  overlooked. Full citations for the scholarship on this page are on our
+  <a href="sources.html">Sources</a> page.</p>
 
   <h2>Why it matters</h2>
-  <p>Awards are how a league writes its own history. Decades from now, casual fans
-  will not re-read box scores &mdash; they will read lists of MVPs and All-WNBA teams,
-  and those lists will stand in for the truth. If the votes systematically favor
-  certain teams, styles, or stories, then the league's official memory is quietly
-  biased, and players who performed brilliantly in the wrong uniform simply vanish
-  from it. Measuring the gap between recognition and reality is our way of auditing
-  that memory while the evidence still exists.</p>
+  <p>Awards are how a league writes its own history. Decades from now, casual fans will
+  not re-read box scores; they will read lists of MVPs and All-WNBA teams, and those
+  lists will stand in for the truth. If the votes systematically favor certain teams,
+  styles, or stories, then the league's official memory is quietly biased &mdash; and
+  players who performed brilliantly in the wrong uniform simply vanish from it.
+  Measuring the gap between recognition and reality is our way of auditing that memory
+  while the evidence still exists.</p>
 
   <p class="note">The 2025 MVP vote data comes directly from our dataset; the 2024 ROY
-  vote is preliminary and will be verified. Analysis and final visualizations by our
-  team are in progress.</p>
+  vote is preliminary and will be verified. The two central visualizations were built
+  for our individual data visualization assessment. Analysis and final visualizations
+  by our team are in progress.</p>
 </div>
 
 <div class="pager">
@@ -229,6 +263,28 @@
       maintainAspectRatio: false,
       plugins: { legend: { display: false } },
       scales: { x: { beginAtZero: true, title: { display: true, text: 'First-place votes' } } }
+    }
+  });
+
+  new Chart(document.getElementById('mvpChart'), {
+    type: 'bar',
+    data: {
+      labels: ["A'ja Wilson", 'Napheesa Collier', 'Alyssa Thomas', 'Allisha Gray', 'Kelsey Mitchell',
+               'Aliyah Boston', 'Nneka Ogwumike', 'Jackie Young', 'Breanna Stewart', 'Dearica Hamby',
+               'Rhyne Howard', 'Rickea Jackson', 'Veronica Burton'],
+      datasets: [{
+        data: [657, 534, 391, 180, 93, 5, 5, 2, 1, 1, 1, 1, 1],
+        backgroundColor: ['#e76f51', '#f4a261', '#f4a261', '#4a6fa5', '#4a6fa5',
+                          '#b8bfc7', '#b8bfc7', '#b8bfc7', '#b8bfc7', '#b8bfc7',
+                          '#b8bfc7', '#b8bfc7', '#b8bfc7']
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { x: { beginAtZero: true, title: { display: true, text: 'Voting points' } } }
     }
   });
 
@@ -308,28 +364,6 @@
       }
     },
     plugins: [outlierLabels]
-  });
-
-  new Chart(document.getElementById('mvpChart'), {
-    type: 'bar',
-    data: {
-      labels: ["A'ja Wilson", 'Napheesa Collier', 'Alyssa Thomas', 'Allisha Gray', 'Kelsey Mitchell',
-               'Aliyah Boston', 'Nneka Ogwumike', 'Jackie Young', 'Breanna Stewart', 'Dearica Hamby',
-               'Rhyne Howard', 'Rickea Jackson', 'Veronica Burton'],
-      datasets: [{
-        data: [657, 534, 391, 180, 93, 5, 5, 2, 1, 1, 1, 1, 1],
-        backgroundColor: ['#e76f51', '#f4a261', '#f4a261', '#4a6fa5', '#4a6fa5',
-                          '#b8bfc7', '#b8bfc7', '#b8bfc7', '#b8bfc7', '#b8bfc7',
-                          '#b8bfc7', '#b8bfc7', '#b8bfc7']
-      }]
-    },
-    options: {
-      indexAxis: 'y',
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
-      scales: { x: { beginAtZero: true, title: { display: true, text: 'Voting points' } } }
-    }
   });
 
   new Chart(document.getElementById('gmChart'), {
