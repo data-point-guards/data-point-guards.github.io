@@ -32,16 +32,16 @@
 </nav>
 
 <div class="page-head">
-  <div class="kicker">Team Research Question 5  <p class="rq">As submitted: &ldquo;How has the growth of the WNBA changed
-  opportunities for women in sports over time?&rdquo; &mdash; including whether
-  individualistic stardom, player versatility, or team rivalry dictates box-office
-  demand, and how individual popularity leverages a player&rsquo;s autonomy within the
-  women&rsquo;s basketball space.</p>
-</div>
+  <div class="kicker">The League</div>
   <h1>How has the league grown &mdash; and for whom?</h1>
   <p class="dek">A player's journey is only possible where a league exists to receive
   it. The WNBA has expanded, contracted, and expanded again &mdash; and every change
   redrew the map of opportunity for women in sports.</p>
+  <p class="rq">Our research question: &ldquo;How has the growth of the WNBA changed
+  opportunities for women in sports over time?&rdquo; &mdash; including whether
+  individualistic stardom, player versatility, or team rivalry dictates box-office
+  demand, and how individual popularity leverages a player&rsquo;s autonomy within the
+  women&rsquo;s basketball space.</p>
 </div>
 
 <figure>
@@ -61,6 +61,110 @@
   the league held at exactly twelve teams &mdash; a long plateau in which every roster
   spot was scarce and every franchise's survival was an achievement. Now the map is
   growing again: Golden State in 2025, Toronto and Portland in 2026.</p>
+</div>
+
+<div class="story">
+  <h2>Three decades, one line</h2>
+  <p>Scroll, and the league's life draws itself: orange for arrivals, gray for
+  the franchises that vanished, blue for the ones that moved.</p>
+</div>
+
+<div class="timeline" id="leagueTimeline">
+  <div class="t-track"></div>
+  <div class="t-fill" id="tFill"></div>
+
+  <div class="t-event left t-mark">
+    <div class="t-dot"></div>
+    <div class="t-year">1997</div>
+    <h4>The league opens</h4>
+    <p>Eight teams play the WNBA's first season. Los Angeles and Phoenix are among
+    the originals still playing today.</p>
+  </div>
+
+  <div class="t-event right t-birth">
+    <div class="t-dot"></div>
+    <div class="t-year">2000</div>
+    <h4>Peak of the boom</h4>
+    <p>Rapid expansion doubles the league to sixteen teams &mdash; a size it has
+    never reached again.</p>
+  </div>
+
+  <div class="t-event left t-death">
+    <div class="t-dot"></div>
+    <div class="t-year">2002&ndash;03</div>
+    <h4>The first collapse</h4>
+    <p>Miami and Portland fold. Utah flees to San Antonio, Orlando to Connecticut,
+    and Cleveland plays its final season.</p>
+  </div>
+
+  <div class="t-event right t-death">
+    <div class="t-dot"></div>
+    <div class="t-year">2006</div>
+    <h4>Charlotte goes dark</h4>
+    <p>An original 1997 franchise, the Sting, plays its last game.</p>
+  </div>
+
+  <div class="t-event left t-death">
+    <div class="t-dot"></div>
+    <div class="t-year">2008</div>
+    <h4>The unthinkable</h4>
+    <p>The Houston Comets &mdash; winners of the league's first four
+    championships &mdash; fold. Even dynasties were not safe.</p>
+  </div>
+
+  <div class="t-event right t-death">
+    <div class="t-dot"></div>
+    <div class="t-year">2009</div>
+    <h4>Champions vanish</h4>
+    <p>Sacramento's 2005 champions disappear; Detroit's three-time champions play
+    their final season in Michigan before moving to Tulsa.</p>
+  </div>
+
+  <div class="t-event left t-mark">
+    <div class="t-dot"></div>
+    <div class="t-year">2010&ndash;24</div>
+    <h4>The long plateau</h4>
+    <p>Exactly twelve teams for fifteen years. Every roster spot is scarce; every
+    franchise's survival is an achievement.</p>
+    <img src="t-plateau.jpg" alt="Maya Moore handles the ball at Target Center">
+    <div class="t-credit">The plateau's defining dynasty: Minnesota in the 2010s &middot; Lorie Shaull, Wikimedia Commons</div>
+  </div>
+
+  <div class="t-event right t-move">
+    <div class="t-dot"></div>
+    <div class="t-year">2016 &middot; 2018</div>
+    <h4>The nomads settle</h4>
+    <p>Tulsa becomes Dallas; San Antonio becomes Las Vegas &mdash; the franchise
+    that began as the Utah Starzz finds its fourth home.</p>
+  </div>
+
+  <div class="t-event left t-mark">
+    <div class="t-dot"></div>
+    <div class="t-year">2020</div>
+    <h4>The turning point</h4>
+    <p>A landmark collective bargaining agreement nearly doubles top salaries and
+    begins to end the forced overseas winters.</p>
+  </div>
+
+  <div class="t-event right t-birth">
+    <div class="t-dot"></div>
+    <div class="t-year">2024</div>
+    <h4>The surge</h4>
+    <p>A record-breaking rookie class arrives and attendance leaps to heights
+    unseen in a generation.</p>
+    <img src="t-surge.jpg" alt="Opening night of the 2024 season in Minneapolis">
+    <div class="t-credit">Opening night, May 2024 &middot; John Mac, Wikimedia Commons</div>
+  </div>
+
+  <div class="t-event left t-birth">
+    <div class="t-dot"></div>
+    <div class="t-year">2025&ndash;26</div>
+    <h4>Expansion returns</h4>
+    <p>Golden State, then Toronto &mdash; and Portland, whose city lost its team in
+    2002, gets one back 24 years later. The map begins to heal.</p>
+    <img src="t-return.jpg" alt="A 2025 season opener">
+    <div class="t-credit">A new era opens, May 2025 &middot; John Mac, Wikimedia Commons</div>
+  </div>
 </div>
 
 <div class="chart-block">
@@ -127,6 +231,28 @@
 </footer>
 
 <script>
+  // Scroll-drawn timeline: the orange line flows down as the reader scrolls,
+  // igniting each event as it passes.
+  (function () {
+    var tl = document.getElementById('leagueTimeline');
+    var fill = document.getElementById('tFill');
+    if (!tl || !fill) return;
+    var events = tl.querySelectorAll('.t-event');
+    function draw() {
+      var r = tl.getBoundingClientRect();
+      var trigger = window.innerHeight * 0.65;
+      var progress = Math.min(Math.max(trigger - r.top, 0), r.height);
+      fill.style.height = progress + 'px';
+      events.forEach(function (ev) {
+        var dot = ev.querySelector('.t-dot');
+        var dotY = dot.getBoundingClientRect().top - r.top + 8;
+        ev.classList.toggle('lit', dotY <= progress);
+      });
+    }
+    window.addEventListener('scroll', function () { requestAnimationFrame(draw); });
+    window.addEventListener('resize', draw);
+    draw();
+  })();
 
   lazyChart('teamsChart', function () { return {
     type: 'line',
