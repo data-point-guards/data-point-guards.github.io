@@ -58,6 +58,14 @@ figcaption .credit { color: #999; }
 .step .card .num { font-family: 'Libre Franklin', sans-serif; font-weight: 900; font-size: 0.75em; letter-spacing: 0.2em; color: #e76f51; text-transform: uppercase; }
 .step .card h3 { font-family: 'Lora', serif; font-size: 1.32em; margin: 8px 0 10px; line-height: 1.3; }
 .step .card p { font-size: 0.97em; margin: 0; }
+.step .card .cstat { font-family: 'Libre Franklin', sans-serif; font-weight: 900;
+  font-size: 2.1em; color: #e76f51; line-height: 1; margin: 14px 0 3px; }
+.step .card .cstat-label { font-family: 'Libre Franklin', sans-serif; font-size: 0.75em;
+  color: #777; line-height: 1.45; margin-bottom: 2px; }
+.step .card .go { display: inline-block; margin-top: 13px; font-family: 'Libre Franklin', sans-serif;
+  font-weight: 700; font-size: 0.78em; letter-spacing: 0.06em; text-transform: uppercase;
+  color: #e76f51; text-decoration: none; border-bottom: 2px solid rgba(231,111,81,0.35); padding-bottom: 2px; }
+.step .card .go:hover { border-bottom-color: #e76f51; }
 .photo-layer { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.1s ease; }
 .photo-layer.active { opacity: 1; }
 .photo-layer::after { content: ''; position: absolute; inset: 0; background: rgba(10,15,30,0.35); }
