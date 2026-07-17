@@ -11,7 +11,7 @@ if (window.Chart) {
   Chart.defaults.elements.bar.borderRadius = 5;
   Chart.defaults.elements.line.borderWidth = 3;
   Chart.defaults.elements.point.radius = 4;
-  Chart.defaults.plugins.tooltip.backgroundColor = '#1d3557';
+  Chart.defaults.plugins.tooltip.backgroundColor = '#0d1420';
   Chart.defaults.plugins.tooltip.padding = 10;
   Chart.defaults.plugins.tooltip.cornerRadius = 4;
   Chart.defaults.plugins.tooltip.titleFont = { family: "'Libre Franklin', sans-serif", weight: '700' };
