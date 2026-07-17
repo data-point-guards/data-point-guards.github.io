@@ -8,7 +8,8 @@
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 <script src="charts.js"></script>
-<script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 </head>
 <body>
 
@@ -93,15 +94,11 @@
 
 <div class="chart-block" style="max-width: 1000px;">
   <div class="chart-title">Where America showed up: every WNBA city, 1997&ndash;2026</div>
-  <div class="chart-sub">Circle size = average home attendance (active teams: 2025 season; folded and relocated teams: their final season) &middot; Built by our team in Tableau from Across the Timeline attendance data</div>
-  <tableau-viz id="attendanceMap"
-    src="https://public.tableau.com/views/WhereAmericaShowedUpWNBAAttendanceMap/Sheet1"
-    toolbar="hidden" hide-tabs style="width: 100%; height: 620px;">
-  </tableau-viz>
+  <div class="chart-sub">Circle size = average home attendance (active teams: 2025 season; folded and relocated teams: their final season) &middot; Built by our team from Across the Timeline attendance data &middot; Hover or tap any circle</div>
+  <div id="attendanceMap" class="map-box"></div>
   <div class="chart-sub" style="margin-top: 10px;">One caveat travels with this map: each dot shows a franchise's most recent
   season, so the eras differ across dots &mdash; it is a map of last known support, not a
-  same-year comparison. If the interactive map does not load,
-  <a href="https://public.tableau.com/app/profile/yuan.gao1617/viz/WhereAmericaShowedUpWNBAAttendanceMap/Sheet1">view it on Tableau Public</a>.</div>
+  same-year comparison.</div>
 </div>
 
 <div class="story">
@@ -195,6 +192,85 @@
     });
   }, { threshold: 0.2 });
   reveals.forEach(function (el) { revealObs.observe(el); });
+
+  /* ---------- The attendance map (Leaflet + OpenStreetMap) ---------- */
+  /* Every franchise in league history, from our transcribed dataset
+     (tableau-map/wnba_attendance_map.csv). No external data service needed. */
+  var franchises = [
+    ['Golden State Valkyries', 'San Francisco, California', 'Active', 2025, 18064, 'Expansion 2025', 37.7749, -122.4194],
+    ['Indiana Fever', 'Indianapolis, Indiana', 'Active', 2025, 16560, '', 39.7684, -86.1581],
+    ['New York Liberty', 'Brooklyn, New York', 'Active', 2025, 16323, '', 40.6826, -73.9754],
+    ['Los Angeles Sparks', 'Los Angeles, California', 'Active', 2025, 12441, 'Original 1997 franchise', 34.0430, -118.2673],
+    ['Seattle Storm', 'Seattle, Washington', 'Active', 2025, 11835, '', 47.6221, -122.3540],
+    ['Las Vegas Aces', 'Las Vegas, Nevada', 'Active', 2025, 11553, 'Relocated from San Antonio 2018', 36.0909, -115.1786],
+    ['Phoenix Mercury', 'Phoenix, Arizona', 'Active', 2025, 11306, 'Original 1997 franchise', 33.4457, -112.0712],
+    ['Minnesota Lynx', 'Minneapolis, Minnesota', 'Active', 2025, 9958, '', 44.9795, -93.2760],
+    ['Chicago Sky', 'Chicago, Illinois', 'Active', 2025, 9073, '', 41.8535, -87.6212],
+    ['Connecticut Sun', 'Uncasville, Connecticut', 'Active', 2025, 8653, 'Relocated from Orlando 2003', 41.4340, -72.1090],
+    ['Dallas Wings', 'Arlington, Texas', 'Active', 2025, 7273, 'Relocated from Tulsa 2016', 32.7357, -97.1081],
+    ['Washington Mystics', 'Washington, D.C.', 'Active', 2025, 5303, '', 38.9072, -77.0369],
+    ['Atlanta Dream', 'Atlanta, Georgia', 'Active', 2025, 4480, '', 33.7490, -84.3880],
+    ['Houston Comets', 'Houston, Texas', 'Folded', 2008, 6585, 'Four straight championships 1997-2000; folded after 2008', 29.7604, -95.3698],
+    ['Sacramento Monarchs', 'Sacramento, California', 'Folded', 2009, 7744, '2005 champions; folded after 2009', 38.5816, -121.4944],
+    ['Charlotte Sting', 'Charlotte, North Carolina', 'Folded', 2006, 5784, 'Original 1997 franchise; folded after 2006', 35.2271, -80.8431],
+    ['Cleveland Rockers', 'Cleveland, Ohio', 'Folded', 2003, 7400, 'Original 1997 franchise; folded after 2003', 41.4993, -81.6944],
+    ['Miami Sol', 'Miami, Florida', 'Folded', 2002, 8828, 'Folded after 2002', 25.7617, -80.1918],
+    ['Portland Fire', 'Portland, Oregon', 'Folded', 2002, 8037, 'Folded after 2002; Portland returns as an expansion team in 2026', 45.5152, -122.6784],
+    ['Detroit Shock', 'Auburn Hills, Michigan', 'Relocated', 2009, 8011, 'Three championships; moved to Tulsa in 2010', 42.6889, -83.2454],
+    ['Utah Starzz', 'Salt Lake City, Utah', 'Relocated', 2002, 7420, 'Original 1997 franchise; moved to San Antonio in 2003', 40.7608, -111.8910],
+    ['Orlando Miracle', 'Orlando, Florida', 'Relocated', 2002, 7115, 'Moved to Connecticut in 2003', 28.5384, -81.3789],
+    ['Tulsa Shock', 'Tulsa, Oklahoma', 'Relocated', 2015, 5167, 'Moved to Dallas in 2016', 36.1540, -95.9928],
+    ['San Antonio Stars', 'San Antonio, Texas', 'Relocated', 2017, 6386, 'Moved to Las Vegas in 2018', 29.4252, -98.4946]
+  ];
+
+  var statusColor = { Active: '#e76f51', Folded: '#8a8f98', Relocated: '#4a6fa5' };
+
+  var map = L.map('attendanceMap', { scrollWheelZoom: false })
+    .setView([38.5, -96.5], 4);
+
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 12,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  /* Draw folded and relocated first so active circles sit on top */
+  franchises
+    .slice()
+    .sort(function (a, b) { return (a[2] === 'Active') - (b[2] === 'Active'); })
+    .forEach(function (f) {
+      var name = f[0], city = f[1], status = f[2], season = f[3],
+          att = f[4], note = f[5], lat = f[6], lng = f[7];
+      var html = '<div style="font-family:\'Libre Franklin\',sans-serif;font-size:13px;line-height:1.55;">'
+        + '<b>' + name + '</b><br>' + city + '<br>'
+        + '<span style="color:' + statusColor[status] + ';font-weight:700;">' + status + '</span>'
+        + ' &middot; ' + att.toLocaleString() + ' fans/game (' + season + ')'
+        + (note ? '<br><span style="color:#777;">' + note + '</span>' : '')
+        + '</div>';
+      L.circleMarker([lat, lng], {
+        radius: Math.sqrt(att) / 8.5,
+        color: statusColor[status],
+        weight: 2,
+        fillColor: statusColor[status],
+        fillOpacity: status === 'Active' ? 0.55 : 0.35
+      }).addTo(map)
+        .bindTooltip(html, { sticky: true })
+        .bindPopup(html);
+    });
+
+  /* Legend */
+  var legend = L.control({ position: 'bottomleft' });
+  legend.onAdd = function () {
+    var div = L.DomUtil.create('div');
+    div.style.cssText = 'background:rgba(255,255,255,0.93);padding:9px 13px;'
+      + "font-family:'Libre Franklin',sans-serif;font-size:11.5px;line-height:1.9;"
+      + 'border:1px solid rgba(23,26,31,0.14);box-shadow:3px 3px 0 #ececec;';
+    div.innerHTML =
+      '<span style="color:#e76f51;font-size:15px;">&#9679;</span> Active team (2025)<br>'
+      + '<span style="color:#8a8f98;font-size:15px;">&#9679;</span> Folded (final season)<br>'
+      + '<span style="color:#4a6fa5;font-size:15px;">&#9679;</span> Relocated (final season)';
+    return div;
+  };
+  legend.addTo(map);
 </script>
 
 </body>
