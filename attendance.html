@@ -7,6 +7,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Libre+Franklin:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script src="charts.js"></script>
+<script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js"></script>
 </head>
 <body>
 
@@ -31,7 +33,12 @@
 </nav>
 
 <div class="page-head">
-  <div class="kicker">Team Research Question 2</div>
+  <div class="kicker">Team Research Question 2  <p class="rq">As submitted: &ldquo;How does WNBA attendance compare between
+  teams in smaller cities and teams in large metropolitan areas?&rdquo; &mdash; including
+  how the presence of other major professional sports teams affects visibility and fan
+  support, and what attendance patterns tell us about which cities supported
+  women&rsquo;s basketball most strongly.</p>
+</div>
   <h1>Why do some arenas fill while others stay quiet?</h1>
   <p class="dek">Attendance is the league's most visible measurement &mdash; a nightly
   count of who shows up. It reaches back to 1997, and it is anything but even.</p>
@@ -44,11 +51,6 @@
 </figure>
 
 <div class="story">
-  <p class="rq">Our research question: &ldquo;How does WNBA attendance compare between
-  teams in smaller cities and teams in large metropolitan areas?&rdquo; &mdash; including
-  how the presence of other major professional sports teams affects visibility and fan
-  support, and what attendance patterns tell us about which cities supported
-  women&rsquo;s basketball most strongly.</p>
   <p>For most of its history, the WNBA's average crowd drifted slowly downward from its
   early peak &mdash; through relocations, folded franchises, and a pandemic. Then came 2024,
   and the sharpest attendance surge in a generation.</p>
@@ -66,7 +68,7 @@
 </div>
 
 <div class="stat-pull reveal">
-  <div class="big">4&times;</div>
+  <div class="big" data-countto="4" data-suffix="&times;">0&times;</div>
   <div class="label">Indiana Fever average home attendance, 2023 to 2024</div>
 </div>
 
@@ -88,14 +90,38 @@
   competition for attention &mdash; and history suggests it can produce fiercer
   loyalty, the kind that keeps a franchise alive through losing seasons.</p>
 
-  <p>The attendance record is also a map of that loyalty. It shows which cities
-  supported women&rsquo;s basketball most strongly across three decades, and invites us
-  to ask what those cities had in common: their size, their sports culture, their
-  history with the league, whether their team shared an owner and an arena with an NBA
-  franchise. Reading the map carefully also means respecting its limits &mdash;
-  announced attendance is not always turnstile attendance, arena capacities differ,
-  and a sold-out small building can &ldquo;lose&rdquo; on paper to a half-empty large
-  one. Our analysis will normalize for capacity where the data allows.</p>
+  <p>The attendance record is also a map of that loyalty &mdash; literally. Below is
+  every city that has ever hosted a WNBA franchise, 1997 to 2026. Each circle is sized
+  by the franchise's average home attendance; orange marks the living teams, gray the
+  franchises that folded, and blue the ones that packed up and moved. Hover over any
+  circle for its story.</p>
+</div>
+
+<div class="chart-block" style="max-width: 1000px;">
+  <div class="chart-title">Where America showed up: every WNBA city, 1997&ndash;2026</div>
+  <div class="chart-sub">Circle size = average home attendance (active teams: 2025 season; folded and relocated teams: their final season) &middot; Built by our team in Tableau from Across the Timeline attendance data</div>
+  <tableau-viz id="attendanceMap"
+    src="https://public.tableau.com/views/WhereAmericaShowedUpWNBAAttendanceMap/Sheet1"
+    toolbar="hidden" hide-tabs style="width: 100%; height: 620px;">
+  </tableau-viz>
+  <div class="chart-sub" style="margin-top: 10px;">One caveat travels with this map: each dot shows a franchise's most recent
+  season, so the eras differ across dots &mdash; it is a map of last known support, not a
+  same-year comparison. If the interactive map does not load,
+  <a href="https://public.tableau.com/app/profile/yuan.gao1617/viz/WhereAmericaShowedUpWNBAAttendanceMap/Sheet1">view it on Tableau Public</a>.</div>
+</div>
+
+<div class="story">
+  <p>The map already whispers answers to our question. The largest circles of 2025 sit
+  in San Francisco, Indianapolis, and Brooklyn &mdash; two giant metros and one
+  mid-sized city that out-drew them for a season. The gray ghosts cluster in the
+  league's first decade: Miami, Portland, Cleveland, Charlotte, Houston, Sacramento
+  &mdash; cities whose support, whatever its true depth, was not enough to survive the
+  economics of the era. And one dot carries the whole project's irony: Portland, gray
+  since 2002, turns orange again in 2026. Reading this map carefully also means
+  respecting its limits &mdash; announced attendance is not always turnstile
+  attendance, arena capacities differ, and a sold-out small building can
+  &ldquo;lose&rdquo; on paper to a half-empty large one. Our analysis will normalize
+  for capacity where the data allows.</p>
 
   <h2>Why it matters</h2>
   <p>Attendance is the league's most democratic statistic: it is the one number that
@@ -123,13 +149,8 @@
 </footer>
 
 <script>
-  window.addEventListener('scroll', function () {
-    var h = document.documentElement;
-    document.getElementById('progress').style.width =
-      (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
-  });
 
-  new Chart(document.getElementById('leagueChart'), {
+  lazyChart('leagueChart', function () { return {
     type: 'line',
     data: {
       labels: ['1998', '2000', '2002', '2004', '2006', '2008', '2010', '2012', '2014', '2016', '2018', '2022', '2023', '2024'],
@@ -147,14 +168,19 @@
       responsive: true,
       maintainAspectRatio: false,
       plugins: { legend: { display: false } },
+      pluginNotes: [
+        { x: '1998', y: 10869, text: 'The early boom', dx: 10, dy: 4, align: 'left' },
+        { x: '2022', y: 5679, text: 'Post-COVID low', dx: -10, dy: 18, align: 'right' },
+        { x: '2024', y: 9807, text: 'The 2024 surge', dx: -10, dy: -12, align: 'right' }
+      ],
       scales: { y: { beginAtZero: true, title: { display: true, text: 'Fans per game' } } }
     }
-  });
+  }; });
 
-  new Chart(document.getElementById('feverChart'), {
+  lazyChart('feverChart', function () { return {
     type: 'bar',
     data: {
-      labels: ['2022', '2023', '2024 (Clark arrives)'],
+      labels: ['2022', '2023', '2024 (star rookie arrives)'],
       datasets: [{
         data: [1776, 4067, 17036],
         backgroundColor: ['#4a6fa5', '#4a6fa5', '#e76f51']
@@ -166,7 +192,7 @@
       plugins: { legend: { display: false } },
       scales: { y: { beginAtZero: true, title: { display: true, text: 'Fans per game' } } }
     }
-  });
+  }; });
 
   var reveals = document.querySelectorAll('.reveal');
   var revealObs = new IntersectionObserver(function (entries) {

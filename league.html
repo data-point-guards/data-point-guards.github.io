@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Libre+Franklin:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script src="charts.js"></script>
 </head>
 <body>
 
@@ -31,7 +32,12 @@
 </nav>
 
 <div class="page-head">
-  <div class="kicker">Team Research Question 5</div>
+  <div class="kicker">Team Research Question 5  <p class="rq">As submitted: &ldquo;How has the growth of the WNBA changed
+  opportunities for women in sports over time?&rdquo; &mdash; including whether
+  individualistic stardom, player versatility, or team rivalry dictates box-office
+  demand, and how individual popularity leverages a player&rsquo;s autonomy within the
+  women&rsquo;s basketball space.</p>
+</div>
   <h1>How has the league grown &mdash; and for whom?</h1>
   <p class="dek">A player's journey is only possible where a league exists to receive
   it. The WNBA has expanded, contracted, and expanded again &mdash; and every change
@@ -46,11 +52,6 @@
 </figure>
 
 <div class="story">
-  <p class="rq">Our research question: &ldquo;How has the growth of the WNBA changed
-  opportunities for women in sports over time?&rdquo; &mdash; including whether
-  individualistic stardom, player versatility, or team rivalry dictates box-office
-  demand, and how individual popularity leverages a player&rsquo;s autonomy within the
-  women&rsquo;s basketball space.</p>
   <p>In 1997, eight teams played the WNBA's first season. The league nearly doubled by
   2000, riding the optimism of the era &mdash; and then a decade of contraction
   followed. Miami and Portland folded in 2002, Cleveland in 2003, Charlotte in 2007.
@@ -126,13 +127,8 @@
 </footer>
 
 <script>
-  window.addEventListener('scroll', function () {
-    var h = document.documentElement;
-    document.getElementById('progress').style.width =
-      (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
-  });
 
-  new Chart(document.getElementById('teamsChart'), {
+  lazyChart('teamsChart', function () { return {
     type: 'line',
     data: {
       labels: ['1997', '1998', '1999', '2000', '2003', '2006', '2009', '2010', '2015', '2020', '2024', '2025', '2026'],
@@ -149,20 +145,17 @@
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: { callbacks: { afterLabel: function (ctx) {
-          if (ctx.label === '2000') return 'Peak of early expansion';
-          if (ctx.label === '2010') return 'After contractions (incl. Houston Comets, 2008)';
-          if (ctx.label === '2026') return 'Toronto Tempo and Portland Fire join';
-          return '';
-        } } }
-      },
+      plugins: { legend: { display: false } },
+      pluginNotes: [
+        { x: '2000', y: 16, text: 'Peak: 16 teams', dx: 10, dy: -6, align: 'left' },
+        { x: '2010', y: 12, text: 'After the contractions', dx: 8, dy: 20, align: 'left' },
+        { x: '2026', y: 15, text: 'Expansion returns', dx: -10, dy: -10, align: 'right' }
+      ],
       scales: { y: { beginAtZero: true, title: { display: true, text: 'Teams' }, ticks: { stepSize: 2 } } }
     }
-  });
+  }; });
 
-  new Chart(document.getElementById('salaryChart'), {
+  lazyChart('salaryChart', function () { return {
     type: 'bar',
     data: {
       labels: ['2019 (before CBA)', '2020 (new CBA)', '2025'],
@@ -178,7 +171,7 @@
       scales: { y: { beginAtZero: true, title: { display: true, text: 'Maximum salary (USD)' },
         ticks: { callback: function (v) { return '$' + (v / 1000) + 'k'; } } } }
     }
-  });
+  }; });
 </script>
 
 </body>

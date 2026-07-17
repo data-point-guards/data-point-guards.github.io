@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Libre+Franklin:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script src="charts.js"></script>
 </head>
 <body>
 
@@ -31,7 +32,11 @@
 </nav>
 
 <div class="page-head">
-  <div class="kicker">Team Research Question 3</div>
+  <div class="kicker">Team Research Question 3  <p class="rq">As submitted: &ldquo;How does NCAA tournament success translate
+  into a WNBA career?&rdquo; &mdash; do college stars maintain their statistics or
+  deplete after being drafted, how are collegiate players valued, and are drafted stars
+  more susceptible to injury and shorter careers?</p>
+</div>
   <h1>Does March Madness stardom survive the jump?</h1>
   <p class="dek">Every spring, the NCAA tournament crowns new stars. Every summer, the
   WNBA tests them. The two datasets meet at the draft &mdash; and don't always agree.</p>
@@ -45,10 +50,6 @@
 </figure>
 
 <div class="story">
-  <p class="rq">Our research question: &ldquo;How does NCAA tournament success translate
-  into a WNBA career?&rdquo; &mdash; do college stars maintain their statistics or
-  deplete after being drafted, how are collegiate players valued, and are drafted stars
-  more susceptible to injury and shorter careers?</p>
   <p>By the time she left Iowa, Caitlin Clark had scored more points than anyone in the
   history of major college basketball &mdash; men's or women's. The record she broke had
   stood since 1970.</p>
@@ -127,13 +128,8 @@
 </footer>
 
 <script>
-  window.addEventListener('scroll', function () {
-    var h = document.documentElement;
-    document.getElementById('progress').style.width =
-      (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
-  });
 
-  new Chart(document.getElementById('scoringChart'), {
+  lazyChart('scoringChart', function () { return {
     type: 'bar',
     data: {
       labels: ['Caitlin Clark (Iowa, 2024)', 'Pete Maravich (LSU, 1970)', 'Lynette Woodard (Kansas, 1981)', 'Kelsey Plum (Washington, 2017)'],
@@ -149,9 +145,9 @@
       plugins: { legend: { display: false } },
       scales: { x: { beginAtZero: true, title: { display: true, text: 'Career points' } } }
     }
-  });
+  }; });
 
-  new Chart(document.getElementById('longevityChart'), {
+  lazyChart('longevityChart', function () { return {
     type: 'bar',
     data: {
       labels: ['Tina Thompson (1997)', 'Sue Bird (2002)', 'Candace Parker (2008)', 'Maya Moore (2011)', 'Brittney Griner (2013)', 'Breanna Stewart (2016)'],
@@ -174,7 +170,7 @@
       },
       scales: { x: { beginAtZero: true, title: { display: true, text: 'WNBA seasons played' } } }
     }
-  });
+  }; });
 </script>
 
 </body>

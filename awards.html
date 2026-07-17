@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Libre+Franklin:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script src="charts.js"></script>
 </head>
 <body>
 
@@ -31,7 +32,10 @@
 </nav>
 
 <div class="page-head">
-  <div class="kicker">Team Research Question 4</div>
+  <div class="kicker">Team Research Question 4  <p class="rq">As submitted: &ldquo;How well do awards and expert opinions in
+  the WNBA reflect players&rsquo; actual performance on the court, and what might explain
+  the gaps between recognition and reality?&rdquo;</p>
+</div>
   <h1>Do the awards go to the best players?</h1>
   <p class="dek">Every October, seventy-two ballots decide how a season will be
   remembered. We put the league's official memory on trial &mdash; against the
@@ -46,9 +50,6 @@
 </figure>
 
 <div class="story">
-  <p class="rq">Our research question: &ldquo;How well do awards and expert opinions in
-  the WNBA reflect players&rsquo; actual performance on the court, and what might explain
-  the gaps between recognition and reality?&rdquo;</p>
 
   <p>A basketball season produces two kinds of records. One is written by the games
   themselves &mdash; points, rebounds, wins &mdash; and accumulates in box scores that no
@@ -65,10 +66,9 @@
   rule visible.</p>
 </div>
 
-<div class="chart-block">
-  <div class="chart-title">2024 Rookie of the Year: the easy case</div>
-  <div class="chart-sub">First-place votes &middot; Source: league voting results (preliminary)</div>
-  <div class="chart-box"><canvas id="royChart"></canvas></div>
+<div class="stat-pull">
+  <div class="big"><span data-countto="66">0</span><span style="color:#888; font-size:0.45em;"> of 67</span></div>
+  <div class="label">First-place votes for the 2024 Rookie of the Year &mdash; recognition and performance in full agreement (preliminary)</div>
 </div>
 
 <div class="story">
@@ -244,31 +244,8 @@
 </footer>
 
 <script>
-  window.addEventListener('scroll', function () {
-    var h = document.documentElement;
-    document.getElementById('progress').style.width =
-      (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
-  });
 
-  new Chart(document.getElementById('royChart'), {
-    type: 'bar',
-    data: {
-      labels: ['Caitlin Clark', 'Angel Reese'],
-      datasets: [{
-        data: [66, 1],
-        backgroundColor: ['#e76f51', '#4a6fa5']
-      }]
-    },
-    options: {
-      indexAxis: 'y',
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
-      scales: { x: { beginAtZero: true, title: { display: true, text: 'First-place votes' } } }
-    }
-  });
-
-  new Chart(document.getElementById('mvpChart'), {
+  lazyChart('mvpChart', function () { return {
     type: 'bar',
     data: {
       labels: ["A'ja Wilson", 'Napheesa Collier', 'Alyssa Thomas', 'Allisha Gray', 'Kelsey Mitchell',
@@ -288,7 +265,7 @@
       plugins: { legend: { display: false } },
       scales: { x: { beginAtZero: true, title: { display: true, text: 'Voting points' } } }
     }
-  });
+  }; });
 
   var scatterData = [
     { p: "A'ja Wilson", x: 937, y: 657 }, { p: 'Kelsey Mitchell', x: 890, y: 93 },
@@ -301,7 +278,7 @@
     { p: 'Satou Sabally', x: 636, y: 0 }, { p: 'Alyssa Thomas', x: 599, y: 391 },
     { p: 'Courtney Williams', x: 599, y: 0 }, { p: 'Kiki Iriafen', x: 584, y: 0 },
     { p: 'Rhyne Howard', x: 577, y: 1 }, { p: 'Breanna Stewart', x: 566, y: 1 },
-    { p: 'Brionna Jones', x: 564, y: 0 }, { p: 'Azurá Stevens', x: 561, y: 0 },
+    { p: 'Brionna Jones', x: 564, y: 0 }, { p: 'Azur\u00e1 Stevens', x: 561, y: 0 },
     { p: 'Rickea Jackson', x: 558, y: 1 }, { p: 'Kayla McBride', x: 554, y: 0 },
     { p: 'Brittney Sykes', x: 550, y: 0 }, { p: 'Kamilla Cardoso', x: 543, y: 0 },
     { p: 'Veronica Burton', x: 525, y: 1 }, { p: 'Gabby Williams', x: 510, y: 0 },
@@ -311,7 +288,7 @@
     { p: 'Arike Ogunbowale', x: 450, y: 0 }, { p: 'Ariel Atkins', x: 447, y: 0 },
     { p: 'Angel Reese', x: 440, y: 0 }, { p: 'Kahleah Copper', x: 438, y: 0 },
     { p: 'Jonquel Jones', x: 423, y: 0 }, { p: 'Natasha Cloud', x: 414, y: 0 },
-    { p: 'Janelle Salaün', x: 407, y: 0 }, { p: 'Alanna Smith', x: 404, y: 0 }
+    { p: 'Janelle Sala\u00fcn', x: 407, y: 0 }, { p: 'Alanna Smith', x: 404, y: 0 }
   ];
   var voted = scatterData.filter(function (d) { return d.y > 0; });
   var noVotes = scatterData.filter(function (d) { return d.y === 0; });
@@ -340,7 +317,7 @@
     }
   };
 
-  new Chart(document.getElementById('scatterChart'), {
+  lazyChart('scatterChart', function () { return {
     type: 'scatter',
     data: {
       datasets: [
@@ -366,9 +343,9 @@
       }
     },
     plugins: [outlierLabels]
-  });
+  }; });
 
-  new Chart(document.getElementById('gmChart'), {
+  lazyChart('gmChart', function () { return {
     type: 'bar',
     data: {
       labels: ["A'ja Wilson", 'Breanna Stewart', 'Caitlin Clark', 'Allisha Gray'],
@@ -388,7 +365,7 @@
       scales: { x: { beginAtZero: true, max: 100, title: { display: true, text: 'Share of GM votes (%)' },
         ticks: { callback: function (v) { return v + '%'; } } } }
     }
-  });
+  }; });
 </script>
 
 </body>

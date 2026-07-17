@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Libre+Franklin:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script src="charts.js"></script>
 </head>
 <body>
 
@@ -31,7 +32,12 @@
 </nav>
 
 <div class="page-head">
-  <div class="kicker">Team Research Question 6</div>
+  <div class="kicker">Team Research Question 6  <p class="rq">As submitted: &ldquo;How does the dataset&rsquo;s focus on
+  rankings, awards, and team statistics influence the way we define
+  &lsquo;greatness&rsquo; in women&rsquo;s basketball?&rdquo; &mdash; is there a
+  correlation between how many points are scored in a season and receiving awards, or
+  is it about team synchronicity and defense?</p>
+</div>
   <h1>Who gets to be called great?</h1>
   <p class="dek">Every chapter of this site relies on rankings, awards, and team
   statistics. Our final question turns the lens on the data itself: what definition of
@@ -45,11 +51,6 @@
 </figure>
 
 <div class="story">
-  <p class="rq">Our research question: &ldquo;How does the dataset&rsquo;s focus on
-  rankings, awards, and team statistics influence the way we define
-  &lsquo;greatness&rsquo; in women&rsquo;s basketball?&rdquo; &mdash; is there a
-  correlation between how many points are scored in a season and receiving awards, or
-  is it about team synchronicity and defense?</p>
 
   <p>A dataset is not a mirror; it is a lens. Across the Timeline records what can be
   counted &mdash; points, wins, votes, rankings &mdash; and whatever the numbers
@@ -59,9 +60,9 @@
 </div>
 
 <div class="chart-block">
-  <div class="chart-title">The 2025 MVP top five &mdash; and where they ranked in scoring</div>
-  <div class="chart-sub">League scoring rank (among 42 players with 400+ points) for each of the top five MVP vote finishers &middot; Source: Across the Timeline</div>
-  <div class="chart-box"><canvas id="rankChart"></canvas></div>
+  <div class="chart-title">From the ballot to the box score</div>
+  <div class="chart-sub">Each line is one of the 2025 MVP top five: her rank in the vote (left) connected to her rank in scoring (right, among 42 players with 400+ points) &middot; Flat lines mean the ballot matched the box score; steep lines mean it did not &middot; Source: Across the Timeline</div>
+  <div class="chart-box" style="height: 420px;"><canvas id="rankChart"></canvas></div>
 </div>
 
 <div class="story">
@@ -123,53 +124,74 @@
 </footer>
 
 <script>
-  window.addEventListener('scroll', function () {
-    var h = document.documentElement;
-    document.getElementById('progress').style.width =
-      (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
-  });
 
-  new Chart(document.getElementById('rankChart'), {
-    type: 'bar',
+  var slopeLabels = {
+    id: 'slopeLabels',
+    afterDatasetsDraw: function (chart) {
+      var ctx = chart.ctx;
+      ctx.save();
+      ctx.font = "700 12px 'Libre Franklin', sans-serif";
+      chart.data.datasets.forEach(function (ds, di) {
+        var meta = chart.getDatasetMeta(di);
+        if (!meta.data.length) return;
+        var p0 = meta.data[0], p1 = meta.data[1];
+        ctx.fillStyle = ds.borderColor;
+        ctx.textAlign = 'right';
+        ctx.fillText(ds.label, p0.x - 10, p0.y + 4);
+        ctx.textAlign = 'left';
+        ctx.fillText('#' + ds.data[1], p1.x + 10, p1.y + 4);
+      });
+      ctx.restore();
+    }
+  };
+
+  lazyChart('rankChart', function () { return {
+    type: 'line',
     data: {
-      labels: ["1st in MVP vote: A'ja Wilson", '2nd: Napheesa Collier', '3rd: Alyssa Thomas', '4th: Allisha Gray', '5th: Kelsey Mitchell'],
-      datasets: [{
-        label: 'League scoring rank',
-        data: [1, 7, 16, 6, 2],
-        backgroundColor: ['#e76f51', '#f4a261', '#f4a261', '#f4a261', '#4a6fa5']
-      }]
+      labels: ['MVP vote rank', 'Scoring rank'],
+      datasets: [
+        { label: "1st \u00b7 A'ja Wilson", data: [1, 1], borderColor: '#e76f51', backgroundColor: '#e76f51', pointRadius: 5 },
+        { label: '2nd \u00b7 Napheesa Collier', data: [2, 7], borderColor: '#f4a261', backgroundColor: '#f4a261', pointRadius: 5 },
+        { label: '3rd \u00b7 Alyssa Thomas', data: [3, 16], borderColor: '#9c6644', backgroundColor: '#9c6644', pointRadius: 5 },
+        { label: '4th \u00b7 Allisha Gray', data: [4, 6], borderColor: '#4a6fa5', backgroundColor: '#4a6fa5', pointRadius: 5 },
+        { label: '5th \u00b7 Kelsey Mitchell', data: [5, 2], borderColor: '#1d3557', backgroundColor: '#1d3557', pointRadius: 5 }
+      ]
     },
     options: {
-      indexAxis: 'y',
       responsive: true,
       maintainAspectRatio: false,
+      layout: { padding: { left: 150, right: 60 } },
       plugins: {
         legend: { display: false },
         tooltip: { callbacks: { label: function (ctx) {
-          return 'Scoring rank: #' + ctx.raw + ' of 42';
+          return ctx.dataset.label + ' \u2014 ' + ctx.label + ': #' + ctx.raw;
         } } }
       },
       scales: {
-        x: { beginAtZero: true, reverse: false, title: { display: true, text: 'Scoring rank in the league (1 = top scorer)' }, ticks: { stepSize: 2 } }
+        y: { reverse: true, min: 0, max: 17, title: { display: true, text: 'Rank (1 = best)' }, ticks: { stepSize: 2 } },
+        x: { grid: { display: false } }
       }
-    }
-  });
+    },
+    plugins: [slopeLabels]
+  }; });
 
-  new Chart(document.getElementById('reachChart'), {
+  lazyChart('reachChart', function () { return {
     type: 'doughnut',
     data: {
       labels: ['Received at least one MVP vote (13)', 'Received none (~143)'],
       datasets: [{
         data: [13, 143],
-        backgroundColor: ['#e76f51', '#d5dae0']
+        backgroundColor: ['#e76f51', '#d5dae0'],
+        borderWidth: 0
       }]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      cutout: '62%',
       plugins: { legend: { position: 'right' } }
     }
-  });
+  }; });
 </script>
 
 </body>
