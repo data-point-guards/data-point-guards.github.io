@@ -69,6 +69,9 @@ nav a.here { color: var(--accent); border-bottom: 2px solid var(--accent); paddi
   font-family: var(--mono); font-size: 0.7em; letter-spacing: 0.3em;
   text-transform: uppercase; color: #9aa3ad; animation: bob 2s infinite; }
 @keyframes bob { 0%,100% { transform: translate(-50%,0);} 50% { transform: translate(-50%,8px);} }
+.hero .hero-credit { position: absolute; bottom: 14px; right: 18px;
+  font-family: var(--mono); font-size: 0.6em; letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.6); }
 
 /* ---------------- Page header (sub-pages) ----------------------- */
 .page-head { max-width: 800px; margin: 60px auto 14px; padding: 0 24px; text-align: center; }
