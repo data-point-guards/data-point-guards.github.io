@@ -222,6 +222,21 @@ figcaption .credit { color: #adb2b9; }
   border: 1px solid var(--rule); box-shadow: 5px 5px 0 var(--paper-deep); }
 .t-event .t-credit { font-family: var(--mono); font-size: 0.62em; color: var(--ink-faint); margin-top: 6px; }
 
+/* ---------------- Bibliography ----------------------------------- */
+.bib { margin: 0 0 34px; }
+.bib h3 { font-family: var(--mono); font-weight: 700; font-size: 0.72em;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent);
+  margin: 30px 0 4px; }
+.bib h3 a { color: var(--accent); text-decoration: none;
+  border-bottom: 1px solid rgba(231, 111, 81, 0.35); }
+.bib h3 a:hover { border-bottom-color: var(--accent); }
+.bib .bib-q { font-family: var(--sans); font-style: italic; font-size: 0.9em;
+  color: var(--ink-faint); margin: 0 0 14px; line-height: 1.6;
+  border-bottom: 1px solid var(--rule); padding-bottom: 12px; }
+.bib p.ref { font-size: 0.92em; line-height: 1.65; margin: 0 0 13px;
+  padding-left: 2.2em; text-indent: -2.2em; }
+.bib p.ref a { word-break: break-word; }
+
 /* ---------------- Team roster ------------------------------------ */
 .team { font-family: var(--mono); font-size: 0.85em; }
 .team div { padding: 12px 0; border-bottom: 1px solid var(--rule); }
