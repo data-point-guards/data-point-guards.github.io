@@ -176,6 +176,24 @@ figcaption .credit { color: #adb2b9; }
   font-family: var(--mono); font-size: 0.62em; color: rgba(255,255,255,0.85);
   background: rgba(13, 20, 32, 0.55); padding: 5px 12px; letter-spacing: 0.04em; }
 
+/* ---------------- Home intro: 3-paragraph cinematic panels ------ */
+.intro-panel { width: 100%; max-width: 700px; margin: 0 auto;
+  background: rgba(13, 20, 32, 0.82); backdrop-filter: blur(3px);
+  border-top: 4px solid var(--accent); padding: 42px 46px;
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.4); }
+.intro-panel .k { font-family: var(--mono); font-weight: 700; font-size: 0.72em;
+  letter-spacing: 0.26em; text-transform: uppercase; color: var(--accent-soft);
+  margin-bottom: 18px; }
+.intro-panel p { font-family: var(--sans); font-size: 1.12em; line-height: 1.85;
+  color: #e9edf1; margin: 0; }
+.intro-panel a { color: #fff; text-decoration: underline;
+  text-decoration-color: var(--accent); text-underline-offset: 3px; }
+.intro-panel a:hover { color: var(--accent-soft); }
+@media (max-width: 640px) {
+  .intro-panel { padding: 26px 22px; }
+  .intro-panel p { font-size: 1em; line-height: 1.75; }
+}
+
 /* ---------------- Series index (homepage contents) -------------- */
 .series { max-width: 800px; margin: 26px auto 0; padding: 0 24px; }
 .series a { display: flex; align-items: baseline; gap: 20px; padding: 17px 6px;
