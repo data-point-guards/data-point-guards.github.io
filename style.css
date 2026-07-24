@@ -210,8 +210,8 @@ figcaption .credit { color: #adb2b9; }
 .series a.muted .s-title { font-weight: 400; color: var(--ink-soft); }
 
 /* ---------------- Chapter grid: 8 illustrated tiles, 2 rows of 4 - */
-.grid { max-width: 1120px; margin: 30px auto 0; padding: 0 24px;
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.grid { max-width: 960px; margin: 30px auto 0; padding: 0 24px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .grid a { display: block; overflow: hidden; background: #fff;
   border: 1px solid var(--rule); text-decoration: none;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; }
