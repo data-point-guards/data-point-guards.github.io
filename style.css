@@ -841,7 +841,10 @@ figcaption .credit {
 .t-event img {
   display: block;
   width: 100%;
+  aspect-ratio: 8 / 5;
+  object-fit: cover;
   margin-top: 14px;
+  border: 1px solid var(--rule);
   border-radius: var(--radius);
 }
 
@@ -850,6 +853,13 @@ figcaption .credit {
   color: var(--ink-faint);
   font-family: var(--sans);
   font-size: 0.61rem;
+  line-height: 1.45;
+}
+
+.t-event .t-credit a {
+  color: inherit;
+  text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+  text-underline-offset: 2px;
 }
 
 /* Bibliography and team */
