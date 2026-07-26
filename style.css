@@ -621,15 +621,6 @@ figcaption .credit {
   transform: none;
 }
 
-.scene-progress {
-  margin-bottom: 14px;
-  color: var(--accent-dark);
-  font-family: var(--sans);
-  font-size: 0.64rem;
-  font-weight: 800;
-  letter-spacing: 0.15em;
-}
-
 .intro-panel p {
   margin: 0;
   color: inherit;
