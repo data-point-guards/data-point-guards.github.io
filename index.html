@@ -41,26 +41,37 @@
   <a href="sources.html">Sources</a>
 </nav>
 
-<!-- ===== The opening narrative, told as three cinematic scenes ===== -->
-<div class="scrolly">
+<!-- ===== The opening narrative, told as six cinematic scenes ===== -->
+<div class="scrolly" aria-label="Project introduction">
   <div class="sticky-stage">
     <div class="photo-layer" style="background-image:url('scene-great.jpg');"></div>
+    <div class="photo-layer" style="background-image:url('scene-records.jpg'); background-position:center 42%;"></div>
     <div class="photo-layer" style="background-image:url('scene-college.jpg');"></div>
+    <div class="photo-layer photo-layer--clear" style="background-image:url('scene-attendance-crowd.jpg');"></div>
+    <div class="photo-layer" style="background-image:url('scene-recognition.jpg');"></div>
     <div class="photo-layer" style="background-image:url('scene-league.jpg');"></div>
     <div class="scene-caption" id="sceneCaption">Photo: Wikimedia Commons</div>
   </div>
   <div class="steps">
 
-    <div class="step" data-index="0">
+    <section class="step" data-index="0">
       <div class="intro-panel">
+        <div class="scene-progress" aria-hidden="true">01 / 06</div>
         <p>The Women's National Basketball Association (WNBA) is still a relatively new
         professional sports league compared with leagues such as the NBA, NFL, MLB, and
         NHL. Its first season was played in 1997, which gives us the opportunity to
         examine the league from its beginning to the present. For our project, we look at
-        several ways success can be measured in the WNBA, including attendance, draft
-        position, length of a player's career, performance, and awards. Our findings
+        several ways success can be measured in the WNBA, including <span class="key-idea">attendance, draft
+        position, length of a player's career, performance, and awards</span>. Our findings
         suggest that commonly used measures of success in the WNBA do not always tell the
-        same story. Metropolitan population does not consistently predict attendance,
+        same story.</p>
+      </div>
+    </section>
+
+    <section class="step" data-index="1">
+      <div class="intro-panel">
+        <div class="scene-progress" aria-hidden="true">02 / 06</div>
+        <p>Metropolitan population does not consistently predict attendance,
         award recognition does not appear to depend solely on scoring, and career outcomes
         vary considerably depending on where a player is selected in the draft. We
         collected our data from <a href="https://www.acrossthetimeline.com/">Across the
@@ -68,34 +79,50 @@
         awards, standings, and player statistics, which we use to compare teams and
         players across different cities and seasons.</p>
       </div>
-    </div>
+    </section>
 
-    <div class="step" data-index="1">
+    <section class="step" data-index="2">
       <div class="intro-panel">
+        <div class="scene-progress" aria-hidden="true">03 / 06</div>
         <p>Other researchers have asked similar questions before us, and they often find
         the same thing. Economists who study basketball find that the statistics people
-        pay the most attention to, like points scored, do not really show how much a
+        pay the most attention to, like <span class="key-idea">points scored</span>, do not really show how much a
         player helps the team win. They also find that the experts who judge players rely
-        too much on a player's early reputation, so they make the same mistakes in the
-        draft again and again. Research on attendance is not as clear. Some studies find
+        too much on a player's <span class="key-idea">early reputation</span>, so they make the same mistakes in the
+        draft again and again.</p>
+      </div>
+    </section>
+
+    <section class="step" data-index="3">
+      <div class="intro-panel">
+        <div class="scene-progress" aria-hidden="true">04 / 06</div>
+        <p>Research on attendance is not as clear. Some studies find
         that star players bring more fans to games, but other studies find that what
         brings fans to a WNBA game is not the same as what brings them to an NBA game, so
         the two leagues should not be compared. Other scholars look at things outside the
         numbers. They say that women's basketball has always been shaped by the way the
-        league is marketed, and that data is never neutral because someone always decides
-        what is worth counting. What has not been done yet is putting all of these
+        league is marketed, and that <span class="key-idea">data is never neutral</span> because someone always decides
+        <span class="key-idea">what is worth counting</span>. What has not been done yet is putting all of these
         findings together to see whether the records on attendance, drafts, careers, and
         awards tell the same story.</p>
       </div>
-    </div>
+    </section>
 
-    <div class="step" data-index="2">
+    <section class="step" data-index="4">
       <div class="intro-panel">
+        <div class="scene-progress" aria-hidden="true">05 / 06</div>
         <p>We are working on how the WNBA measures success because we want to find out
         whether these different measures agree with each other, so that we can help
         others understand that a number is never only a number. Someone has to decide
-        what gets counted, and those decisions shape who is remembered and who is
-        forgotten. This matters outside of basketball too. The WNBA is still a young
+        what gets <span class="key-idea">counted</span>, and those decisions shape who is <span class="key-idea">remembered</span> and who is
+        <span class="key-idea">forgotten</span>.</p>
+      </div>
+    </section>
+
+    <section class="step" data-index="5">
+      <div class="intro-panel">
+        <div class="scene-progress" aria-hidden="true">06 / 06</div>
+        <p>This matters outside of basketball too. The WNBA is still a young
         league, and people are still arguing about what its players are worth. Those
         arguments use the same numbers we study here, such as attendance, awards, and
         salaries. If the numbers are incomplete or unfair, then the arguments built on
@@ -103,7 +130,7 @@
         asking a much larger question about any place where people are counted, ranked,
         and remembered.</p>
       </div>
-    </div>
+    </section>
 
   </div>
 </div>
@@ -164,22 +191,36 @@
   var photoLayers = document.querySelectorAll('.photo-layer');
   var captions = [
     'A packed Target Center on its feet, 2025 · John Mac, Wikimedia Commons',
+    'Live WNBA score and player statistics at Barclays Center, 2024 · WOWyerrr, Wikimedia Commons',
     'Napheesa Collier at Target Center · John Mac, Wikimedia Commons',
+    'Minnesota Lynx supporters cheering at Target Center · Lloyd Brown, Stadium Journey',
+    'Sylvia Fowles addresses fans during a tribute at Target Center, 2022 · Lorie Shaull, Wikimedia Commons',
     'A team huddle at Target Center · Lorie Shaull, Wikimedia Commons'
   ];
-  function setPhoto(i) {
-    photoLayers.forEach(function (l, k) { l.classList.toggle('active', k === i); });
-    document.getElementById('sceneCaption').textContent = captions[i];
+
+  function setPhoto(index) {
+    photoLayers.forEach(function (layer, layerIndex) {
+      layer.classList.toggle('active', layerIndex === index);
+    });
+    document.querySelectorAll('.step').forEach(function (step, stepIndex) {
+      step.classList.toggle('is-current', stepIndex === index);
+    });
+    document.getElementById('sceneCaption').textContent = captions[index];
   }
+
   setPhoto(0);
 
   var stepObserver = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
-      if (!entry.isIntersecting) return;
-      setPhoto(parseInt(entry.target.dataset.index, 10));
+      if (entry.isIntersecting) {
+        setPhoto(parseInt(entry.target.dataset.index, 10));
+      }
     });
   }, { threshold: 0.55 });
-  document.querySelectorAll('.step').forEach(function (s) { stepObserver.observe(s); });
+
+  document.querySelectorAll('.step').forEach(function (step) {
+    stepObserver.observe(step);
+  });
 </script>
 
 <script src="site.js"></script>

@@ -528,10 +528,9 @@ figcaption .credit {
   text-transform: uppercase;
 }
 
-/* Homepage scrollytelling */
+/* Homepage introduction */
 .scrolly {
   position: relative;
-  background: var(--black);
 }
 
 .sticky-stage {
@@ -542,6 +541,7 @@ figcaption .credit {
   justify-content: center;
   height: 100vh;
   overflow: hidden;
+  background: var(--black);
 }
 
 .steps {
@@ -553,8 +553,13 @@ figcaption .credit {
 .step {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   min-height: 100vh;
-  padding: 80px max(24px, calc((100vw - var(--wide)) / 2));
+  padding: 72px max(24px, calc((100vw - var(--wide)) / 2));
+}
+
+.step:nth-child(even) {
+  justify-content: flex-end;
 }
 
 .photo-layer {
@@ -563,18 +568,24 @@ figcaption .credit {
   background-position: center;
   background-size: cover;
   opacity: 0;
-  transition: opacity 0.8s ease;
+  transform: scale(1.035);
+  transition: opacity 0.8s ease, transform 7s linear;
 }
 
 .photo-layer::after {
   position: absolute;
   inset: 0;
   content: "";
-  background: rgba(10, 15, 14, 0.42);
+  background: rgba(8, 13, 12, 0.42);
+}
+
+.photo-layer--clear::after {
+  background: rgba(8, 13, 12, 0.3);
 }
 
 .photo-layer.active {
   opacity: 1;
+  transform: scale(1);
 }
 
 .scene-caption {
@@ -582,52 +593,58 @@ figcaption .credit {
   right: 20px;
   bottom: 16px;
   z-index: 6;
+  max-width: calc(100% - 40px);
   padding: 6px 10px;
-  color: rgba(255, 255, 255, 0.78);
-  background: rgba(10, 15, 14, 0.68);
+  color: rgba(255, 255, 255, 0.84);
+  background: rgba(9, 14, 13, 0.68);
   border-radius: 3px;
   font-family: var(--sans);
   font-size: 0.6rem;
+  line-height: 1.45;
 }
 
-.intro-panel,
-.step .card {
-  width: min(620px, 100%);
-  margin-left: auto;
-  padding: clamp(26px, 4vw, 44px);
-  color: var(--ink);
-  background: rgba(255, 255, 255, 0.96);
-  border-top: 8px solid var(--lime);
-  border-radius: var(--radius);
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
-}
-
-.intro-panel p,
-.step .card p {
+.intro-panel {
+  width: min(560px, 100%);
   margin: 0;
+  padding: clamp(28px, 3.6vw, 42px);
   color: var(--ink);
-  font-size: 0.98rem;
-  line-height: 1.75;
+  background: var(--surface);
+  border-top: 5px solid var(--accent);
+  box-shadow: var(--shadow);
+  opacity: 0.5;
+  transform: translateY(18px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.step.is-current .intro-panel {
+  opacity: 1;
+  transform: none;
+}
+
+.scene-progress {
+  margin-bottom: 14px;
+  color: var(--accent-dark);
+  font-family: var(--sans);
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+}
+
+.intro-panel p {
+  margin: 0;
+  color: inherit;
+  font-size: clamp(0.94rem, 1.35vw, 1.06rem);
+  line-height: 1.72;
 }
 
 .intro-panel a {
   color: var(--accent-dark);
+  text-underline-offset: 3px;
 }
 
-.step .card .num {
-  color: var(--accent);
-  font-family: var(--sans);
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.step .card h3 {
-  margin: 9px 0 12px;
-  font-family: var(--sans);
-  font-size: 1.5rem;
-  line-height: 1.2;
+.key-idea {
+  color: var(--accent-dark);
+  font-weight: 600;
 }
 
 /* Homepage chapter index */
@@ -1043,6 +1060,10 @@ footer a {
   .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .intro-panel {
+    width: min(560px, calc(100% - 32px));
+  }
 }
 
 @media (max-width: 640px) {
@@ -1114,15 +1135,23 @@ footer a {
     min-height: 410px;
   }
 
-  .intro-panel,
-  .step .card {
-    padding: 24px 20px;
+  .step {
+    align-items: flex-start;
+    justify-content: center;
+    padding: 48px 8px 96px;
   }
 
-  .intro-panel p,
-  .step .card p {
-    font-size: 0.91rem;
-    line-height: 1.67;
+  .step:nth-child(even) {
+    justify-content: center;
+  }
+
+  .intro-panel {
+    padding: 26px 22px;
+  }
+
+  .intro-panel p {
+    font-size: 0.95rem;
+    line-height: 1.66;
   }
 
   .timeline {
