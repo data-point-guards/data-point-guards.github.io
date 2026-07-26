@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Attendance — Data Point Guards</title>
-<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Libre+Franklin:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 <script src="charts.js"></script>
@@ -40,8 +40,8 @@
 </div>
 
 <figure>
-  <img src="fig-attend.jpg" alt="WNBA players greeted by young fans as they enter the court">
-  <figcaption>The nightly vote of support: fans greet players entering the court at Target Center. <span class="credit">Lorie Shaull, Wikimedia Commons</span></figcaption>
+  <img src="fig-attend.jpg" alt="A crowd fills Climate Pledge Arena for a Seattle Storm WNBA game">
+  <figcaption>Climate Pledge Arena during a 2022 WNBA game between the Seattle Storm and Atlanta Dream. <span class="credit"><a href="https://commons.wikimedia.org/wiki/File:Seattle_Storm_vs_Atlanta_Dream_at_Climate_Pledge_Arena_(July_2022)_-_01.jpg">SounderBruce, Wikimedia Commons</a> (CC BY-SA 4.0)</span></figcaption>
 </figure>
 
 <div class="story">
@@ -144,7 +144,7 @@
       datasets: [{
         label: 'League average attendance',
         data: [10869, 9074, 9228, 8613, 7490, 7948, 7834, 7457, 7578, 7655, 6769, 5679, 6615, 9807],
-        borderColor: '#1d3557',
+        borderColor: '#111716',
         backgroundColor: 'rgba(29,53,87,0.08)',
         fill: true,
         tension: 0.3,
@@ -170,7 +170,7 @@
       labels: ['2022', '2023', '2024 (star rookie arrives)'],
       datasets: [{
         data: [1776, 4067, 17036],
-        backgroundColor: ['#4a6fa5', '#4a6fa5', '#e76f51']
+        backgroundColor: ['#4f7ebd', '#4f7ebd', '#ef4e31']
       }]
     },
     options: {
@@ -219,7 +219,7 @@
     ['San Antonio Stars', 'San Antonio, Texas', 'Relocated', 2017, 6386, 'Moved to Las Vegas in 2018', 29.4252, -98.4946]
   ];
 
-  var statusColor = { Active: '#e76f51', Folded: '#8a8f98', Relocated: '#4a6fa5' };
+  var statusColor = { Active: '#ef4e31', Folded: '#8a8f98', Relocated: '#4f7ebd' };
 
   var map = L.map('attendanceMap', { scrollWheelZoom: false })
     .setView([38.5, -96.5], 4);
@@ -236,7 +236,7 @@
     .forEach(function (f) {
       var name = f[0], city = f[1], status = f[2], season = f[3],
           att = f[4], note = f[5], lat = f[6], lng = f[7];
-      var html = '<div style="font-family:\'Libre Franklin\',sans-serif;font-size:13px;line-height:1.55;">'
+      var html = '<div style="font-family:\'Manrope\',sans-serif;font-size:13px;line-height:1.55;">'
         + '<b>' + name + '</b><br>' + city + '<br>'
         + '<span style="color:' + statusColor[status] + ';font-weight:700;">' + status + '</span>'
         + ' &middot; ' + att.toLocaleString() + ' fans/game (' + season + ')'
@@ -258,16 +258,17 @@
   legend.onAdd = function () {
     var div = L.DomUtil.create('div');
     div.style.cssText = 'background:rgba(255,255,255,0.93);padding:9px 13px;'
-      + "font-family:'Libre Franklin',sans-serif;font-size:11.5px;line-height:1.9;"
+      + "font-family:'Manrope',sans-serif;font-size:11.5px;line-height:1.9;"
       + 'border:1px solid rgba(23,26,31,0.14);box-shadow:3px 3px 0 #ececec;';
     div.innerHTML =
-      '<span style="color:#e76f51;font-size:15px;">&#9679;</span> Active team (2025)<br>'
+      '<span style="color:#ef4e31;font-size:15px;">&#9679;</span> Active team (2025)<br>'
       + '<span style="color:#8a8f98;font-size:15px;">&#9679;</span> Folded (final season)<br>'
-      + '<span style="color:#4a6fa5;font-size:15px;">&#9679;</span> Relocated (final season)';
+      + '<span style="color:#4f7ebd;font-size:15px;">&#9679;</span> Relocated (final season)';
     return div;
   };
   legend.addTo(map);
 </script>
 
+<script src="site.js"></script>
 </body>
 </html>

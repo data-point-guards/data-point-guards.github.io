@@ -3,18 +3,18 @@
 
 /* ---------- Global theme ---------- */
 if (window.Chart) {
-  Chart.defaults.font.family = "'Libre Franklin', sans-serif";
+  Chart.defaults.font.family = "'Manrope', sans-serif";
   Chart.defaults.font.size = 12;
-  Chart.defaults.color = '#666';
+  Chart.defaults.color = '#4f5a57';
   Chart.defaults.animation.duration = 1200;
   Chart.defaults.animation.easing = 'easeOutQuart';
-  Chart.defaults.elements.bar.borderRadius = 5;
+  Chart.defaults.elements.bar.borderRadius = 3;
   Chart.defaults.elements.line.borderWidth = 3;
   Chart.defaults.elements.point.radius = 4;
-  Chart.defaults.plugins.tooltip.backgroundColor = '#0d1420';
+  Chart.defaults.plugins.tooltip.backgroundColor = '#101514';
   Chart.defaults.plugins.tooltip.padding = 10;
   Chart.defaults.plugins.tooltip.cornerRadius = 4;
-  Chart.defaults.plugins.tooltip.titleFont = { family: "'Libre Franklin', sans-serif", weight: '700' };
+  Chart.defaults.plugins.tooltip.titleFont = { family: "'Manrope', sans-serif", weight: '700' };
   Chart.defaults.plugins.legend.labels.boxWidth = 14;
   Chart.defaults.plugins.legend.labels.boxHeight = 14;
 
@@ -34,11 +34,11 @@ if (window.Chart) {
         if (isNaN(px) || isNaN(py)) return;
         ctx.beginPath();
         ctx.arc(px, py, 5, 0, Math.PI * 2);
-        ctx.strokeStyle = '#e76f51';
+        ctx.strokeStyle = '#ef4e31';
         ctx.lineWidth = 2;
         ctx.stroke();
-        ctx.font = "700 11px 'Libre Franklin', sans-serif";
-        ctx.fillStyle = '#1d3557';
+        ctx.font = "700 11px 'Manrope', sans-serif";
+        ctx.fillStyle = '#111716';
         ctx.textAlign = n.align || 'left';
         ctx.fillText(n.text, px + (n.dx || 8), py + (n.dy || -10));
       });
