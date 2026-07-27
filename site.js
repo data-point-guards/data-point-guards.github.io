@@ -14,87 +14,21 @@
     menu.setAttribute('aria-expanded', 'false');
     masthead.appendChild(menu);
 
-    function closeCategoryMenus() {
-      nav.querySelectorAll('.nav-group.open').forEach(function (group) {
-        group.classList.remove('open');
-        group.querySelector('.nav-category').setAttribute('aria-expanded', 'false');
-      });
-    }
-
     function setMenu(open) {
       nav.classList.toggle('open', open);
       document.body.classList.toggle('menu-open', open);
       menu.textContent = open ? 'Close' : 'Menu';
       menu.setAttribute('aria-expanded', String(open));
       menu.setAttribute('aria-label', open ? 'Close site navigation' : 'Open site navigation');
-      if (!open) closeCategoryMenus();
     }
 
     menu.addEventListener('click', function () {
       setMenu(!nav.classList.contains('open'));
     });
 
-    var categoryTopics = {
-      'index.html#audience': [
-        ['Attendance', 'attendance.html'],
-        ['The League', 'league.html']
-      ],
-      'index.html#recognition': [
-        ['Awards', 'awards.html'],
-        ['Greatness', 'greatness.html']
-      ],
-      'index.html#careers': [
-        ['The Draft', 'draft.html'],
-        ['College to Pros', 'college.html']
-      ]
-    };
-
-    Object.keys(categoryTopics).forEach(function (href) {
-      var link = nav.querySelector('a[href="' + href + '"]');
-      if (!link) return;
-
-      var group = document.createElement('div');
-      group.className = 'nav-group';
-      link.parentNode.insertBefore(group, link);
-      group.appendChild(link);
-
-      link.classList.add('nav-category');
-      link.setAttribute('aria-haspopup', 'true');
-      link.setAttribute('aria-expanded', 'false');
-
-      var submenu = document.createElement('div');
-      submenu.className = 'nav-submenu';
-      submenu.setAttribute('aria-label', link.textContent.trim() + ' topics');
-
-      categoryTopics[href].forEach(function (topic) {
-        var topicLink = document.createElement('a');
-        topicLink.href = topic[1];
-        topicLink.textContent = topic[0];
-        submenu.appendChild(topicLink);
-      });
-
-      group.appendChild(submenu);
-
-      link.addEventListener('click', function (event) {
-        event.preventDefault();
-        var shouldOpen = !group.classList.contains('open');
-        closeCategoryMenus();
-        group.classList.toggle('open', shouldOpen);
-        link.setAttribute('aria-expanded', String(shouldOpen));
-      });
-    });
-
     nav.querySelectorAll('a').forEach(function (link) {
       if (link.getAttribute('href') === file) link.classList.add('here');
-      link.addEventListener('click', function () {
-        if (link.classList.contains('nav-category')) return;
-        closeCategoryMenus();
-        setMenu(false);
-      });
-    });
-
-    document.addEventListener('click', function (event) {
-      if (!nav.contains(event.target)) closeCategoryMenus();
+      link.addEventListener('click', function () { setMenu(false); });
     });
 
     window.addEventListener('resize', function () {
@@ -121,31 +55,6 @@
   document.querySelectorAll('figure img').forEach(function (image) {
     image.loading = 'lazy';
     image.decoding = 'async';
-  });
-
-  function syncHomepageNav() {
-    if (page !== 'index' || !nav) return;
-    var expected = window.location.hash ? 'index.html' + window.location.hash : 'index.html';
-    nav.querySelectorAll('a').forEach(function (link) {
-      link.classList.toggle('here', link.getAttribute('href') === expected);
-    });
-  }
-
-  function alignHashTarget() {
-    syncHomepageNav();
-    if (!window.location.hash) return;
-    var target = document.getElementById(window.location.hash.slice(1));
-    if (target) target.scrollIntoView({ block: 'start' });
-  }
-
-  window.addEventListener('hashchange', function () {
-    window.setTimeout(alignHashTarget, 0);
-  });
-
-  window.addEventListener('load', function () {
-    [0, 350, 900].forEach(function (delay) {
-      window.setTimeout(alignHashTarget, delay);
-    });
   });
 
   if (page === 'about') {
