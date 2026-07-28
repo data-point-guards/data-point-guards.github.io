@@ -795,121 +795,25 @@ figcaption .credit {
 }
 
 /* League timeline */
-.timeline {
-  position: relative;
-  width: min(900px, calc(100% - 48px));
-  margin: 48px auto 20px;
-  padding: 12px 24px 30px;
+.timeline-embed {
+  width: min(1120px, calc(100% - 48px));
+  margin: 48px auto 56px;
+  padding: 12px;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-top: 8px solid var(--black);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
 
-.timeline .t-track,
-.timeline .t-fill {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 3px;
-  transform: translateX(-50%);
-}
-
-.timeline .t-track {
-  bottom: 0;
-  background: var(--rule);
-}
-
-.timeline .t-fill {
-  height: 0;
-  background: var(--accent);
-}
-
-.t-event {
-  position: relative;
-  width: 50%;
-  padding: 0 48px 58px 0;
-  opacity: 0.28;
-  transform: translateY(12px);
-  transition: opacity 0.45s ease, transform 0.45s ease;
-}
-
-.t-event.right {
-  margin-left: 50%;
-  padding: 0 0 58px 48px;
-  text-align: left;
-}
-
-.t-event.left {
-  text-align: right;
-}
-
-.t-event.lit {
-  opacity: 1;
-  transform: none;
-}
-
-.t-event .t-dot {
-  position: absolute;
-  top: 2px;
-  width: 16px;
-  height: 16px;
-  background: var(--paper);
-  border: 4px solid var(--ink-faint);
-  border-radius: 50%;
-}
-
-.t-event.left .t-dot {
-  right: -9px;
-}
-
-.t-event.right .t-dot {
-  left: -9px;
-}
-
-.t-event.lit .t-dot {
-  border-color: var(--accent);
-}
-
-.t-event .t-year {
-  color: var(--accent-dark);
-  font-family: var(--sans);
-  font-size: 0.92rem;
-  font-weight: 850;
-}
-
-.t-event h4 {
-  margin: 5px 0 7px;
-  font-family: var(--sans);
-  font-size: 1.12rem;
-  line-height: 1.3;
-}
-
-.t-event p {
-  margin: 0;
-  color: var(--ink-soft);
-  font-size: 0.83rem;
-  line-height: 1.6;
-}
-
-.t-event img {
+.timeline-embed iframe {
   display: block;
   width: 100%;
-  aspect-ratio: 8 / 5;
-  object-fit: cover;
-  margin-top: 14px;
-  border: 1px solid var(--rule);
-  border-radius: var(--radius);
-}
-
-.t-event .t-credit {
-  margin-top: 7px;
-  color: var(--ink-faint);
-  font-family: var(--sans);
-  font-size: 0.61rem;
-  line-height: 1.45;
-}
-
-.t-event .t-credit a {
-  color: inherit;
-  text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
-  text-underline-offset: 2px;
+  height: 650px;
+  border: 0;
+  border-radius: 4px;
+  background: #fff;
 }
 
 /* Bibliography and team */
@@ -1399,7 +1303,7 @@ footer a {
   .stat-pull,
   .grid,
   .series,
-  .timeline,
+  .timeline-embed,
   .pager {
     width: min(100% - 32px, var(--wide));
   }
@@ -1499,28 +1403,14 @@ footer a {
     line-height: 1.66;
   }
 
-  .timeline {
-    padding-inline: 4px;
+  .timeline-embed {
+    width: min(100% - 24px, var(--wide));
+    margin-block: 36px 44px;
+    padding: 6px;
   }
 
-  .timeline .t-track,
-  .timeline .t-fill {
-    left: 16px;
-    transform: none;
-  }
-
-  .t-event,
-  .t-event.right {
-    width: 100%;
-    margin-left: 0;
-    padding: 0 0 48px 48px;
-    text-align: left;
-  }
-
-  .t-event.left .t-dot,
-  .t-event.right .t-dot {
-    right: auto;
-    left: 8px;
+  .timeline-embed iframe {
+    height: 720px;
   }
 
   .pager {
