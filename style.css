@@ -467,6 +467,16 @@ figcaption .credit {
   min-height: 520px;
 }
 
+#tableau-mvp-votes-2025 {
+  min-height: 440px;
+}
+
+#tableau-mvp-votes-2025 object,
+#tableau-mvp-votes-2025 iframe {
+  height: 440px !important;
+  min-height: 440px;
+}
+
 .viz-source {
   margin: 14px 0 0;
   color: var(--ink-faint);
@@ -1411,6 +1421,16 @@ footer a {
 
   .timeline-embed iframe {
     height: 720px;
+  }
+
+  #tableau-mvp-votes-2025 {
+    min-height: 520px;
+  }
+
+  #tableau-mvp-votes-2025 object,
+  #tableau-mvp-votes-2025 iframe {
+    height: 520px !important;
+    min-height: 520px;
   }
 
   .pager {
