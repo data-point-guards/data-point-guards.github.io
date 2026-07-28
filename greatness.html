@@ -4,10 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Greatness — Data Point Guards</title>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
-<script src="charts.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=15">
 </head>
 <body>
 
@@ -32,73 +30,62 @@
 </nav>
 
 <div class="page-head">
-  <div class="kicker">The Data</div>
+  <div class="kicker">The Record</div>
   <h1>Who gets to be called great?</h1>
-  <p class="dek"><em>&ldquo;How does the dataset&rsquo;s focus on rankings, awards, and team statistics influence the way we define &lsquo;greatness&rsquo; in women&rsquo;s basketball?&rdquo;</em></p>
+  <p class="dek"><em>&ldquo;How does the dataset&rsquo;s focus on rankings, awards, and
+  team statistics influence the way we define &lsquo;greatness&rsquo; in women&rsquo;s
+  basketball?&rdquo;</em></p>
 </div>
 
 <figure>
   <img src="fig-great.jpg" alt="Rebekkah Brunson is recognized after setting the WNBA career rebounding record">
-  <figcaption>Rebekkah Brunson acknowledges the Target Center crowd after setting the WNBA career rebounding record in 2018. <span class="credit"><a href="https://commons.wikimedia.org/wiki/File:Rebekkah_Brunson_acknowledges_the_crowd_at_Target_Center_after_setting_the_WNBA_record_for_rebounds.jpg">Lorie Shaull, Wikimedia Commons</a> (CC BY-SA 4.0)</span></figcaption>
+  <figcaption>Rebekkah Brunson acknowledges the Target Center crowd after setting the
+  WNBA career rebounding record in 2018. <span class="credit"><a
+  href="https://commons.wikimedia.org/wiki/File:Rebekkah_Brunson_acknowledges_the_crowd_at_Target_Center_after_setting_the_WNBA_record_for_rebounds.jpg">Lorie
+  Shaull, Wikimedia Commons</a> (CC BY-SA 4.0)</span></figcaption>
 </figure>
 
 <div class="story">
-
-  <p>A dataset is not a mirror; it is a lens. Across the Timeline records what can be
-  counted &mdash; points, wins, votes, rankings &mdash; and whatever the numbers
-  capture becomes the raw material of reputation. So before trusting the archive's
-  verdicts, we asked it a simple question: when the league names its five
-  &ldquo;greatest&rdquo; players of 2025, is it naming its five best scorers?</p>
+  <p>A career award total looks objective because it is a count. Yet the count begins
+  only after institutions decide which forms of excellence deserve an award, who is
+  eligible, and who receives a vote. The figure below brings those repeated decisions
+  together to show which players have accumulated the most official recognition across
+  their WNBA careers.</p>
 </div>
 
-<div class="chart-block">
-  <div class="chart-title">From the ballot to the box score</div>
-  <div class="chart-sub">Each line is one of the 2025 MVP top five: her rank in the vote (left) connected to her rank in scoring (right, among 42 players with 400+ points) &middot; Flat lines mean the ballot matched the box score; steep lines mean it did not &middot; Source: Across the Timeline</div>
-  <div class="chart-box" style="height: 420px;"><canvas id="rankChart"></canvas></div>
-</div>
+<section class="chart-block">
+  <div class="chart-title">WNBA players with the most career awards</div>
+  <div class="chart-sub">Total official career awards in the assembled league record.</div>
+  <div class="viz-media">
+    <img src="viz-career-awards.png" alt="Horizontal bar chart titled WNBA Players with the Most Career Awards, comparing twenty highly awarded players">
+  </div>
+  <p class="viz-source">Source:
+  <a href="https://www.acrossthetimeline.com/">Across the Timeline awards records</a>.
+  Visualization by Mariana Rosas.</p>
+</section>
 
 <div class="story">
-  <p>The answer is no &mdash; and the mismatch is the finding. The MVP and the
-  runner-up spot did not go to the two leading scorers: Napheesa Collier finished
-  second in the voting while ranking seventh in scoring, and Alyssa Thomas finished
-  third while ranking sixteenth. Meanwhile the league's second-leading scorer, Kelsey
-  Mitchell, placed only fifth in the vote. Voters clearly reward something the scoring
-  column does not measure: Thomas is the league's premier playmaker, Collier led the
-  team with the league's best record, and both anchor their teams' defense. Points
-  alone do not make greatness &mdash; team success and synchronicity seem to matter as
-  much or more.</p>
+  <p>The distribution is concentrated. The leading totals reach 33 and 30, while many
+  players in this already elite group remain in the low teens. Awards build on one
+  another: once a player becomes a recognized star, later ballots are read through an
+  established reputation. The chart therefore records both performance and the
+  durability of recognition.</p>
 
-  <p>There is a second pattern worth seeing: how few players the word
-  &ldquo;great&rdquo; is allowed to touch at all. In 2025, roughly 156 players held
-  WNBA roster spots. Thirteen received even a single MVP vote.</p>
-</div>
+  <h2>What awards make visible</h2>
+  <p>Career totals capture repeated excellence, but they privilege qualities that have a
+  named category and a surviving record. Shooting, defense, rebounding, wins, and
+  all-league selections are legible to the archive. Leadership, communication, screens,
+  role flexibility, and the labor of making teammates better are much harder to count.
+  Research on basketball performance also shows that winning depends on several
+  offensive and defensive measures rather than one dominant statistic (<a
+  href="https://doi.org/10.55860/DHNF1439">Uysal et al. 2026</a>).</p>
 
-<div class="chart-block">
-  <div class="chart-title">How many players does "greatness" reach?</div>
-  <div class="chart-sub">Of roughly 156 WNBA roster spots in 2025, players receiving at least one MVP vote &middot; Source: Across the Timeline award votes</div>
-  <div class="chart-box" style="height: 300px;"><canvas id="reachChart"></canvas></div>
-</div>
-
-<div class="story">
-  <p>Under one player in twelve. Everyone else &mdash; the defenders, the screeners,
-  the bench units that win championships in April &mdash; exists in the dataset only
-  as rows that received nothing. The archive doesn't say they weren't great; it simply
-  has no ballot line where their kind of greatness could be recorded.</p>
-
-  <p>And here is the humanistic turn: the dataset itself cannot fully show what it
-  leaves out. It has no column for leadership, for defensive gravity, for the screens
-  that free a shooter, or for the trust between teammates. When we &mdash; or the
-  voters &mdash; call someone great, we are partly measuring and partly believing. A
-  dataset built on rankings and box scores quietly teaches its users that greatness is
-  whatever the box score can hold.</p>
-
-  <h2>What we will investigate</h2>
-  <p>Using award votes, season statistics, and standings together, we will measure how
-  much of award recognition is explained by scoring, how much by team record, and how
-  much by defensive and playmaking statistics &mdash; across the league's full history,
-  not just one season. Where the numbers stop explaining, we will turn to our
-  <a href="data-critique.html">data critique</a>: the gaps in this dataset are not
-  accidents, and what it cannot count shapes what the sport remembers.</p>
+  <p>For that reason, this page does not treat the ranking as a final list of the
+  greatest players. It treats it as evidence about the league&rsquo;s definition of
+  greatness. As <a href="https://data-feminism.mitpress.mit.edu/">D&rsquo;Ignazio and
+  Klein</a> argue, data categories reflect choices about what is worth counting.
+  Official awards preserve important achievements, but they also narrow memory to the
+  achievements the ballot knows how to name.</p>
 </div>
 
 <div class="pager">
@@ -112,77 +99,6 @@
   Photographs from Wikimedia Commons &middot; <a href="sources.html">Sources</a>
 </footer>
 
-<script>
-
-  var slopeLabels = {
-    id: 'slopeLabels',
-    afterDatasetsDraw: function (chart) {
-      var ctx = chart.ctx;
-      ctx.save();
-      ctx.font = "700 12px 'Manrope', sans-serif";
-      chart.data.datasets.forEach(function (ds, di) {
-        var meta = chart.getDatasetMeta(di);
-        if (!meta.data.length) return;
-        var p0 = meta.data[0], p1 = meta.data[1];
-        ctx.fillStyle = ds.borderColor;
-        ctx.textAlign = 'right';
-        ctx.fillText(ds.label, p0.x - 10, p0.y + 4);
-        ctx.textAlign = 'left';
-        ctx.fillText('#' + ds.data[1], p1.x + 10, p1.y + 4);
-      });
-      ctx.restore();
-    }
-  };
-
-  lazyChart('rankChart', function () { return {
-    type: 'line',
-    data: {
-      labels: ['MVP vote rank', 'Scoring rank'],
-      datasets: [
-        { label: "1st \u00b7 A'ja Wilson", data: [1, 1], borderColor: '#ef4e31', backgroundColor: '#ef4e31', pointRadius: 5 },
-        { label: '2nd \u00b7 Napheesa Collier', data: [2, 7], borderColor: '#f2c94c', backgroundColor: '#f2c94c', pointRadius: 5 },
-        { label: '3rd \u00b7 Alyssa Thomas', data: [3, 16], borderColor: '#9c6644', backgroundColor: '#9c6644', pointRadius: 5 },
-        { label: '4th \u00b7 Allisha Gray', data: [4, 6], borderColor: '#4f7ebd', backgroundColor: '#4f7ebd', pointRadius: 5 },
-        { label: '5th \u00b7 Kelsey Mitchell', data: [5, 2], borderColor: '#111716', backgroundColor: '#111716', pointRadius: 5 }
-      ]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      layout: { padding: { left: 150, right: 60 } },
-      plugins: {
-        legend: { display: false },
-        tooltip: { callbacks: { label: function (ctx) {
-          return ctx.dataset.label + ' \u2014 ' + ctx.label + ': #' + ctx.raw;
-        } } }
-      },
-      scales: {
-        y: { reverse: true, min: 0, max: 17, title: { display: true, text: 'Rank (1 = best)' }, ticks: { stepSize: 2 } },
-        x: { grid: { display: false } }
-      }
-    },
-    plugins: [slopeLabels]
-  }; });
-
-  lazyChart('reachChart', function () { return {
-    type: 'doughnut',
-    data: {
-      labels: ['Received at least one MVP vote (13)', 'Received none (~143)'],
-      datasets: [{
-        data: [13, 143],
-        backgroundColor: ['#ef4e31', '#d7dfdc'],
-        borderWidth: 0
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      cutout: '62%',
-      plugins: { legend: { position: 'right' } }
-    }
-  }; });
-</script>
-
-<script src="site.js"></script>
+<script src="site.js?v=15"></script>
 </body>
 </html>

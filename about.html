@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About — Data Point Guards</title>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=15">
 </head>
 <body>
 
@@ -35,69 +35,229 @@
 </div>
 
 <div class="story">
-  <p>This website was created for Digital Humanities 101 at UCLA. Our project explores
-  the history of women&rsquo;s professional basketball through data from
-  <a href="https://www.acrossthetimeline.com/">Across the Timeline</a>, a comprehensive
-  archive of WNBA statistics covering player transactions, attendance, drafts, awards,
-  and expert surveys from the league&rsquo;s founding in 1997 to the present.</p>
-  <p>Rather than treating these numbers as neutral facts, we approach them with a
-  humanistic lens: following a player&rsquo;s journey &mdash; from college, through the
-  draft, to professional recognition &mdash; and asking at each step what the data
-  reveals, and what it hides. The site&rsquo;s six research chapters each pursue one
-  of the research questions our team developed together, all asking one bigger
-  question: how does the WNBA decide which players and teams matter?</p>
+  <p class="about-lead">Data Point Guards is a student digital humanities project
+  created for Digital Humanities 101 at UCLA. We study WNBA success through
+  attendance, draft position, career length, on-court performance, and awards. Placing
+  those measures beside one another lets us ask when they agree, when they conflict,
+  and whose value becomes visible when one measure is treated as more authoritative
+  than another.</p>
+  <p>Johanna Drucker describes a digital humanities project as a movement from
+  <strong>materials</strong>, through <strong>processing</strong>, to
+  <strong>presentation</strong>. She also warns that technical choices at every stage
+  carry interpretive and ethical consequences (<a
+  href="https://www.routledge.com/9780367565756">Drucker 2021, 1&ndash;4</a>). The
+  following account makes our choices at all three levels explicit.</p>
 
-  <h2>Nguyen Ngo &middot; Project Manager</h2>
-  <p>Nguyen leads the team&rsquo;s planning and communication: tracking milestones,
-  running meetings, documenting decisions, and serving as the bridge between the team,
-  the professor, and the TA. He authored two of the project&rsquo;s research questions
-  &mdash; on market size and attendance, and on the college-to-professional
-  transition &mdash; and wrote the opening section of the data critique, which maps
-  everything the dataset contains. When a deadline is at risk, Nguyen is the one who
-  notices first. <em></em></p>
+  <div class="dh-levels">
+    <section class="dh-level">
+      <div class="level-number">Level 1</div>
+      <h2>Sources</h2>
+      <p>Our principal born-digital source is
+      <a href="https://www.acrossthetimeline.com/">Across the Timeline</a>, an
+      independently maintained public archive of women&rsquo;s basketball records.
+      We used its WNBA attendance, schedules and standings, drafts and draft lotteries,
+      player statistics, awards and award votes, All-Star selections, GM surveys, and
+      NCAA Division I rankings and tournament records. The archive covers the WNBA from
+      its first season in 1997, allowing comparisons across teams, players, cities, and
+      seasons. We supplemented those records with U.S. Census metropolitan-area data,
+      official WNBA draft and award records, Basketball Reference season tables,
+      eighteen scholarly sources, and credited photographs. The complete citations and
+      annotations appear on the <a href="sources.html">Sources page</a>.</p>
 
-  <h2>Yuan Gao &middot; Web Designer</h2>
-  <p>Yuan designed and built this website from the ground up: the site&rsquo;s
-  architecture, its editorial visual style, the scrollytelling homepage, and the
-  interactive charts &mdash; hand-coded in HTML, CSS, and JavaScript and published
-  through GitHub Pages, with the whole team collaborating through version control he
-  set up. He authored the research question behind the Awards chapter &mdash; whether
-  recognition matches performance &mdash; and contributed the data critique&rsquo;s
-  analysis of how the dataset&rsquo;s organization shapes what users see.
-  <em></em></p>
+      <h3>Why these sources</h3>
+      <p>Across the Timeline was selected because it places many kinds of WNBA records
+      in one searchable archive. That breadth supports our central comparison: official
+      recognition, public attendance, draft expectations, career outcomes, and
+      performance do not necessarily define success in the same way. Scholarly sources
+      give us explanations that the numerical archive cannot supply, including research
+      on popularity, decision-making bias, labor, gender, and the economics of women&rsquo;s
+      professional basketball.</p>
 
-  <h2>Mariana Rosas &middot; Content Developer</h2>
-  <p>Mariana oversees the site&rsquo;s narrative: the written voice that turns charts
-  and tables into a story, section headers, captions, and the connective text between
-  visualizations. She authored the research questions behind The League chapter &mdash;
-  how the WNBA&rsquo;s growth has changed opportunities for women in sports &mdash; and
-  the Greatness chapter, which asks how the dataset&rsquo;s focus on rankings and
-  statistics shapes the very definition of greatness in women&rsquo;s basketball.
-  <em></em></p>
+      <h3>What the source cannot settle</h3>
+      <p>We do not treat the archive as a neutral or complete record. Its categories
+      privilege events that institutions already count: games played, points scored,
+      votes cast, players drafted, and seats filled. It contains far less about injuries,
+      family decisions, contracts, coaching judgments, marketing, fan experience, or the
+      reasons behind a trade or waiver. Michel-Rolph Trouillot locates historical silence
+      in the making of sources, archives, narratives, and later historical significance;
+      those silences are already present before we make a chart (<a
+      href="https://www.beacon.org/Silencing-the-Past-P2496.aspx">Trouillot 1995,
+      26&ndash;29</a>). Catherine D&rsquo;Ignazio and Lauren F. Klein similarly argue
+      that data must be read in context and through questions about power: who does the
+      work, who benefits, and whose priorities are counted (<a
+      href="https://data-feminism.mitpress.mit.edu/">D&rsquo;Ignazio and Klein 2020,
+      17&ndash;18</a>). These principles led us to state limitations beside our claims
+      instead of presenting the dataset as the whole story.</p>
+    </section>
 
-  <h2>Ryu Ohnogi &middot; Data Visualization Specialist</h2>
-  <p>Ryu is responsible for the project&rsquo;s visual analysis: choosing the right
-  chart for each claim, preparing data in visualization-ready form, and building the
-  team&rsquo;s Tableau work. He authored the research question behind The Draft
-  chapter &mdash; whether strategic losing actually pays off &mdash; including the
-  methodological challenge of defining &ldquo;tanking&rdquo; measurably rather than
-  subjectively. <em></em></p>
+    <section class="dh-level">
+      <div class="level-number">Level 2</div>
+      <h2>Processing</h2>
+      <p>Each researcher began with a defined humanities question and selected only the
+      relevant records from the larger archive. We standardized player, franchise, and
+      season labels; checked missing or inconsistent values; filtered records by the
+      period being studied; and calculated comparisons such as season totals, vote
+      shares, ranks, career length, and changes in attendance. Spreadsheet work and
+      Tableau supported cleaning, exploration, and early visualization. Final values
+      were checked against the source records before being transferred into the website.</p>
 
-  <h2>Sang Han &middot; Data Specialist</h2>
-  <p>Sang oversees the cleaning, refining, and augmenting of the group&rsquo;s dataset:
-  standardizing player and team names across three decades of records, handling missing
-  values, and joining tables so that drafts, careers, and awards can be analyzed
-  together. Every chart on this site will ultimately rest on data he has verified.
-  He is also contributing the data critique&rsquo;s section on what the dataset cannot
-  reveal. <em></em></p>
+      <p>The published site uses a deliberately legible technical structure. Five
+      completed team visualizations are preserved as exported figures so the website
+      reproduces the exact labels, scales, annotations, and map design approved by the
+      researchers. The sixth visualization &mdash; a five-season follow-up of the first
+      twenty 2020 draft selections &mdash; stores its labels, team status, and 2025 win
+      totals beside its Chart.js configuration. The league chronology is structured as
+      semantic HTML and styled as a scroll-responsive timeline.</p>
 
-  <h2>Makenzie White &middot; Editor</h2>
-  <p>Makenzie ensures the project reads as one voice rather than six: consistency of
-  design and terminology, readability, accessibility, and the final pass on every page
-  before it goes live. She authored the research questions on career longevity &mdash;
-  what the physical demands of the professional game mean for how long careers
-  last &mdash; and on what actually drives box-office demand, both woven into the
-  site&rsquo;s chapters. <em></em></p>
+      <h3>Why we processed the data this way</h3>
+      <p>We chose a transparent, question-by-question workflow instead of an opaque
+      automated pipeline because the project is small, interpretive, and intended to be
+      checked by other students. Drucker describes processing as a potential
+      &ldquo;black box&rdquo; and emphasizes that computational procedures always contain
+      intellectual models (<a href="https://www.routledge.com/9780367565756">Drucker
+      2021, 1&ndash;4</a>). Keeping the transformations simple makes our assumptions
+      easier to audit. The cleaning and chart-selection guidance in
+      <a href="https://trinachi.github.io/data-design-builds/"><em>Data + Design</em></a>
+      also shaped our practice of checking formats, labels, and missing values before
+      deciding how much information each visualization should display.</p>
+
+      <p>This choice has a tradeoff: the final site is a documented snapshot, not a live
+      connection to the archive. It loads reliably without a data server and preserves
+      the values used in our argument, but a future season must be added and checked
+      manually. Calculated measures also remain interpretations. For example, points
+      measure scoring rather than total contribution, and a franchise&rsquo;s most recent
+      attendance season does not make every historical city directly comparable.</p>
+    </section>
+
+    <section class="dh-level">
+      <div class="level-number">Level 3</div>
+      <h2>Presentation</h2>
+      <p>The project is presented as a static, responsive website built with semantic
+      HTML, CSS, and JavaScript. Six topic pages preserve the team&rsquo;s six research
+      questions: College to Pros, The Draft, Attendance, Awards, The League, and
+      Greatness. Across those pages, the project presents five data visualizations, one
+      map, and one timeline. A separate Data Critique examines the archive&rsquo;s
+      ontology, while this About page documents method and labor and the Sources page
+      records evidence and image credits. The site can be hosted as ordinary files
+      without a database or application server.</p>
+
+      <p>Our presentation places interpretation beside evidence. Visualizations appear
+      inside the narrative rather than in a detached gallery; captions state the
+      measure, time period, and clickable source; and the shared visual system uses
+      consistent typography, spacing, and color. Interaction is limited to places where
+      it adds information: draft-chart hover values, the scroll-responsive timeline,
+      and expandable bibliography annotations. Responsive layouts, keyboard-accessible
+      navigation, reduced-motion support, lazy-loaded images, and readable text widths
+      were included so the argument remains usable across devices.</p>
+
+      <h3>Why we presented the project this way</h3>
+      <p>Drucker argues that presentation is not a neutral final wrapper: an interface
+      creates hierarchy by deciding what is revealed, emphasized, or concealed (<a
+      href="https://www.routledge.com/9780367565756">Drucker 2021, 1&ndash;4</a>). We
+      therefore kept the research questions visible, used one page per member&rsquo;s
+      topic, and linked every visualization to explanatory prose. A hand-built static
+      site gave us more control over that hierarchy than a fixed template and made the
+      project portable. The design still guides attention, so the Data Critique and full
+      bibliography remain in the primary navigation rather than being hidden as technical
+      appendices.</p>
+    </section>
+  </div>
+
+  <section class="team-section">
+    <div class="section-kicker">People and labor</div>
+    <h2>Team and Responsibilities</h2>
+    <p>Every member developed one research topic and also held a project-wide role. The
+    following record distinguishes those responsibilities so the labor behind the site
+    remains visible.</p>
+
+    <div class="team-list">
+      <section class="profile">
+        <h3>Nguyen Ngo</h3>
+        <p class="member-role">Project Manager</p>
+        <p>Nguyen coordinated milestones, meetings, and team communication. He developed
+        the question comparing attendance across markets, selected the attendance records
+        used in that analysis, and wrote the interpretation connecting league-wide trends,
+        franchise location, and local support.</p>
+      </section>
+
+      <section class="profile">
+        <h3>Yuan Gao</h3>
+        <p class="member-role">Web Designer</p>
+        <p>Yuan developed the question about whether awards and expert opinions reflect
+        on-court performance. He prepared the award-vote, scoring, and GM-survey
+        comparisons and their narrative. He also designed and integrated the website:
+        information architecture, responsive interface, HTML and CSS, visualization
+        placement, source links, captions, and cross-device testing.</p>
+      </section>
+
+      <section class="profile">
+        <h3>Mariana Rosas</h3>
+        <p class="member-role">Content Developer</p>
+        <p>Mariana developed the question about how rankings, awards, and statistics shape
+        definitions of greatness. She selected and interpreted the visual evidence for
+        that topic, wrote the Greatness narrative, and contributed connective language
+        that helps the project move from numerical comparison to humanistic critique.</p>
+      </section>
+
+      <section class="profile">
+        <h3>Ryu Ohnogi</h3>
+        <p class="member-role">Data Visualization Specialist</p>
+        <p>Ryu developed the question about what top draft picks deliver to a franchise.
+        He selected the wins, attendance, draft-position, and MVP-outcome measures,
+        prepared visualization-ready comparisons and Tableau prototypes, and wrote the
+        Draft analysis explaining why a valuable pick is still not a guaranteed outcome.</p>
+      </section>
+
+      <section class="profile">
+        <h3>Sang Han</h3>
+        <p class="member-role">Data Specialist</p>
+        <p>Sang developed the question about how college success translates into a WNBA
+        career. He selected and cleaned the NCAA and WNBA records needed to compare
+        scoring, draft position, and career length, checked player and season labels, and
+        wrote the College to Pros narrative and source interpretation.</p>
+      </section>
+
+      <section class="profile">
+        <h3>Makenzie White</h3>
+        <p class="member-role">Editor</p>
+        <p>Makenzie developed the question about how WNBA growth changes opportunities
+        for women in sports. She researched expansion, contraction, compensation, and
+        league milestones; drafted the League narrative and timeline material; and edited
+        terminology and prose so the six contributions read as one project.</p>
+      </section>
+    </div>
+  </section>
+
+  <section class="about-acknowledgments">
+    <div class="section-kicker">Project support</div>
+    <h2>Acknowledgments</h2>
+    <p>We thank course instructor Jordan Galczynski and grader Pietro Santachiara.</p>
+    <p>The web designer used ChatGPT and Claude during the website development process.
+    All AI-assisted work was reviewed and verified by the web designer.</p>
+  </section>
+
+  <section class="about-readings">
+    <div class="section-kicker">Course context</div>
+    <h2>Class Readings Cited</h2>
+    <ol>
+      <li>Drucker, Johanna. <a
+      href="https://www.routledge.com/9780367565756"><em>The Digital Humanities
+      Coursebook: An Introduction to Digital Methods for Research and
+      Scholarship</em></a>. New York: Routledge, 2021, 1&ndash;4.</li>
+      <li>Trouillot, Michel-Rolph. <a
+      href="https://www.beacon.org/Silencing-the-Past-P2496.aspx"><em>Silencing the
+      Past: Power and the Production of History</em></a>. Boston: Beacon Press, 1995,
+      26&ndash;29.</li>
+      <li>D&rsquo;Ignazio, Catherine, and Lauren F. Klein. <a
+      href="https://data-feminism.mitpress.mit.edu/"><em>Data Feminism</em></a>.
+      Cambridge, MA: MIT Press, 2020, 17&ndash;18.</li>
+      <li>Chiasson, Trina, Dyanna Gregory, and contributors. <a
+      href="https://trinachi.github.io/data-design-builds/"><em>Data + Design: A Simple
+      Introduction to Preparing and Visualizing Information</em></a>. Infoactive and
+      Donald W. Reynolds Journalism Institute, 2014.</li>
+    </ol>
+  </section>
+
 </div>
 
 <div class="pager">
@@ -119,6 +279,6 @@
   });
 </script>
 
-<script src="site.js"></script>
+<script src="site.js?v=15"></script>
 </body>
 </html>

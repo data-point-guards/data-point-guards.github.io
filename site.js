@@ -57,18 +57,104 @@
     image.decoding = 'async';
   });
 
-  if (page === 'about') {
-    var story = document.querySelector('.story');
-    if (story) {
-      story.querySelectorAll('h2').forEach(function (heading) {
-        var paragraph = heading.nextElementSibling;
-        if (!paragraph || paragraph.tagName !== 'P') return;
-        var profile = document.createElement('section');
-        profile.className = 'profile';
-        story.insertBefore(profile, heading);
-        profile.appendChild(heading);
-        profile.appendChild(paragraph);
+  if (page === 'sources') {
+    var annotations = document.querySelectorAll('.bib .annotation');
+    if (annotations.length) {
+      var annotatedBib = annotations[0].parentElement;
+      var detailsItems = [];
+      annotatedBib.classList.add('annotated-bib');
+
+      var toolbar = document.createElement('div');
+      toolbar.className = 'bib-toolbar';
+      toolbar.setAttribute('aria-label', 'Annotation controls');
+
+      var count = document.createElement('div');
+      count.className = 'bib-count';
+      count.textContent = annotations.length + ' annotated sources';
+
+      var controls = document.createElement('div');
+      controls.className = 'bib-controls';
+
+      var expandAll = document.createElement('button');
+      expandAll.type = 'button';
+      expandAll.textContent = 'Expand all';
+
+      var collapseAll = document.createElement('button');
+      collapseAll.type = 'button';
+      collapseAll.textContent = 'Collapse all';
+
+      controls.appendChild(expandAll);
+      controls.appendChild(collapseAll);
+      toolbar.appendChild(count);
+      toolbar.appendChild(controls);
+      annotatedBib.parentNode.insertBefore(toolbar, annotatedBib);
+
+      annotations.forEach(function (annotation) {
+        var citation = annotation.previousElementSibling;
+        if (!citation || !citation.classList.contains('ref')) return;
+
+        var entry = document.createElement('article');
+        entry.className = 'bib-entry';
+        citation.parentNode.insertBefore(entry, citation);
+        entry.appendChild(citation);
+
+        var details = document.createElement('details');
+        details.className = 'annotation-details';
+
+        var summary = document.createElement('summary');
+        var label = document.createElement('span');
+        label.className = 'annotation-summary-label';
+        label.textContent = 'Read annotation';
+
+        var icon = document.createElement('span');
+        icon.className = 'annotation-summary-icon';
+        icon.setAttribute('aria-hidden', 'true');
+
+        summary.appendChild(label);
+        summary.appendChild(icon);
+        details.appendChild(summary);
+        details.appendChild(annotation);
+        entry.appendChild(details);
+        detailsItems.push(details);
+
+        details.addEventListener('toggle', function () {
+          label.textContent = details.open ? 'Hide annotation' : 'Read annotation';
+          syncControls();
+        });
       });
+
+      function syncControls() {
+        var openCount = detailsItems.filter(function (details) {
+          return details.open;
+        }).length;
+        expandAll.disabled = openCount === detailsItems.length;
+        collapseAll.disabled = openCount === 0;
+      }
+
+      expandAll.addEventListener('click', function () {
+        detailsItems.forEach(function (details) { details.open = true; });
+        syncControls();
+      });
+
+      collapseAll.addEventListener('click', function () {
+        detailsItems.forEach(function (details) { details.open = false; });
+        syncControls();
+      });
+
+      var printStates = [];
+      window.addEventListener('beforeprint', function () {
+        printStates = detailsItems.map(function (details) { return details.open; });
+        detailsItems.forEach(function (details) { details.open = true; });
+      });
+
+      window.addEventListener('afterprint', function () {
+        detailsItems.forEach(function (details, index) {
+          details.open = printStates[index];
+        });
+        syncControls();
+      });
+
+      syncControls();
     }
   }
 

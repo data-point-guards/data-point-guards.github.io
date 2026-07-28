@@ -4,10 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The League — Data Point Guards</title>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
-<script src="charts.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=15">
 </head>
 <body>
 
@@ -51,13 +49,18 @@
   three-time champions were relocated to a smaller market. For fifteen years afterward
   the league held at exactly twelve teams &mdash; a long plateau in which every roster
   spot was scarce and every franchise's survival was an achievement. Now the map is
-  growing again: Golden State in 2025, Toronto and Portland in 2026.</p>
+  growing again: Golden State in 2025, Toronto and Portland in 2026. The chronology
+  below was checked against <a href="https://www.acrossthetimeline.com/">Across the
+  Timeline</a> and official <a href="https://www.wnba.com/history">WNBA history
+  records</a>.</p>
 </div>
 
 <div class="story">
   <h2>Three decades, one line</h2>
   <p>Scroll, and the league's life draws itself: orange for arrivals, gray for
-  the franchises that vanished, blue for the ones that moved.</p>
+  the franchises that vanished, blue for the ones that moved. This is the site&rsquo;s
+  single timeline; its photographs and event-level sources are linked inside each
+  entry.</p>
 </div>
 
 <div class="timeline" id="leagueTimeline">
@@ -174,52 +177,27 @@
   </div>
 </div>
 
-<div class="chart-block">
-  <div class="chart-title">Three decades of expansion and contraction</div>
-  <div class="chart-sub">Number of WNBA teams by season &middot; Source: Across the Timeline</div>
-  <div class="chart-box"><canvas id="teamsChart"></canvas></div>
-</div>
-
 <div class="story">
   <p>Each team is roughly twelve roster spots: when the league contracts, careers end
   overnight; when it expands, doors open. But opportunity is not only about roster
   spots &mdash; it is about whether a player can afford to stay. For most of league
   history, salaries were low enough that stars spent every offseason playing overseas.
-  The 2020 collective bargaining agreement began to change that.</p>
-</div>
+  The 2020 collective bargaining agreement began to change that structure by raising
+  compensation and improving working conditions (<a
+  href="https://www.wnba.com/news/wnba-and-wnbpa-reach-tentative-agreement-on-groundbreaking-eight-year-collective-bargaining-agreement">WNBA
+  and WNBPA 2020</a>).</p>
 
-<div class="chart-block">
-  <div class="chart-title">What the best-paid player could earn</div>
-  <div class="chart-sub">WNBA maximum salary, selected seasons &middot; Source: league CBA reports</div>
-  <div class="chart-box"><canvas id="salaryChart"></canvas></div>
-</div>
+  <h2>What the timeline shows</h2>
+  <p>Growth has not been a smooth upward line. The early expansion created more teams,
+  contraction removed jobs even from championship franchises, relocation shifted
+  opportunity between cities, and the long twelve-team plateau kept roster space
+  scarce. The return of expansion changes that opportunity again, but the history warns
+  against treating a new franchise as permanent by default.</p>
 
-<div class="story">
-  <h2>What we will investigate</h2>
-  <p>We will trace how the league's growth changed opportunities for women in sports
-  over time: how many players got to have WNBA careers in each era, what happened to the
-  players of folded franchises (visible in the transaction records as sudden dispersals),
-  and how economic conditions &mdash; salaries, roster limits, the overseas offseason
-  economy &mdash; shaped players' decisions. For most of league history, even stars
-  spent their winters playing in Russia, Turkey, or China because the overseas salary
-  dwarfed the domestic one; the 2020 agreement began reversing that, which means the
-  data should show a measurable shift in who plays where, and for how long.</p>
-
-  <p>Growth also changed what fills arenas. Using attendance and transaction data
-  around star arrivals, rivalries, and versatile do-everything players, we will test
-  whether individual stardom, versatility, or team rivalry dictates box-office
-  demand &mdash; and whether that popularity gives today's players an autonomy inside
-  the sport that earlier generations never had: the leverage to choose teams, command
-  marketing, and skip the overseas winter entirely.</p>
-
-  <h2>Why it matters</h2>
-  <p>Every contraction on the chart above is a set of careers cut short, and every
-  expansion is a set of careers made possible &mdash; roughly twelve jobs per
-  franchise. When the league shrank, champions were dispersed by lottery; when it
-  grows, new cities inherit the chance that Houston and Sacramento lost. Tracking the
-  league's growth is therefore not business trivia: it is the history of how much
-  room this country made for professional women's basketball, measured one franchise
-  at a time.</p>
+  <p>The timeline is therefore more than league business history. It shows how
+  institutional decisions determine where professional careers can exist, which cities
+  retain their basketball history, and how much room the sport makes for women to stay
+  in the profession.</p>
 </div>
 
 <div class="pager">
@@ -257,52 +235,8 @@
     draw();
   })();
 
-  lazyChart('teamsChart', function () { return {
-    type: 'line',
-    data: {
-      labels: ['1997', '1998', '1999', '2000', '2003', '2006', '2009', '2010', '2015', '2020', '2024', '2025', '2026'],
-      datasets: [{
-        label: 'Teams',
-        data: [8, 10, 12, 16, 14, 14, 13, 12, 12, 12, 12, 13, 15],
-        borderColor: '#111716',
-        backgroundColor: 'rgba(29,53,87,0.08)',
-        fill: true,
-        stepped: true,
-        pointRadius: 3
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
-      pluginNotes: [
-        { x: '2000', y: 16, text: 'Peak: 16 teams', dx: 10, dy: -6, align: 'left' },
-        { x: '2010', y: 12, text: 'After the contractions', dx: 8, dy: 20, align: 'left' },
-        { x: '2026', y: 15, text: 'Expansion returns', dx: -10, dy: -10, align: 'right' }
-      ],
-      scales: { y: { beginAtZero: true, title: { display: true, text: 'Teams' }, ticks: { stepSize: 2 } } }
-    }
-  }; });
-
-  lazyChart('salaryChart', function () { return {
-    type: 'bar',
-    data: {
-      labels: ['2019 (before CBA)', '2020 (new CBA)', '2025'],
-      datasets: [{
-        data: [117500, 215000, 249244],
-        backgroundColor: ['#4f7ebd', '#f2c94c', '#ef4e31']
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
-      scales: { y: { beginAtZero: true, title: { display: true, text: 'Maximum salary (USD)' },
-        ticks: { callback: function (v) { return '$' + (v / 1000) + 'k'; } } } }
-    }
-  }; });
 </script>
 
-<script src="site.js"></script>
+<script src="site.js?v=15"></script>
 </body>
 </html>

@@ -4,10 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>College to Pros — Data Point Guards</title>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
-<script src="charts.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=15">
 </head>
 <body class="page-college">
 
@@ -43,66 +41,35 @@
 </figure>
 
 <div class="story">
-  <p>By the time she left Iowa, Caitlin Clark had scored more points than anyone in the
-  history of major college basketball &mdash; men's or women's. The record she broke had
-  stood since 1970.</p>
-</div>
+  <p>College success makes a player visible, but it does not answer what happens after
+  draft night. Research on WNBA selection finds that scoring and Final Four experience
+  can improve draft position, while draft position itself explains only a small share
+  of later professional performance (<a
+  href="https://doi.org/10.1177/155862351501000401">Harris and Berri 2015</a>).
+  The qualities that attract attention in March are therefore not identical to the
+  qualities that sustain a professional career.</p>
 
-<div class="chart-block">
-  <div class="chart-title">The all-time college scoring list</div>
-  <div class="chart-sub">NCAA Division I career points &middot; Source: NCAA records</div>
-  <div class="chart-box"><canvas id="scoringChart"></canvas></div>
-</div>
+  <h2>From promise to opportunity</h2>
+  <p>The transition is also shaped by access. First-round selections are less likely to
+  leave the league or take a career break, which may reflect both ability and the longer
+  opportunity teams give to players in whom they have invested (<a
+  href="https://doi.org/10.1177/15270025231190647">Jepsen 2023</a>). Injury can narrow
+  that opportunity further: one matched study found substantially shorter WNBA careers
+  among players who entered the league with a prior ACL reconstruction (<a
+  href="https://doi.org/10.1177/23259671211009248">Tramer et al. 2021</a>).</p>
 
-<div class="story">
-  <p>But college greatness is a promise, not a guarantee. The history of the draft is
-  full of tournament heroes who faded in the professional game, and of overlooked
-  role players who became champions. Clark delivered on the promise immediately;
-  many before her did not.</p>
+  <p>These findings change how we read the college-to-pro pipeline. A short professional
+  career does not automatically prove that a college player was overrated, just as a
+  long career does not result from college fame alone. Draft position, roster scarcity,
+  health, team fit, and repeated chances all sit between college performance and the
+  professional record.</p>
 
-  <p>And even for those who make it, the question becomes how long they can last. The
-  professional game is faster, more physical, and less forgiving than college &mdash;
-  most WNBA careers are measured in a handful of seasons, not decades. Yet some No. 1
-  picks played on for fifteen years or more.</p>
-</div>
-
-<div class="chart-block">
-  <div class="chart-title">How long does a No. 1 pick last?</div>
-  <div class="chart-sub">WNBA seasons played by selected first overall picks &middot; Source: Across the Timeline</div>
-  <div class="chart-box"><canvas id="longevityChart"></canvas></div>
-</div>
-
-<div class="story">
-  <h2>What we will investigate</h2>
-  <p>We will link each drafted player's college and her school's NCAA tournament runs
-  (Sweet 16 and beyond) to complete WNBA careers, and test each part of our question in
-  turn. First, translation: do players from deep tournament runs have longer, better
-  professional careers, or does March fame inflate draft position beyond what the
-  professional game rewards? Second, depletion: do college stars maintain their
-  statistics after the draft, or do the numbers fall as they move from being the
-  centerpiece of a college offense to one professional among twelve? The transition is
-  brutal by design &mdash; a rookie arrives weeks after her college season ends, joins
-  a shorter roster of stronger athletes, and plays a faster game with a deeper
-  three-point line. Third, valuation: which colleges the league trusts, visible in
-  three decades of draft boards, and whether that trust is earned by the programs or
-  merely by their television exposure.</p>
-
-  <p>Finally, durability. The career-length data lets us ask whether the players who
-  arrive with the heaviest college workloads and the highest expectations are also the
-  ones whose careers end soonest &mdash; whether injury and accumulated wear, the
-  invisible cost of two thousand college minutes a year, show up later as shortened
-  professional lives. The chart above already hints that even No. 1 picks live very
-  different career lengths; the full analysis will ask what separates the nineteen-year
-  careers from the three-year ones.</p>
-
-  <h2>Why it matters</h2>
-  <p>The college-to-pro pipeline is where the sport decides whose story continues.
-  Every spring, dozens of decorated college players simply stop appearing in the
-  data &mdash; not because they stopped being good, but because the league has fewer
-  than 160 jobs. Asking how tournament success translates is really asking how fair
-  that filter is: whether it rewards sustained excellence or one famous March, and
-  whether the players asked to carry the college game's popularity pay for it later
-  with their bodies. A league is only as healthy as its pipeline is honest.</p>
+  <h2>How this connects to our data</h2>
+  <p>The next page follows the first twenty selections from the 2020 WNBA Draft into
+  the 2025 season. That comparison does not turn team wins into an individual grade.
+  Instead, it makes two parts of the transition visible: who still appeared in the
+  league five seasons later, and what competitive context surrounded those players.
+  The draft is a forecast; a career is the much longer test.</p>
 </div>
 
 <div class="pager">
@@ -116,52 +83,6 @@
   Photographs from Wikimedia Commons &middot; <a href="sources.html">Sources</a>
 </footer>
 
-<script>
-
-  lazyChart('scoringChart', function () { return {
-    type: 'bar',
-    data: {
-      labels: ['Caitlin Clark (Iowa, 2024)', 'Pete Maravich (LSU, 1970)', 'Lynette Woodard (Kansas, 1981)', 'Kelsey Plum (Washington, 2017)'],
-      datasets: [{
-        data: [3951, 3667, 3649, 3527],
-        backgroundColor: ['#ef4e31', '#4f7ebd', '#4f7ebd', '#4f7ebd']
-      }]
-    },
-    options: {
-      indexAxis: 'y',
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
-      scales: { x: { beginAtZero: true, title: { display: true, text: 'Career points' } } }
-    }
-  }; });
-
-  lazyChart('longevityChart', function () { return {
-    type: 'bar',
-    data: {
-      labels: ['Tina Thompson (1997)', 'Sue Bird (2002)', 'Candace Parker (2008)', 'Maya Moore (2011)', 'Brittney Griner (2013)', 'Breanna Stewart (2016)'],
-      datasets: [{
-        data: [17, 19, 16, 8, 11, 9],
-        backgroundColor: ['#4f7ebd', '#ef4e31', '#4f7ebd', '#f2c94c', '#4f7ebd', '#4f7ebd']
-      }]
-    },
-    options: {
-      indexAxis: 'y',
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: { callbacks: { afterLabel: function (ctx) {
-          if (ctx.label.indexOf('Maya Moore') === 0) return 'Stepped away at her peak, age 29';
-          if (ctx.label.indexOf('Sue Bird') === 0) return 'Longest career of any No. 1 pick';
-          return '';
-        } } }
-      },
-      scales: { x: { beginAtZero: true, title: { display: true, text: 'WNBA seasons played' } } }
-    }
-  }; });
-</script>
-
-<script src="site.js"></script>
+<script src="site.js?v=15"></script>
 </body>
 </html>
