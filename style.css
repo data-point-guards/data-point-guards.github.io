@@ -1552,3 +1552,27 @@ footer a {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* TimelineJS embed */
+.timeline-embed {
+  width: min(1200px, calc(100% - 48px));
+  margin: 48px auto 40px;
+}
+
+.timeline-embed iframe {
+  display: block;
+  width: 100%;
+  min-height: 650px;
+  border: 0;
+}
+
+@media (max-width: 640px) {
+  .timeline-embed {
+    width: calc(100% - 32px);
+    margin-top: 32px;
+  }
+
+  .timeline-embed iframe {
+    min-height: 600px;
+  }
+}
