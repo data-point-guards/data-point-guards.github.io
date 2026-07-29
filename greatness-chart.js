@@ -68,6 +68,16 @@
     }
   ];
 
+  var mutedColors = {
+    'mvp': '#707876',
+    'all-wnba-first': '#838b89',
+    'all-defensive-first': '#969d9b',
+    'all-wnba-second': '#a9afad',
+    'all-defensive-second': '#bcc1bf',
+    'player-month': '#cfd3d2',
+    'player-week': '#e1e4e3'
+  };
+
   function baseTotalAt(index) {
     return datasets.reduce(function (sum, dataset) {
       return sum + dataset.data[index];
@@ -97,10 +107,28 @@
     });
 
     chart.data.labels = order.map(function (index) { return labels[index]; });
-    chart.data.datasets.forEach(function (chartDataset, datasetIndex) {
+    var chartDatasetsByKey = {};
+    chart.data.datasets.forEach(function (chartDataset) {
+      chartDatasetsByKey[chartDataset.sortKey] = chartDataset;
+    });
+
+    var stackOrder = selectedDataset
+      ? [selectedDataset].concat(datasets.filter(function (dataset) {
+        return dataset.sortKey !== selectedDataset.sortKey;
+      }))
+      : datasets;
+
+    chart.data.datasets = stackOrder.map(function (baseDataset) {
+      var chartDataset = chartDatasetsByKey[baseDataset.sortKey];
       chartDataset.data = order.map(function (index) {
-        return datasets[datasetIndex].data[index];
+        return baseDataset.data[index];
       });
+      chartDataset.backgroundColor = selectedDataset
+        ? (baseDataset.sortKey === selectedDataset.sortKey
+          ? baseDataset.backgroundColor
+          : mutedColors[baseDataset.sortKey])
+        : baseDataset.backgroundColor;
+      return chartDataset;
     });
     chart.update();
 
@@ -114,7 +142,8 @@
     if (status) {
       status.textContent = sortKey === 'total'
         ? 'Players ordered by total selections.'
-        : 'Players ordered by ' + selectedDataset.label + ' selections.';
+        : 'Players ordered by ' + selectedDataset.label
+          + ' selections, highlighted at the baseline.';
     }
   }
 
@@ -171,8 +200,7 @@
         datasets: datasets.map(function (dataset) {
           return Object.assign({
             stack: 'career-awards',
-            borderColor: '#ffffff',
-            borderWidth: 1,
+            borderWidth: 0,
             borderSkipped: false,
             barPercentage: horizontal ? 0.76 : 0.82,
             categoryPercentage: horizontal ? 0.82 : 0.86
