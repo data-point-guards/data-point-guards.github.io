@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Greatness — Data Point Guards</title>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=15">
+<link rel="stylesheet" href="style.css?v=25">
+<script src="chart.umd.min.js"></script>
+<script src="charts.js?v=24"></script>
 </head>
 <body>
 
@@ -53,23 +55,50 @@
   their WNBA careers.</p>
 </div>
 
-<section class="chart-block">
+<section class="chart-block greatness-chart-block">
   <div class="chart-title">WNBA players with the most career awards</div>
-  <div class="chart-sub">Total official career awards in the assembled league record.</div>
-  <div class="viz-media">
-    <img src="viz-career-awards.png" alt="Horizontal bar chart titled WNBA Players with the Most Career Awards, comparing twenty highly awarded players">
+  <div class="chart-sub">Total recorded selections across the seven award categories
+  included in this dataset.</div>
+  <div class="award-sort" role="group" aria-label="Reorder players by award category">
+    <span class="award-sort-label">Reorder players by:</span>
+    <button type="button" class="award-sort-button is-active" data-award-sort="total"
+      aria-pressed="true"><span class="award-sort-swatch award-sort-total"></span>Total</button>
+    <button type="button" class="award-sort-button" data-award-sort="mvp"
+      aria-pressed="false"><span class="award-sort-swatch" style="--swatch:#4e79a7"></span>MVP</button>
+    <button type="button" class="award-sort-button" data-award-sort="all-wnba-first"
+      aria-pressed="false"><span class="award-sort-swatch" style="--swatch:#f28e2b"></span>All-WNBA First</button>
+    <button type="button" class="award-sort-button" data-award-sort="all-defensive-first"
+      aria-pressed="false"><span class="award-sort-swatch" style="--swatch:#59a14f"></span>All-Defensive First</button>
+    <button type="button" class="award-sort-button" data-award-sort="all-wnba-second"
+      aria-pressed="false"><span class="award-sort-swatch" style="--swatch:#ffbe7d"></span>All-WNBA Second</button>
+    <button type="button" class="award-sort-button" data-award-sort="all-defensive-second"
+      aria-pressed="false"><span class="award-sort-swatch" style="--swatch:#8cd17d"></span>All-Defensive Second</button>
+    <button type="button" class="award-sort-button" data-award-sort="player-month"
+      aria-pressed="false"><span class="award-sort-swatch" style="--swatch:#499894"></span>Player of the Month</button>
+    <button type="button" class="award-sort-button" data-award-sort="player-week"
+      aria-pressed="false"><span class="award-sort-swatch" style="--swatch:#f1ce63"></span>Player of the Week</button>
+    <span class="visually-hidden" id="award-sort-status" aria-live="polite">Players ordered
+    by total selections.</span>
   </div>
+  <div class="chart-box greatness-chart-box">
+    <canvas id="careerAwardsChart" role="img"
+      aria-label="Stacked bar chart comparing twenty WNBA players across Player of the Week, Player of the Month, MVP, All-WNBA, and All-Defensive selections."></canvas>
+  </div>
+  <p class="chart-note">Each selection is counted once. Weekly and monthly awards are
+  offered more frequently than season-level honors, so totals represent recognition
+  volume rather than a weighted measure of greatness.</p>
   <p class="viz-source">Source:
   <a href="https://www.acrossthetimeline.com/">Across the Timeline awards records</a>.
   Visualization by Mariana Rosas.</p>
 </section>
 
 <div class="story">
-  <p>The distribution is concentrated. The leading totals reach 33 and 30, while many
-  players in this already elite group remain in the low teens. Awards build on one
-  another: once a player becomes a recognized star, later ballots are read through an
-  established reputation. The chart therefore records both performance and the
-  durability of recognition.</p>
+  <p>The stacks separate the kinds of recognition hidden inside a single career total.
+  Across these seven categories, A&rsquo;ja Wilson reaches 60 selections, Tina Charles
+  59, and Tamika Catchings 50. The composition matters as much as the height: recurring
+  weekly and monthly awards create many more opportunities to be counted than
+  season-level honors. The chart therefore records performance, repeated visibility,
+  and the durability of recognition.</p>
 
   <h2>What awards make visible</h2>
   <p>Career totals capture repeated excellence, but they privilege qualities that have a
@@ -100,5 +129,6 @@
 </footer>
 
 <script src="site.js?v=15"></script>
+<script src="greatness-chart.js?v=25"></script>
 </body>
 </html>

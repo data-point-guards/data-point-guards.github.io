@@ -36,6 +36,18 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
 body.menu-open {
   overflow: hidden;
 }
@@ -492,6 +504,98 @@ figcaption .credit {
 
 .chart-box.chart-box-tall {
   height: 720px;
+}
+
+.greatness-chart-box {
+  height: 660px;
+  margin-top: 4px;
+}
+
+.greatness-chart-block {
+  width: min(1120px, calc(100% - 48px));
+}
+
+.award-sort {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin: 2px 0 18px;
+  font-family: var(--sans);
+}
+
+.award-sort-label {
+  margin-right: 2px;
+  color: var(--ink-faint);
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.award-sort-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 30px;
+  padding: 5px 8px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: #f7f9f8;
+  color: var(--ink-faint);
+  font: 700 0.61rem/1.2 var(--sans);
+  cursor: pointer;
+  transition: border-color 150ms ease, background-color 150ms ease,
+    color 150ms ease, box-shadow 150ms ease;
+}
+
+.award-sort-button:hover {
+  border-color: #aeb8b5;
+  background: #fff;
+  color: var(--ink);
+}
+
+.award-sort-button:focus-visible {
+  outline: 3px solid rgba(239, 78, 49, 0.25);
+  outline-offset: 2px;
+}
+
+.award-sort-button.is-active {
+  border-color: var(--ink);
+  background: #fff;
+  color: var(--ink);
+  box-shadow: inset 0 -2px 0 var(--ink);
+}
+
+.award-sort-swatch {
+  width: 11px;
+  height: 11px;
+  flex: 0 0 11px;
+  border: 1px solid rgba(17, 23, 22, 0.14);
+  border-radius: 3px;
+  background: var(--swatch);
+}
+
+.award-sort-total {
+  background: linear-gradient(
+    135deg,
+    #4e79a7 0 18%,
+    #f28e2b 18% 32%,
+    #59a14f 32% 46%,
+    #ffbe7d 46% 60%,
+    #8cd17d 60% 73%,
+    #499894 73% 86%,
+    #f1ce63 86% 100%
+  );
+}
+
+.chart-note {
+  max-width: 760px;
+  margin: 16px 0 0;
+  padding-left: 14px;
+  border-left: 3px solid var(--accent);
+  color: var(--ink-faint);
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  line-height: 1.6;
 }
 
 .data-table {
@@ -1380,6 +1484,25 @@ footer a {
 
   .chart-box.chart-box-tall {
     height: 760px;
+  }
+
+  .greatness-chart-box {
+    height: 1120px;
+  }
+
+  .award-sort {
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+
+  .award-sort-label {
+    width: 100%;
+  }
+
+  .award-sort-button {
+    min-height: 32px;
+    padding-inline: 7px;
+    font-size: 0.58rem;
   }
 
   .map-box {
