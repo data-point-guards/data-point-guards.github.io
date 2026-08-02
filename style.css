@@ -1158,6 +1158,30 @@ figcaption .credit {
   text-transform: uppercase;
 }
 
+.page-about .profile.has-photo {
+  display: grid;
+  grid-template-columns: 116px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.page-about .profile-photo {
+  display: block;
+  width: 116px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 34%;
+  border-radius: 4px;
+}
+
+.page-about .profile-photo-yuan {
+  object-position: center 28%;
+}
+
+.page-about .profile-copy {
+  min-width: 0;
+}
+
 .page-about .story {
   width: min(980px, calc(100% - 48px));
 }
@@ -1445,6 +1469,15 @@ footer a {
 
   .team-list {
     grid-template-columns: 1fr;
+  }
+
+  .page-about .profile.has-photo {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .page-about .profile-photo {
+    width: 104px;
   }
 
   .bib-toolbar {
