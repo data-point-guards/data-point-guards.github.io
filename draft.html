@@ -5,9 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Draft — Data Point Guards</title>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=15">
-<script src="chart.umd.min.js"></script>
-<script src="charts.js?v=15"></script>
+<link rel="stylesheet" href="style.css?v=16">
 </head>
 <body>
 
@@ -15,7 +13,7 @@
 
 <div class="masthead">
   <div class="brand"><a href="index.html">Data Point Guards</a></div>
-  <div class="tagline">Beyond the Box Score &middot; DH 101, UCLA</div>
+  <div class="tagline">Rethinking the Box Score &middot; DH 101, UCLA</div>
 </div>
 
 <nav>
@@ -34,9 +32,8 @@
 <div class="page-head">
   <div class="kicker">The Draft</div>
   <h1>What does a top draft pick really buy?</h1>
-  <p class="dek"><em>&ldquo;Five seasons later, where were the first twenty players
-  selected in the 2020 WNBA Draft, and how many games did their 2025 teams
-  win?&rdquo;</em></p>
+  <p class="dek"><em>&ldquo;How does securing top three draft picks correlate with changes in
+  home game attendance and broadcast viewership over the subsequent three seasons?&rdquo;</em></p>
 </div>
 
 <figure>
@@ -45,49 +42,63 @@
 </figure>
 
 <div class="story">
-  <p>Draft order is the league&rsquo;s clearest public forecast of future value. To test
-  how that forecast ages, we followed the first twenty selections from the
-  <a href="https://www.wnba.com/draft/2020/board">2020 WNBA Draft</a> into the 2025
-  season. Five years is long enough to move beyond a rookie adjustment while remaining
-  within the requested five-to-ten-year window.</p>
+  <p>Draft order is the league&rsquo;s clearest public forecast of future value. A top-three
+  selection can also create attention beyond the court by giving fans a new reason to
+  follow a team. This visualization compares average home attendance before each
+  top-three selection with attendance three seasons later for draft years from 2010
+  through 2021.</p>
 </div>
 
-<div class="chart-block">
-  <div class="chart-title">Where the 2020 top 20 stood five seasons later</div>
-  <div class="chart-sub">2025 regular-season wins for each active player&rsquo;s team; gray
-  labels mark players without a 2025 WNBA appearance. Team wins describe competitive
-  context, not individual performance.</div>
-  <div class="chart-box chart-box-tall"><canvas id="draftFollowupChart"></canvas></div>
-  <p class="viz-source">Sources:
-  <a href="https://www.wnba.com/draft/2020/board">2020 WNBA Draft board</a>,
-  <a href="https://www.basketball-reference.com/wnba/years/2025_per_game.html">2025 player appearances</a>,
-  and <a href="https://www.basketball-reference.com/wnba/years/2025.html">2025 final standings</a>.
-  Team abbreviations identify the player&rsquo;s 2025 team.</p>
-</div>
+<section class="chart-block">
+  <div class="chart-title">A top-three draft pick usually fills seats&mdash;but not always</div>
+  <div class="chart-sub">Average home attendance in the season before each top-three
+  pick compared with attendance three seasons later, 2010&ndash;2021.</div>
+  <div class="viz-media tableau-scroll-mobile">
+    <div class="tableauPlaceholder" id="tableau-draft-attendance">
+      <noscript>
+        <a href="https://public.tableau.com/app/profile/ryu.ohnogi/viz/DH_DPG_Draft/Sheet1">
+          <img src="https://public.tableau.com/static/images/DH/DH_DPG_Draft/Sheet1/1_rss.png" alt="Dumbbell chart comparing home attendance before and after top-three WNBA draft picks">
+        </a>
+      </noscript>
+      <object class="tableauViz">
+        <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F">
+        <param name="embed_code_version" value="3">
+        <param name="site_root" value="">
+        <param name="name" value="DH_DPG_Draft/Sheet1">
+        <param name="tabs" value="no">
+        <param name="toolbar" value="yes">
+        <param name="static_image" value="https://public.tableau.com/static/images/DH/DH_DPG_Draft/Sheet1/1.png">
+        <param name="animate_transition" value="yes">
+        <param name="display_static_image" value="yes">
+        <param name="display_spinner" value="yes">
+        <param name="display_overlay" value="yes">
+        <param name="display_count" value="yes">
+        <param name="language" value="en-US">
+        <param name="filter" value="publish=yes">
+      </object>
+    </div>
+  </div>
+  <p class="viz-source">Visualization and data details by
+  <a href="https://public.tableau.com/app/profile/ryu.ohnogi/viz/DH_DPG_Draft/Sheet1">Ryu Ohnogi on Tableau Public</a>.</p>
+</section>
 
 <div class="story">
-  <p>Only five of the first twenty selections appeared in 2025 WNBA statistics:
-  Sabrina Ionescu, Satou Sabally, Tyasha Harris, Kitija Laksa, and Joyner Holmes.
-  Their teams ranged from ten wins in Dallas to thirty in Las Vegas. The spread is the
-  important result: an early selection neither guarantees a place in the league five
-  seasons later nor places a surviving player in the same competitive situation.</p>
+  <p>Most of the comparisons move toward higher attendance, while several move in the
+  opposite direction. The pattern suggests that a highly drafted player can help bring
+  more people to the arena, but the pick does not guarantee long-term attendance growth.</p>
 
   <h2>What the chart can and cannot show</h2>
-  <p>The graph deliberately separates <strong>career persistence</strong> from
-  <strong>team context</strong>. A player receives no personal credit for every team
-  win, and a player absent from 2025 statistics is not automatically a failed pick.
-  Injury, retirement, overseas play, roster limits, and team decisions can all remove
-  a player from the season table. Research likewise finds that teams often value
-  college scoring and tournament visibility even when those signals are weak predictors
-  of professional performance (<a
-  href="https://doi.org/10.1177/155862351501000401">Harris and Berri 2015</a>).</p>
+  <p>The graph shows a before-and-after relationship, not proof that a single player
+  caused every change. Team performance, venue capacity, marketing, injuries, roster
+  changes, and local interest can also affect attendance. Research likewise finds that
+  draft position is an imperfect prediction of later professional performance (<a
+  href="https://doi.org/10.1177/155862351501000401">Harris and Berri 2015</a>), so a
+  high pick should be read as an expectation rather than a guaranteed result.</p>
 
-  <p>The comparison therefore answers a narrower and more defensible question than the
-  original draft-night hype: how durable was the league&rsquo;s ranking, and what team
-  environment surrounded the players who remained? The result shows why draft position
-  should be treated as an expectation rather than a career verdict. The limits of the
-  available records are discussed further in our <a href="data-critique.html">Data
-  Critique</a>.</p>
+  <p>The chart is most useful for showing how often attendance rose after teams invested
+  in a top-three selection and where that pattern did not hold. The limits of the
+  available records and the choices involved in comparing seasons are discussed further
+  in our <a href="data-critique.html">Data Critique</a>.</p>
 </div>
 
 <div class="pager">
@@ -102,101 +113,23 @@
 </footer>
 
 <script>
-  var draftTeams = [
-    'NYL', 'PHX', '', '', '', '', 'DAL', '', '', '', 'PHX', '', '', '', '', '',
-    '', '', 'LVA', ''
-  ];
+  (function () {
+    var embed = document.getElementById('tableau-draft-attendance');
+    var viz = embed.querySelector('object');
 
-  var draftStatusLabels = {
-    id: 'draftStatusLabels',
-    afterDatasetsDraw: function (chart) {
-      var ctx = chart.ctx;
-      var meta = chart.getDatasetMeta(0);
-      ctx.save();
-      ctx.font = "700 11px 'Manrope', sans-serif";
-      meta.data.forEach(function (bar, i) {
-        var active = draftTeams[i] !== '';
-        var compact = chart.width < 600;
-        ctx.fillStyle = active ? '#7a2a1b' : '#7b8582';
-        ctx.textAlign = 'left';
-        ctx.fillText(
-          active
-            ? draftTeams[i] + (compact ? ' ' : ' \u00b7 ') + chart.data.datasets[0].data[i] + (compact ? '' : ' wins')
-            : (compact ? 'Not in 2025' : 'No 2025 WNBA appearance'),
-          active ? bar.x + 7 : chart.scales.x.left + 7,
-          bar.y + 4
-        );
-      });
-      ctx.restore();
+    function sizeEmbed() {
+      var ratio = window.innerWidth < 700 ? 1.75 : 1.3;
+      viz.style.width = '100%';
+      viz.style.height = Math.max(820, Math.round(embed.offsetWidth * ratio)) + 'px';
     }
-  };
 
-  lazyChart('draftFollowupChart', function () { return {
-    type: 'bar',
-    data: {
-      labels: [
-        '1  Sabrina Ionescu', '2  Satou Sabally', '3  Lauren Cox',
-        '4  Chennedy Carter', '5  Bella Alarie', '6  Mikiah Herbert Harrigan',
-        '7  Tyasha Harris', '8  Ruthy Hebard', '9  Megan Walker',
-        '10  Jocelyn Willoughby', '11  Kitija Laksa', '12  Jazmine Jones',
-        '13  Kylee Shook', '14  Kathleen Doyle', '15  Leaonna Odom',
-        '16  Crystal Dangerfield', '17  Brittany Brewer', '18  Te\u2019a Cooper',
-        '19  Joyner Holmes', '20  Beatrice Mompremier'
-      ],
-      datasets: [{
-        label: '2025 team wins',
-        data: [27, 27, 0, 0, 0, 0, 10, 0, 0, 0, 27, 0, 0, 0, 0, 0, 0, 0, 30, 0],
-        backgroundColor: function (ctx) {
-          return draftTeams[ctx.dataIndex] ? '#ef4e31' : '#d7dfdc';
-        },
-        borderWidth: 0,
-        barPercentage: 0.72
-      }]
-    },
-    options: {
-      indexAxis: 'y',
-      responsive: true,
-      maintainAspectRatio: false,
-      layout: { padding: { right: window.innerWidth < 640 ? 42 : 118 } },
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          callbacks: {
-            title: function (items) { return items[0].label; },
-            label: function (ctx) {
-              return draftTeams[ctx.dataIndex]
-                ? draftTeams[ctx.dataIndex] + ': ' + ctx.raw + ' regular-season wins'
-                : 'No appearance in 2025 WNBA player statistics';
-            }
-          }
-        }
-      },
-      scales: {
-        x: {
-          beginAtZero: true,
-          max: 34,
-          title: { display: true, text: '2025 regular-season team wins' },
-          ticks: { stepSize: 5 }
-        },
-        y: {
-          grid: { display: false },
-          ticks: {
-            font: { size: window.innerWidth < 640 ? 9 : 11 },
-            callback: function (value) {
-              var label = this.getLabelForValue(value);
-              if (window.innerWidth >= 640) return label;
-              return label
-                .replace('Mikiah Herbert Harrigan', 'M. Herbert Harrigan')
-                .replace('Jocelyn Willoughby', 'J. Willoughby')
-                .replace('Crystal Dangerfield', 'C. Dangerfield')
-                .replace('Beatrice Mompremier', 'B. Mompremier');
-            }
-          }
-        }
-      }
-    },
-    plugins: [draftStatusLabels]
-  }; });
+    sizeEmbed();
+    window.addEventListener('resize', sizeEmbed);
+
+    var script = document.createElement('script');
+    script.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+    embed.appendChild(script);
+  }());
 </script>
 
 <script src="site.js?v=15"></script>

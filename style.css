@@ -1519,6 +1519,17 @@ footer a {
     height: 760px;
   }
 
+  .tableau-scroll-mobile {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tableau-scroll-mobile .tableauPlaceholder {
+    width: 760px;
+    max-width: none;
+  }
+
   .greatness-chart-box {
     height: 1120px;
   }
