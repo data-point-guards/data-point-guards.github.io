@@ -1350,20 +1350,19 @@ figcaption .credit {
 }
 
 .dh-levels {
-  margin-top: 58px;
+  margin-top: 48px;
   border-bottom: 1px solid var(--rule);
 }
 
 .dh-level {
   position: relative;
-  padding: 44px 0 50px 140px;
+  padding: 40px 0 44px;
   border-top: 2px solid var(--ink);
 }
 
 .dh-level .level-number {
-  position: absolute;
-  top: 52px;
-  left: 0;
+  width: min(760px, 100%);
+  margin: 0 auto 8px;
   color: var(--accent);
   font-family: var(--sans);
   font-size: 0.68rem;
@@ -1381,8 +1380,18 @@ figcaption .credit {
   border: 0;
 }
 
+.page-about .story > p,
+.dh-level h2,
+.dh-level h3,
+.dh-level p {
+  width: min(760px, 100%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .dh-level h3 {
-  margin: 32px 0 9px;
+  margin-top: 34px;
+  margin-bottom: 10px;
   color: var(--accent-dark);
   font-family: var(--sans);
   font-size: 0.72rem;
@@ -1392,8 +1401,9 @@ figcaption .credit {
 }
 
 .dh-level p {
-  font-size: 0.98rem;
-  line-height: 1.78;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  line-height: 1.72;
 }
 
 .section-kicker {
@@ -1627,12 +1637,11 @@ footer a {
   }
 
   .dh-level {
-    padding: 34px 0 40px;
+    padding: 32px 0 36px;
   }
 
   .dh-level .level-number {
-    position: static;
-    margin-bottom: 9px;
+    margin-bottom: 8px;
   }
 
   .team-list {

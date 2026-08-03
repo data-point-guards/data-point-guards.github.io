@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About — Data Point Guards</title>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=35">
+<link rel="stylesheet" href="style.css?v=36">
 </head>
 <body>
 
@@ -31,130 +31,187 @@
 </div>
 
 <div class="story">
-  <p class="about-lead">Data Point Guards is a student digital humanities project
-  created for Digital Humanities 101 at UCLA. We study WNBA success through
-  attendance, draft position, career length, on-court performance, and awards. Placing
-  those measures beside one another lets us ask when they agree, when they conflict,
-  and whose value becomes visible when one measure is treated as more authoritative
-  than another.</p>
-  <p>Johanna Drucker describes a digital humanities project as a movement from
-  <strong>materials</strong>, through <strong>processing</strong>, to
-  <strong>presentation</strong>. She also warns that technical choices at every stage
-  carry interpretive and ethical consequences (<a
-  href="https://www.routledge.com/9780367565756">Drucker 2021, 1&ndash;4</a>). The
-  following account makes our choices at all three levels explicit.</p>
+  <p>Data Point Guards is a student digital humanities project created for Digital
+  Humanities 101 at UCLA. Our project looks at how success is measured in the WNBA
+  through attendance, market size, draft position, college achievement, player
+  performance, league growth, and award recognition.</p>
+
+  <p>These measurements do not always tell the same story. A team in a large city does
+  not automatically fill its arena, a high draft pick does not guarantee a successful
+  career, and award voting may reflect more than individual statistics. By comparing
+  these areas, we wanted to show that success in the WNBA cannot be explained by one
+  number alone.</p>
+
+  <p>Our course described a digital humanities project through three main levels:
+  sources, processing, and presentation. Sources are the materials used to build the
+  project. Processing includes the choices made when selecting, organizing, comparing,
+  and interpreting those materials. Presentation is how the findings are communicated
+  to an audience through visualizations, written analysis, and the website itself.</p>
 
   <div class="dh-levels">
     <section class="dh-level">
       <div class="level-number">Level 1</div>
       <h2>Sources</h2>
-      <p>Our principal born-digital source is
-      <a href="https://www.acrossthetimeline.com/">Across the Timeline</a>, an
-      independently maintained public archive of women&rsquo;s basketball records.
-      We used its WNBA attendance, schedules and standings, drafts and draft lotteries,
-      player statistics, awards and award votes, All-Star selections, GM surveys, and
-      NCAA Division I rankings and tournament records. The archive covers the WNBA from
-      its first season in 1997, allowing comparisons across teams, players, cities, and
-      seasons. We supplemented those records with U.S. Census metropolitan-area data,
-      official WNBA draft and award records, Basketball Reference season tables,
-      eighteen scholarly sources, and credited photographs. The complete citations and
-      annotations appear on the <a href="sources.html">Sources page</a>.</p>
+      <p>Our main dataset came from <a href="https://www.acrossthetimeline.com/">Across
+      the Timeline</a>, a public digital archive of women&rsquo;s basketball records. We
+      used its information on WNBA attendance, venues, standings, drafts, player
+      statistics, awards, award voting, and NCAA tournament results. Since the archive
+      covers the league from its first season in 1997 through recent seasons, it allowed
+      us to compare teams, players, cities, and different periods in WNBA history.</p>
 
-      <h3>Why these sources</h3>
-      <p>Across the Timeline was selected because it places many kinds of WNBA records
-      in one searchable archive. That breadth supports our central comparison: official
-      recognition, public attendance, draft expectations, career outcomes, and
-      performance do not necessarily define success in the same way. Scholarly sources
-      give us explanations that the numerical archive cannot supply, including research
-      on popularity, decision-making bias, labor, gender, and the economics of women&rsquo;s
-      professional basketball.</p>
+      <p>We also used outside sources when our research questions required information
+      that was not included in the main dataset. <a
+      href="https://www.census.gov/programs-surveys/metro-micro.html">U.S. Census
+      metropolitan-area data</a> was used to compare the population of WNBA markets.
+      Official WNBA records and <a href="https://www.basketball-reference.com/wnba/">Basketball
+      Reference</a> provided additional information about drafts, awards, players, teams,
+      and league history. Scholarly articles gave us context about attendance, drafting,
+      career length, player evaluation, labor conditions, media visibility, and the
+      economics of women&rsquo;s professional sports. Photographs were taken from credited
+      sources such as Wikimedia Commons. Full citations for our data, research, and
+      images appear on the <a href="sources.html">Sources page</a>.</p>
 
-      <h3>What the source cannot settle</h3>
-      <p>We do not treat the archive as a neutral or complete record. Its categories
-      privilege events that institutions already count: games played, points scored,
-      votes cast, players drafted, and seats filled. It contains far less about injuries,
-      family decisions, contracts, coaching judgments, marketing, fan experience, or the
-      reasons behind a trade or waiver. Michel-Rolph Trouillot locates historical silence
-      in the making of sources, archives, narratives, and later historical significance;
-      those silences are already present before we make a chart (<a
-      href="https://www.beacon.org/Silencing-the-Past-P2496.aspx">Trouillot 1995,
-      26&ndash;29</a>). Catherine D&rsquo;Ignazio and Lauren F. Klein similarly argue
-      that data must be read in context and through questions about power: who does the
-      work, who benefits, and whose priorities are counted (<a
-      href="https://data-feminism.mitpress.mit.edu/">D&rsquo;Ignazio and Klein 2020,
-      17&ndash;18</a>). These principles led us to state limitations beside our claims
-      instead of presenting the dataset as the whole story.</p>
+      <h3>Why We Chose These Sources</h3>
+      <p>Across the Timeline was useful because it brings many different types of WNBA
+      information together in one archive. This allowed us to connect topics that are
+      often studied separately. For example, we could compare draft selections with later
+      attendance, NCAA results with rookie performance, and award voting with player
+      statistics.</p>
+
+      <p>However, numbers cannot explain every pattern on their own. Attendance data can
+      show that a crowd increased, but it cannot fully explain the effects of ticket
+      prices, marketing, media coverage, scheduling, or community support. Draft records
+      show where a player was selected, but they do not explain every reason a team valued
+      that player. Scholarly research helped us place the numerical patterns within larger
+      discussions about opportunity, gender, labor, popularity, and recognition.</p>
+
+      <h3>Limits and Silences in the Sources</h3>
+      <p>We do not treat the dataset as a complete or neutral record of the WNBA. It
+      mainly contains information that basketball organizations already record, such as
+      points, wins, attendance, votes, transactions, and draft selections. It contains
+      much less information about injuries, contracts, family decisions, coaching
+      judgments, marketing budgets, discrimination, fan experiences, or the reasons
+      behind trades, waivers, and career breaks.</p>
+
+      <p>Michel-Rolph Trouillot explains that silences enter history when sources are
+      created, when records are placed into archives, when facts are used to build
+      narratives, and when later audiences decide what is important. He argues that power
+      is already present at the source because some experiences are recorded while others
+      are not (<a href="#reading-trouillot">Trouillot 1995, 26&ndash;29</a>).</p>
+
+      <p>This applies to our project because the available categories influenced the
+      questions we could answer. Statistics make scoring, attendance, and awards visible,
+      while qualities such as leadership, teamwork, personal experience, and unequal
+      opportunity are harder to measure. Our visualizations should therefore be
+      understood as interpretations of the available data rather than complete
+      explanations of WNBA history. We discuss these issues further on the <a
+      href="data-critique.html">Data Critique page</a>.</p>
     </section>
 
     <section class="dh-level">
       <div class="level-number">Level 2</div>
       <h2>Processing</h2>
-      <p>Each researcher began with a defined humanities question and selected only the
-      relevant records from the larger archive. We standardized player, franchise, and
-      season labels; checked missing or inconsistent values; filtered records by the
-      period being studied; and calculated comparisons such as season totals, vote
-      shares, ranks, career length, and changes in attendance. Spreadsheet work and
-      Tableau supported cleaning, exploration, and early visualization. Final values
-      were checked against the source records before being transferred into the website.</p>
+      <p>Each research question required a different selection and organization of the
+      data. Rather than placing the entire archive into one visualization, team members
+      focused on the records related to their individual topics.</p>
 
-      <p>The published site uses a deliberately legible technical structure. Five
-      completed team visualizations are embedded from Tableau Public so the website
-      preserves the exact labels, scales, annotations, and map design approved by the
-      researchers. The league chronology is embedded from TimelineJS. Each visualization
-      remains connected to its public source and is placed directly beside the fixed
-      narrative that interprets it.</p>
+      <p>For the Draft section, top-three draft selections were connected with franchise
+      attendance figures. Attendance before and after the arrival of each player was
+      compared to show the direction and size of the change. The unusual conditions of
+      the 2020 WNBA bubble were explained instead of treating that season as a normal
+      attendance year.</p>
 
-      <h3>Why we processed the data this way</h3>
-      <p>We chose a transparent, question-by-question workflow instead of an opaque
-      automated pipeline because the project is small, interpretive, and intended to be
-      checked by other students. Drucker describes processing as a potential
-      &ldquo;black box&rdquo; and emphasizes that computational procedures always contain
-      intellectual models (<a href="https://www.routledge.com/9780367565756">Drucker
-      2021, 1&ndash;4</a>). Keeping the transformations simple makes our assumptions
-      easier to audit. The cleaning and chart-selection guidance in
-      <a href="https://trinachi.github.io/data-design-builds/"><em>Data + Design</em></a>
-      also shaped our practice of checking formats, labels, and missing values before
-      deciding how much information each visualization should display.</p>
+      <p>For the Attendance section, arena attendance and seating capacity were considered
+      alongside metropolitan population. Markets were divided into three groups: small
+      markets with fewer than one million people, medium markets with one to five million
+      people, and large markets with more than five million people. Teams that played in
+      different venues remained separate because the arenas did not have the same
+      capacity. We used occupancy rate, or the percentage of available seats filled, so
+      that smaller and larger arenas could be compared more fairly. Another visualization
+      compared regular-season winning percentage with average home attendance across the
+      three market groups.</p>
 
-      <p>This choice has a tradeoff: the final site is a documented snapshot, not a live
-      connection to the archive. It loads reliably without a data server and preserves
-      the values used in our argument, but a future season must be added and checked
-      manually. Calculated measures also remain interpretations. For example, points
-      measure scoring rather than total contribution, and a franchise&rsquo;s most recent
-      attendance season does not make every historical city directly comparable.</p>
+      <p>For the College to Pros section, 2025 rookie points per game were compared with
+      draft position. Color was used to show how far each player&rsquo;s college team
+      advanced in the NCAA tournament. This allowed us to examine how college success,
+      draft opportunity, and early professional performance were connected.</p>
+
+      <p>For the Awards section, 2025 MVP voting points were organized by player. The
+      written analysis compared the voting results with statistics such as scoring,
+      assists, efficiency, and team success. For the League section, selected moments
+      involving attendance, expansion, labor agreements, and professional opportunities
+      were arranged chronologically with TimelineJS.</p>
+
+      <p>Tableau Public was used for the draft, attendance, college, and MVP
+      visualizations. The historical timeline was made with TimelineJS.</p>
+
+      <h3>Why We Processed the Data This Way</h3>
+      <p>Nathan Yau explains that visual exploration should begin by asking what
+      information is available and what the researcher wants to learn from it. The visual
+      form should follow the question instead of being chosen only because it looks
+      interesting (<a href="#reading-yau">Yau 2013, 137&ndash;49</a>).</p>
+
+      <p>We followed this approach by using different visual forms for different
+      questions. A dumbbell chart makes the change between two attendance values easy to
+      see. A map helps readers examine the relationship between teams and location.
+      Scatterplots help show relationships between numerical variables, while bar charts
+      make differences in voting totals easier to compare. A timeline was useful because
+      league growth did not happen in a simple or uninterrupted direction.</p>
+
+      <p>These choices also have limits. Dividing markets into three groups makes the map
+      easier to read, but cities within the same category can still be very different.
+      Occupancy rate helps compare arenas, but it may hide unmet demand when a smaller
+      arena sells out. A change in attendance after a draft selection does not prove that
+      one player caused the change. Team performance, marketing, venue changes, and
+      broader league growth may also matter. In the same way, rookie scoring and award
+      voting represent only part of a player&rsquo;s overall value.</p>
+
+      <p>We kept these limitations in the written analysis instead of presenting the
+      visualizations as final or complete answers.</p>
     </section>
 
     <section class="dh-level">
       <div class="level-number">Level 3</div>
       <h2>Presentation</h2>
-      <p>The project is presented as a static, responsive website built with semantic
-      HTML, CSS, and JavaScript. Two overview pages organize the team&rsquo;s six research
-      topics. The Business connects The Draft, Attendance, and The League; The Game
-      connects College to Pros, Awards, and Greatness. Across those pages, the project
-      presents four charts, one map, and one timeline. A separate Data Critique examines the archive&rsquo;s
-      ontology, while this About page documents method and labor and the Sources page
-      records evidence and image credits. The site can be hosted as ordinary files
-      without a database or application server.</p>
+      <p>The project is presented as a responsive website built with HTML, CSS, and
+      JavaScript and hosted through GitHub Pages. The main navigation includes Home, The
+      Business, The Game, Data Critique, About, and Sources.</p>
 
-      <p>Our presentation places interpretation beside evidence. Visualizations appear
-      inside the narrative rather than in a detached gallery; captions state the
-      measure, time period, and clickable source; and the shared visual system uses
-      consistent typography, spacing, and color. Interaction is limited to places where
-      it adds information: Tableau exploration tools, the interactive timeline,
-      and expandable bibliography annotations. Responsive layouts, keyboard-accessible
-      navigation, reduced-motion support, lazy-loaded images, and readable text widths
-      were included so the argument remains usable across devices.</p>
+      <p>The research is divided into two larger paths. The Business contains Draft,
+      Attendance, and League, which focus on audience demand, franchise growth, market
+      conditions, and professional opportunities. The Game contains College to Pros,
+      Awards, and Greatness, which focus on player development, performance, recognition,
+      and the meaning of athletic greatness.</p>
 
-      <h3>Why we presented the project this way</h3>
-      <p>Drucker argues that presentation is not a neutral final wrapper: an interface
-      creates hierarchy by deciding what is revealed, emphasized, or concealed (<a
-      href="https://www.routledge.com/9780367565756">Drucker 2021, 1&ndash;4</a>). We
-      therefore kept the research questions visible, used one page per member&rsquo;s
-      topic, and linked every visualization to explanatory prose. A hand-built static
-      site gave us more control over that hierarchy than a fixed template and made the
-      project portable. The design still guides attention, so the Data Critique and full
-      bibliography remain in the primary navigation rather than being hidden as technical
-      appendices.</p>
+      <p>Most of the visualizations are embedded from Tableau Public. The league
+      chronology is embedded from TimelineJS. Each visualization appears close to the
+      written explanation of its question, findings, and limitations. This helps readers
+      understand not only what the chart shows, but also why the comparison matters.</p>
+
+      <h3>Why We Presented the Project This Way</h3>
+      <p>We chose a narrative website instead of presenting the visualizations as a
+      separate gallery because the charts need context. A chart can show a pattern, but
+      the surrounding writing explains the variables, historical background, and limits
+      of the conclusion. Dividing the project into Business and Game also allowed us to
+      connect the growth of the league with the way individual players are evaluated and
+      remembered.</p>
+
+      <p>The attendance map required additional choices. Todd Presner and David Shepard
+      explain that maps use abstraction, scale, coordinates, perspective, and symbols to
+      communicate relationships. They argue that maps make claims while also leaving out
+      other possible ways of representing the same information (<a
+      href="#reading-presner">Presner and Shepard 2016, 201&ndash;2</a>).</p>
+
+      <p>Our map is therefore more than a display of where teams are located. Dividing
+      cities into population groups, keeping venues separate, and using occupancy rate
+      creates an argument about the relationship between market size, arena capacity, and
+      fan support. Because those choices simplify the real world, we explain them beside
+      the map rather than presenting it as a neutral picture.</p>
+
+      <p>The website also includes responsive layouts, descriptive image text,
+      keyboard-accessible navigation, a skip-to-content link, readable text widths, and
+      reduced-motion support. These features were added so that the project would remain
+      understandable and usable across different devices and methods of navigation.</p>
     </section>
   </div>
 
@@ -183,7 +240,7 @@
           <p>As both a musician and a 4th year Stats and Data Science major,
           I bring a creative and experimental approach to data and design. I pay
           close attention to the small details that shape a website&rsquo;s visual style and user
-          experience. I also created the Awards and Greatness visualizations for this project.</p>
+          experience. I also created the Awards visualization for this project.</p>
         </div>
       </section>
 
@@ -255,12 +312,21 @@
 
   <section class="about-readings">
     <div class="section-kicker">Course context</div>
-    <h2>Class Readings Cited</h2>
+    <h2>Class Readings and Course Materials Cited</h2>
     <ol>
-      <li>Placeholder</li>
-      <li>Placeholder</li>
-      <li>Placeholder</li>
-      <li>Placeholder</li>
+      <li id="reading-galczynski">Galczynski, Jordan. &ldquo;Accessible Web Design &amp;
+      Final Thoughts.&rdquo; Digital Humanities 101. UCLA, Summer 2026.</li>
+      <li id="reading-presner">Presner, Todd, and David Shepard. &ldquo;Mapping the
+      Geospatial Turn.&rdquo; In <em>A New Companion to Digital Humanities</em>, edited by
+      Susan Schreibman, Ray Siemens, and John Unsworth, 201&ndash;212. Chichester, UK:
+      Wiley Blackwell, 2016.</li>
+      <li id="reading-trouillot">Trouillot, Michel-Rolph. &ldquo;The Power in the
+      Story.&rdquo; In <a href="https://www.beacon.org/Silencing-the-Past-P2496.aspx"><em>Silencing
+      the Past: Power and the Production of History</em></a>, 1&ndash;30. Boston: Beacon
+      Press, 1995.</li>
+      <li id="reading-yau">Yau, Nathan. &ldquo;Exploring Data Visually.&rdquo; In
+      <em>Data Points: Visualization That Means Something</em>, 137&ndash;159.
+      Indianapolis: John Wiley &amp; Sons, 2013.</li>
     </ol>
   </section>
 
