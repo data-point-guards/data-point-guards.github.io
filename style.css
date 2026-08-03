@@ -303,10 +303,6 @@ nav a.here {
   font-size: 1rem;
 }
 
-.story > p:first-child {
-  font-size: 1.12rem;
-}
-
 .story h2 {
   margin: 68px 0 18px;
   padding-top: 18px;
