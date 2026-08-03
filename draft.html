@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Draft — Data Point Guards</title>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=16">
+<link rel="stylesheet" href="style.css?v=34">
 </head>
 <body>
 
@@ -18,22 +18,23 @@
 
 <nav>
   <a href="index.html">Home</a>
-  <a href="college.html">College to Pros</a>
-  <a href="awards.html">Awards</a>
-  <a href="greatness.html">Greatness</a>
-  <a href="draft.html" class="here">The Draft</a>
-  <a href="attendance.html">Attendance</a>
-  <a href="league.html">The League</a>
+  <a href="business.html" class="here">The Business</a>
+  <a href="game.html">The Game</a>
   <a href="data-critique.html">Data Critique</a>
   <a href="about.html">About</a>
   <a href="sources.html">Sources</a>
 </nav>
 
+<div class="topic-nav" aria-label="The Business topics">
+  <a href="draft.html" class="current">The Draft</a>
+  <a href="attendance.html">Attendance</a>
+  <a href="league.html">The League</a>
+</div>
+
 <div class="page-head">
   <div class="kicker">The Draft</div>
   <h1>What does a top draft pick really buy?</h1>
-  <p class="dek"><em>&ldquo;How does securing top three draft picks correlate with changes in
-  home game attendance and broadcast viewership over the subsequent three seasons?&rdquo;</em></p>
+  <p class="dek"><em>&ldquo;How does securing top three draft picks correlate with changes in home game attendance over the subsequent three seasons?&rdquo;</em></p>
 </div>
 
 <figure>
@@ -42,11 +43,7 @@
 </figure>
 
 <div class="story">
-  <p>Draft order is the league&rsquo;s clearest public forecast of future value. A top-three
-  selection can also create attention beyond the court by giving fans a new reason to
-  follow a team. This visualization compares average home attendance before each
-  top-three selection with attendance three seasons later for draft years from 2010
-  through 2021.</p>
+  <p>*To investigate our first question, we will look at teams who were able to secure the top-three draft player picks. A team that establishes star-driven support works as an economic model that reliably accelerates franchise attendance, proving the WNBA's capabilities independent of the NBA to corporate sponsors (<a href="http://www.accessecon.com/Pubs/EB/2025/Volume45/EB-25-V45-I2-P68.pdf">Zimmer, Snyder, and Zimmer. 2025</a>). This influx of audience engagement should directly translate into higher league revenues, new career opportunities for female athletes via increased salaries and improved training infrastructure, yet a restructuring of the WNBA's relationship with the NBA needs to be made in order for this change (<a href="https://digitalcommons.pepperdine.edu/drlj/vol19/iss2/2/">Ettienne, L. 2019</a>).</p>
 </div>
 
 <section class="chart-block">
@@ -83,26 +80,15 @@
 </section>
 
 <div class="story">
-  <p>Most of the comparisons move toward higher attendance, while several move in the
-  opposite direction. The pattern suggests that a highly drafted player can help bring
-  more people to the arena, but the pick does not guarantee long-term attendance growth.</p>
+  <p>To visualize this phenomenon, we transformed the Across The Timeline dataset to plot franchise arenas alongside localized changes in demand of fan attendance by percentage; visualized by using Tableau. A connected bot plot, or dumbbell chart, was chosen because it made it easy to identify two interacting variables beyond the x and y axes &mdash;market scale (baseline Average Home Attendance) and growth velocity (increase or decrease).</p>
 
-  <h2>What the chart can and cannot show</h2>
-  <p>The graph shows a before-and-after relationship, not proof that a single player
-  caused every change. Team performance, venue capacity, marketing, injuries, roster
-  changes, and local interest can also affect attendance. Research likewise finds that
-  draft position is an imperfect prediction of later professional performance (<a
-  href="https://doi.org/10.1177/155862351501000401">Harris and Berri 2015</a>), so a
-  high pick should be read as an expectation rather than a guaranteed result.</p>
+  <p>In the chart, four players from the 2020 draft class show clear signs of an anomaly, due to the COVID-19 bubble that required The entire 2020 WNBA season to be played in a bio-secure bubble, with no fans in attendance. By excluding this anomaly, the visualization reveals a strong positive correlation where 75% of top-three draft picks drive immediate home attendance growth over subsequent seasons. This upward pattern indicates that acquiring elite collegiate talent acts as a powerful economic catalyst, transforming fan excitement into sustained ticket revenue.</p>
 
-  <p>The chart is most useful for showing how often attendance rose after teams invested
-  in a top-three selection and where that pattern did not hold. The limits of the
-  available records and the choices involved in comparing seasons are discussed further
-  in our <a href="data-critique.html">Data Critique</a>.</p>
+  <p>The points that had the highest surge in attendance is vividly illustrated by arrivals like Sabrina Lonescu and AD Durr, which acted as immediate ticket-selling catalysts. Conversely, the rare exceptions&mdash;where attendance flatlined or declined&mdash;highlight that rookies alone cannot overcome external constraints, such as the 2020 &ldquo;Bubble&rdquo; restrictions or localized franchise instability. Ultimately, the visualization proves that top-tier draft prospects serve as powerful economic and promotional engines capable of consistently expanding a franchise&rsquo;s local fanbase.</p>
 </div>
 
 <div class="pager">
-  <a href="greatness.html"><span>&larr; Previous</span>Greatness</a>
+  <a href="business.html"><span>&larr; Previous</span>The Business</a>
   <a href="attendance.html"><span>Next question &rarr;</span>Attendance</a>
 </div>
 
@@ -132,6 +118,6 @@
   }());
 </script>
 
-<script src="site.js?v=15"></script>
+<script src="site.js?v=16"></script>
 </body>
 </html>

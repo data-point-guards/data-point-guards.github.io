@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Attendance — Data Point Guards</title>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=16">
+<link rel="stylesheet" href="style.css?v=34">
 </head>
 <body>
 
@@ -18,16 +18,18 @@
 
 <nav>
   <a href="index.html">Home</a>
-  <a href="college.html">College to Pros</a>
-  <a href="awards.html">Awards</a>
-  <a href="greatness.html">Greatness</a>
-  <a href="draft.html">The Draft</a>
-  <a href="attendance.html" class="here">Attendance</a>
-  <a href="league.html">The League</a>
+  <a href="business.html" class="here">The Business</a>
+  <a href="game.html">The Game</a>
   <a href="data-critique.html">Data Critique</a>
   <a href="about.html">About</a>
   <a href="sources.html">Sources</a>
 </nav>
+
+<div class="topic-nav" aria-label="The Business topics">
+  <a href="draft.html">The Draft</a>
+  <a href="attendance.html" class="current">Attendance</a>
+  <a href="league.html">The League</a>
+</div>
 
 <div class="page-head">
   <div class="kicker">The Crowds</div>
@@ -39,16 +41,6 @@
   <img src="fig-attend.jpg" alt="A crowd fills Climate Pledge Arena for a Seattle Storm WNBA game">
   <figcaption>Climate Pledge Arena during a 2022 WNBA game between the Seattle Storm and Atlanta Dream. <span class="credit"><a href="https://commons.wikimedia.org/wiki/File:Seattle_Storm_vs_Atlanta_Dream_at_Climate_Pledge_Arena_(July_2022)_-_01.jpg">SounderBruce, Wikimedia Commons</a> (CC BY-SA 4.0)</span></figcaption>
 </figure>
-
-<div class="story">
-  <p>A large metropolitan population creates a large potential audience, but it does
-  not guarantee that a team will fill its building. To compare markets fairly, the map
-  uses <strong>occupancy rate</strong> &mdash; the share of available seats filled
-  &mdash; rather than raw attendance alone. City population categories come from
-  <a href="https://www.census.gov/programs-surveys/metro-micro.html">U.S. Census
-  metropolitan-area data</a>, while attendance and venue records come from
-  <a href="https://www.acrossthetimeline.com/">Across the Timeline</a>.</p>
-</div>
 
 <section class="chart-block">
   <div class="chart-title">WNBA arena occupancy rate by city</div>
@@ -84,17 +76,9 @@
 </section>
 
 <div class="story">
-  <p>The map does not produce a simple big-city advantage. Strong occupancy appears in
-  several market tiers, and some large metropolitan areas fill a smaller share of their
-  available seats than teams in mid-sized cities. This agrees with scholarship finding
-  that WNBA demand cannot be explained by population alone (<a
-  href="https://doi.org/10.32731/ijsf.181.022023.03">Agha and Berri 2023</a>).</p>
+  <p>*The second level of our research question examines how WNBA attendance varies across metropolitan areas of different sizes. As metropolitan areas vary considerably in population size, we categorized them into three groups: small (under 1M), medium (1M&ndash;5M), and large (over 5M) market tier, each assigned a corresponding color.</p>
 
-  <h2>Winning, market size, and the crowd</h2>
-  <p>The next view separates 120 team-seasons from 2010 through 2019 by market size and
-  compares regular-season winning percentage with average home attendance. The upward
-  lines show that winning generally helps, but the vertical separation between the
-  market groups is just as important.</p>
+  <p>A few teams appear at multiple points on the map because on occasion, home teams hosted their games in different areas. We kept the venues separate instead of combining their figures because their seating capacities were not the same. THis means Occupancy rates do not paint a full picture of consumer demand. To compare them, we looked at the share of available seats filled rather than attendance totals alone. Note an important caveat to this method; there now exists a silencing of possible market loss where demand exists beyond the capacity of smaller arenas.</p>
 </div>
 
 <section class="chart-block">
@@ -133,39 +117,11 @@
 </section>
 
 <div class="story">
-  <p>Across this decade, better teams generally drew larger crowds. Yet the trend lines
-  also show that mid-size markets often outdrew the largest markets at similar winning
-  percentages. Market size and team quality matter, but neither operates alone. The
-  live-game experience, promotion, scheduling, and community programming can also shape
-  demand in ways that a population count cannot capture (<a
-  href="https://doi.org/10.32731/ijsf.181.022023.03">Agha and Berri 2023</a>;
-  <a href="sources.html#johnson-bo-2023">Johnson and Bo 2023</a>).</p>
+  <p>By plotting WNBA team-season win percentages against home attendance averages we are able to confirm our original finding that market size is non linear and does not dictate arena ticket performance. mid-size markets sit above large markets across the entire range of win percentages, and small markets remain the lowest. This is imperative to highlight because it forestalls the conclusion that there is absolutely no correlation between market size and attendance, but one of the many factors.</p>
 
-  <h2>Average crowds can hide a team&rsquo;s ceiling</h2>
-  <p>A season average compresses every game into one number. Comparing each team&rsquo;s
-  average with its highest recorded attendance reveals how much larger the audience can
-  become for a particular opponent, venue, promotion, or moment.</p>
-</div>
+  <p>All three trend lines slope upward, indicating that winning is associated with higher attendance in every market tier. This indicates Winning has more leverage in selling tickets over market size.</p>
 
-<section class="chart-block">
-  <div class="chart-title">Average versus highest attendance by WNBA team</div>
-  <div class="chart-sub">Each point compares a team&rsquo;s average crowd with its
-  largest recorded crowd in the assembled attendance records.</div>
-  <div class="viz-media">
-    <img src="viz-attendance-average-high.png" alt="Scatterplot titled Average versus Highest Attendance by WNBA Team, with teams labeled by average and peak attendance">
-  </div>
-  <p class="viz-source">Source:
-  <a href="https://www.acrossthetimeline.com/">Across the Timeline attendance records</a>.
-  Visualization by Mariana Rosas.</p>
-</section>
-
-<div class="story">
-  <p>The distance between the average and the peak is evidence of unrealized or
-  event-specific demand, not a prediction that every game could reach the same crowd.
-  Arena capacity, neutral-site or relocated games, schedule differences, and reported
-  rather than turnstile attendance limit direct comparison. Taken together, the three
-  views support a careful conclusion: WNBA attendance is connected to winning and
-  market conditions, but city size by itself is not a reliable explanation.</p>
+  <p>Going back to our map of the dataset, High and low occupancy rates appear across all three population categories, suggesting that metropolitan size alone does not explain how successfully a WNBA team fills its arena and this is confirmed again when plotted on our graph with different information. Previous sports economic literature indicates that WNBA demand depends heavily on localized, game-day dynamics to explain this pattern. Traditional factors affecting demand for professional sporting events include the quality of the home and opposing teams, game promotions, economic considerations, and scheduling convenience. Two factors are especially relevant to this discourse: interactive activities, such as player appearances and fan participation, and advocacy programming connected to community and social causes. (<a href="sources.html#johnson-bo-2023">Johnson and Bo, 2023</a>) These components suggest that attendance numbers are driven by the team, game-day experience, and relationship with its community far more than the absolute size of the surrounding metropolitan population.</p>
 </div>
 
 <div class="pager">
@@ -179,7 +135,7 @@
   Photographs from Wikimedia Commons &middot; <a href="sources.html">Sources</a>
 </footer>
 
-<script src="site.js?v=15"></script>
+<script src="site.js?v=16"></script>
 <script>
   (function () {
     var embeds = document.querySelectorAll(".tableauPlaceholder");

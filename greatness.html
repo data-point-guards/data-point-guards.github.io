@@ -5,9 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Greatness — Data Point Guards</title>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=25">
-<script src="chart.umd.min.js"></script>
-<script src="charts.js?v=24"></script>
+<link rel="stylesheet" href="style.css?v=34">
 </head>
 <body>
 
@@ -20,16 +18,18 @@
 
 <nav>
   <a href="index.html">Home</a>
-  <a href="college.html">College to Pros</a>
-  <a href="awards.html">Awards</a>
-  <a href="greatness.html" class="here">Greatness</a>
-  <a href="draft.html">The Draft</a>
-  <a href="attendance.html">Attendance</a>
-  <a href="league.html">The League</a>
+  <a href="business.html">The Business</a>
+  <a href="game.html" class="here">The Game</a>
   <a href="data-critique.html">Data Critique</a>
   <a href="about.html">About</a>
   <a href="sources.html">Sources</a>
 </nav>
+
+<div class="topic-nav" aria-label="The Game topics">
+  <a href="college.html">College to Pros</a>
+  <a href="awards.html">Awards</a>
+  <a href="greatness.html" class="current">Greatness</a>
+</div>
 
 <div class="page-head">
   <div class="kicker">The Record</div>
@@ -48,78 +48,16 @@
 </figure>
 
 <div class="story">
-  <p>A career award total looks objective because it is a count. Yet the count begins
-  only after institutions decide which forms of excellence deserve an award, who is
-  eligible, and who receives a vote. The figure below brings those repeated decisions
-  together to show which players have accumulated the most official recognition across
-  their WNBA careers.</p>
-</div>
+  <p>The records of our data provide valuable insights into player performance and team success. It shows how greatness is measured and remembered. Emphasized in an article that researches data metrics: &ldquo;Findings reveal that the four factors hold for the WNBA, with Shooting being the most significant contributor, though Rebounding and Turnovers show distinct trends over time reflecting differences in gameplay&rdquo; (<a href="https://doi.org/10.21818/001c.133764">Moss et al, 2025</a>), helps demonstrate that statistical performance plays an important role in evaluating success.</p>
 
-<section class="chart-block greatness-chart-block">
-  <div class="chart-title">WNBA players with the most career awards</div>
-  <div class="chart-sub">Total recorded selections across the seven award categories
-  included in this dataset.</div>
-  <div class="award-sort" role="group" aria-label="Reorder players by award category">
-    <span class="award-sort-label">Reorder players by:</span>
-    <button type="button" class="award-sort-button is-active" data-award-sort="total"
-      aria-pressed="true"><span class="award-sort-swatch award-sort-total"></span>Total</button>
-    <button type="button" class="award-sort-button" data-award-sort="mvp"
-      aria-pressed="false"><span class="award-sort-swatch" style="--swatch:#4e79a7"></span>MVP</button>
-    <button type="button" class="award-sort-button" data-award-sort="all-wnba-first"
-      aria-pressed="false"><span class="award-sort-swatch" style="--swatch:#f28e2b"></span>All-WNBA First</button>
-    <button type="button" class="award-sort-button" data-award-sort="all-defensive-first"
-      aria-pressed="false"><span class="award-sort-swatch" style="--swatch:#59a14f"></span>All-Defensive First</button>
-    <button type="button" class="award-sort-button" data-award-sort="all-wnba-second"
-      aria-pressed="false"><span class="award-sort-swatch" style="--swatch:#ffbe7d"></span>All-WNBA Second</button>
-    <button type="button" class="award-sort-button" data-award-sort="all-defensive-second"
-      aria-pressed="false"><span class="award-sort-swatch" style="--swatch:#8cd17d"></span>All-Defensive Second</button>
-    <button type="button" class="award-sort-button" data-award-sort="player-month"
-      aria-pressed="false"><span class="award-sort-swatch" style="--swatch:#499894"></span>Player of the Month</button>
-    <button type="button" class="award-sort-button" data-award-sort="player-week"
-      aria-pressed="false"><span class="award-sort-swatch" style="--swatch:#f1ce63"></span>Player of the Week</button>
-    <span class="visually-hidden" id="award-sort-status" aria-live="polite">Players ordered
-    by total selections.</span>
-  </div>
-  <div class="chart-box greatness-chart-box">
-    <canvas id="careerAwardsChart" role="img"
-      aria-label="Stacked bar chart comparing twenty WNBA players across Player of the Week, Player of the Month, MVP, All-WNBA, and All-Defensive selections."></canvas>
-  </div>
-  <p class="chart-note">Each selection is counted once. Weekly and monthly awards are
-  offered more frequently than season-level honors, so totals represent recognition
-  volume rather than a weighted measure of greatness.</p>
-  <p class="viz-source">Source:
-  <a href="https://www.acrossthetimeline.com/">Across the Timeline awards records</a>.
-  Visualization by Yuan Gao.</p>
-</section>
+  <p>Greatness can not be explained through a single measure. The NCAA tournament success shows that advancing further in March Madness often increases a player&rsquo;s visibility and improves draft opportunities (<a href="https://doi.org/10.1177/155862351501000401">Harris &amp; Berri, 2015</a>). When comparing MVP voting with advanced player statistics, it is shown that award recognition generally reflects on great performance. The difference between voting results and statistical production such as media, team success, and player narrative also is a defining detail of who receives recognition.</p>
 
-<div class="story">
-  <p>The stacks separate the kinds of recognition hidden inside a single career total.
-  Across these seven categories, A&rsquo;ja Wilson reaches 60 selections, Tina Charles
-  59, and Tamika Catchings 50. The composition matters as much as the height: recurring
-  weekly and monthly awards create many more opportunities to be counted than
-  season-level honors. The chart therefore records performance, repeated visibility,
-  and the durability of recognition.</p>
-
-  <h2>What awards make visible</h2>
-  <p>Career totals capture repeated excellence, but they privilege qualities that have a
-  named category and a surviving record. Shooting, defense, rebounding, wins, and
-  all-league selections are legible to the archive. Leadership, communication, screens,
-  role flexibility, and the labor of making teammates better are much harder to count.
-  Research on basketball performance also shows that winning depends on several
-  offensive and defensive measures rather than one dominant statistic (<a
-  href="https://doi.org/10.55860/DHNF1439">Uysal et al. 2026</a>).</p>
-
-  <p>For that reason, this page does not treat the ranking as a final list of the
-  greatest players. It treats it as evidence about the league&rsquo;s definition of
-  greatness. As <a href="https://data-feminism.mitpress.mit.edu/">D&rsquo;Ignazio and
-  Klein</a> argue, data categories reflect choices about what is worth counting.
-  Official awards preserve important achievements, but they also narrow memory to the
-  achievements the ballot knows how to name.</p>
+  <p>Within the research process, it was read that authors such as Harris and Berri found highly visible achievements, such as NCAA tournament wins and high scoring, were not always the largest predictors of success in the WNBA. As when it comes to recognition, players must keep one thing in mind: they do not always match with their future performance, as performance is never always linear. Statistics that show shooting, rebounding, turnovers, and free throws enlighten how a team experiences success. Other key factors such as leadership and teamwork also play a role but it is challenging to measure. The way data is collected, organized, and interpreted influences the stories of athletes and how it is expressed.</p>
 </div>
 
 <div class="pager">
   <a href="awards.html"><span>&larr; Previous</span>Awards</a>
-  <a href="draft.html"><span>Next question &rarr;</span>The Draft</a>
+  <a href="data-critique.html"><span>Continue &rarr;</span>Data Critique</a>
 </div>
 
 <footer>
@@ -128,7 +66,6 @@
   Photographs from Wikimedia Commons &middot; <a href="sources.html">Sources</a>
 </footer>
 
-<script src="site.js?v=15"></script>
-<script src="greatness-chart.js?v=27"></script>
+<script src="site.js?v=16"></script>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About — Data Point Guards</title>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=15">
+<link rel="stylesheet" href="style.css?v=34">
 </head>
 <body>
 
@@ -18,12 +18,8 @@
 
 <nav>
   <a href="index.html">Home</a>
-  <a href="college.html">College to Pros</a>
-  <a href="awards.html">Awards</a>
-  <a href="greatness.html">Greatness</a>
-  <a href="draft.html">The Draft</a>
-  <a href="attendance.html">Attendance</a>
-  <a href="league.html">The League</a>
+  <a href="business.html">The Business</a>
+  <a href="game.html">The Game</a>
   <a href="data-critique.html">Data Critique</a>
   <a href="about.html" class="here">About</a>
   <a href="sources.html">Sources</a>
@@ -102,12 +98,11 @@
       were checked against the source records before being transferred into the website.</p>
 
       <p>The published site uses a deliberately legible technical structure. Five
-      completed team visualizations are preserved as exported figures so the website
-      reproduces the exact labels, scales, annotations, and map design approved by the
-      researchers. The sixth visualization &mdash; a five-season follow-up of the first
-      twenty 2020 draft selections &mdash; stores its labels, team status, and 2025 win
-      totals beside its Chart.js configuration. The league chronology is structured as
-      semantic HTML and styled as a scroll-responsive timeline.</p>
+      completed team visualizations are embedded from Tableau Public so the website
+      preserves the exact labels, scales, annotations, and map design approved by the
+      researchers. The league chronology is embedded from TimelineJS. Each visualization
+      remains connected to its public source and is placed directly beside the fixed
+      narrative that interprets it.</p>
 
       <h3>Why we processed the data this way</h3>
       <p>We chose a transparent, question-by-question workflow instead of an opaque
@@ -133,10 +128,10 @@
       <div class="level-number">Level 3</div>
       <h2>Presentation</h2>
       <p>The project is presented as a static, responsive website built with semantic
-      HTML, CSS, and JavaScript. Six topic pages preserve the team&rsquo;s six research
-      questions: College to Pros, The Draft, Attendance, Awards, The League, and
-      Greatness. Across those pages, the project presents five data visualizations, one
-      map, and one timeline. A separate Data Critique examines the archive&rsquo;s
+      HTML, CSS, and JavaScript. Two overview pages organize the team&rsquo;s six research
+      topics. The Business connects The Draft, Attendance, and The League; The Game
+      connects College to Pros, Awards, and Greatness. Across those pages, the project
+      presents four charts, one map, and one timeline. A separate Data Critique examines the archive&rsquo;s
       ontology, while this About page documents method and labor and the Sources page
       records evidence and image credits. The site can be hosted as ordinary files
       without a database or application server.</p>
@@ -145,7 +140,7 @@
       inside the narrative rather than in a detached gallery; captions state the
       measure, time period, and clickable source; and the shared visual system uses
       consistent typography, spacing, and color. Interaction is limited to places where
-      it adds information: draft-chart hover values, the scroll-responsive timeline,
+      it adds information: Tableau exploration tools, the interactive timeline,
       and expandable bibliography annotations. Responsive layouts, keyboard-accessible
       navigation, reduced-motion support, lazy-loaded images, and readable text widths
       were included so the argument remains usable across devices.</p>
@@ -176,12 +171,7 @@
         <div class="profile-copy">
           <h3>Nguyen Ngo</h3>
           <p class="member-role">Project Manager</p>
-          <p>Hello! I am a 4th year Stats and Data Science major from San Diego. As project
-          manager, I coordinated team meetings and facilitated discussions about our project.
-          I made sure tasks were delegated evenly amongst the team and assisted with revisions
-          to some of our narratives. I don&rsquo;t have a current favorite WNBA team, but I do
-          enjoy watching top players such as Caitlyn Clark, Sabrina Ionescu, and A&rsquo;ja
-          Wilson to name a few.</p>
+          <p>Hello! I am a 4th year Stats and Data Science major from San Diego. As project manager, I coordinated our team meetings and facilitated discussions about our project. I created the attendance visualizations &amp; analysis, made sure tasks were delegated evenly amongst the team, and assisted with revisions. I don&rsquo;t have a current favorite WNBA team, but I do enjoy watching top players such as Caitlyn Clark, Sabrina Ionescu, and A&rsquo;ja Wilson to name a few.</p>
         </div>
       </section>
 
@@ -245,13 +235,13 @@
         </div>
       </section>
 
-      <section class="profile">
-        <h3>Makenzie White</h3>
-        <p class="member-role">Editor</p>
-        <p>Makenzie developed the question about how WNBA growth changes opportunities
-        for women in sports. She researched expansion, contraction, compensation, and
-        league milestones; drafted the League narrative and timeline material; and edited
-        terminology and prose so the six contributions read as one project.</p>
+      <section class="profile has-photo">
+        <img class="profile-photo" src="bio-makenzie.jpg" alt="Portrait of Makenzie White">
+        <div class="profile-copy">
+          <h3>Makenzie White</h3>
+          <p class="member-role">Editor</p>
+          <p>Hello, my name is Makenzie White and I am a fourth-year student at UCLA majoring in Statistics and Data Science. My role in this project was working as the Editor where I collaborated with the Content Developer and Project Manager to generate our narrative. My responsibilities included overlooking our data visualizations, writing elements, and historical background to provide revisions wherever necessary. I also contributed by brainstorming and liaising different ideas for visualizations and the storyboarding of our project.</p>
+        </div>
       </section>
     </div>
   </section>
@@ -295,6 +285,6 @@
   });
 </script>
 
-<script src="site.js?v=15"></script>
+<script src="site.js?v=16"></script>
 </body>
 </html>
